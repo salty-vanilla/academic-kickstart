@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nakatsuka Shunsuke</title>
-    <link>/</link>
+    <link>https://salty-vanilla.github.io/portfolio/</link>
     <description>Recent content on Nakatsuka Shunsuke</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 03 May 2019 00:00:00 +0000</lastBuildDate>
     
-	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://salty-vanilla.github.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visual Inspection</title>
-      <link>/project/visual_inspection/</link>
+      <link>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</link>
       <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/project/visual_inspection/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</guid>
       <description>
 
 &lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
@@ -41,10 +41,10 @@
     
     <item>
       <title>Visual Inspection</title>
-      <link>/project/wlid_life/</link>
+      <link>https://salty-vanilla.github.io/portfolio/project/wlid_life/</link>
       <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/project/wlid_life/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/project/wlid_life/</guid>
       <description>
 
 &lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
