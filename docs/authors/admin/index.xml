@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>admin on Nakatsuka Shunsuke</title>
+    <link>/authors/admin/</link>
+    <description>Recent content in admin on Nakatsuka Shunsuke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/author/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/author/admin/</guid>
+      <description>2013年岐阜大学工学部 電気電子・情報工学科に入学．情報分野を専門領域として学ぶ． その中で，人工知能・コンピュータビジョンに興味を持ち，2015年より加藤研究室に所属する． 学部・修士課程を通して，ニューラルネットワーク・画像処理・異常検知の研究に従事．特に工業製品や食品における外観検査の自動化をテーマとして研究を行った． また2018年度より応用生物科学部と協同しニューラルネットワークを用いた野生動物検知の研究にも着手．</description>
+    </item>
+    
+  </channel>
+</rss>
