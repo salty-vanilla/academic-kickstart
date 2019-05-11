@@ -1,0 +1,21 @@
+# https://coolors.co/2d3142-bfc0c0-ffffff-ef8354-4f5d75
+# Theme metadata
+name = "Leaggo3"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#ef8354"
+primary_light = "#768fff"
+primary_dark = "#0039cb"
+
+# Menu
+menu_primary = "#fff"
+menu_text = "#2d3142"
+menu_text_active = "#ef8354"
+menu_title = "#2d3142"
+
+# Home sections
+home_section_odd = "#fff"
+home_section_even = "#f7f7f7"
