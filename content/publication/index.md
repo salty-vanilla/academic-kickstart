@@ -14,8 +14,7 @@ image = ""
 caption = ""
 
 +++
-
-<link rel="stylesheet" href="/portfolio/css/publication.css">
+<link href="/portfolio/css/publication.css" rel="stylesheet"></link>
 
 ### 国内会議
 * 中塚俊介, 加藤邦人, 中西洋輔 : "CNNによる回帰分析を用いた打痕判定に関する考察", ビジョン技術の実利用ワークショップ ViEW2016, pp.204-205(2016.12.9)

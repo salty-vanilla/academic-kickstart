@@ -131,6 +131,10 @@ sharing = true
   # Citation style ("apa" or "mla")
   citation_style = "apa"
 
+  [advanced]
+    css_style = ["publication"]
+
+
 # Configuration of project pages.
 [projects]
   # Views for associated content.
