@@ -27,10 +27,19 @@
   
     
   
-  <meta name="description" content="大量のカメラトラップ画像から野生動物が何頭いるかを自動判定">
+  <meta name="description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
+2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
+f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
+3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
+ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
+$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
+izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
+izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
+異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
+4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/project/wlid_life/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
 
   
 
@@ -115,32 +124,42 @@
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/project/wlid_life/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
 
   
   
   
   
     
+    
   
-  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/project/wlid_life/">
-  <meta property="og:title" content="Wild Life | Nakatsuka Shunsuke">
-  <meta property="og:description" content="大量のカメラトラップ画像から野生動物が何頭いるかを自動判定"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/project/wlid_life/featured.jpg">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
+  <meta property="og:title" content="f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
+2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
+f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
+3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
+ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
+$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
+izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
+izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
+異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
+4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-05-03T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2019-10-14T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-05-03T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2019-10-14T00:00:00&#43;00:00">
   
 
   
 
-  <title>Wild Life | Nakatsuka Shunsuke</title>
+  
+
+  <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -319,7 +338,7 @@
 </nav>
 
 
-<article class="article article-project" itemscope itemtype="http://schema.org/Article">
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
   
 
@@ -334,27 +353,23 @@
 
 
 
-
-<div class="article-header d-xl-none">
-  <div class="featured-image" style="background-image: url('/portfolio/project/wlid_life/featured_hu3d03a01dcc18bc5be0e67db3d8d209a6_1904482_800x0_resize_q90_lanczos.jpg');"></div>
   
-</div>
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</h1>
+
+  
+
+  
+    
 
 
-<div class="container-fluid split-header d-none d-xl-block">
-  <div class="row">
-    <div class="col-6">
-      <div class="split-header-content">
-        <h1 itemprop="name">Wild Life</h1>
 
-        
-
-        
-
-
-
-<meta content="2019-05-03 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2019-05-03 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+<meta content="2019-10-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-10-14 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -367,124 +382,20 @@
     
       
     
-    <time>May 3, 2019</time>
+    <time>Oct 14, 2019</time>
   </span>
   
 
   
 
   
-
-  
-  
-
-  
-  
-
-  
-
-</div>
-
-
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-        
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Wild%20Life&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fproject%2fwlid_life%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fproject%2fwlid_life%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fproject%2fwlid_life%2f&amp;title=Wild%20Life"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fproject%2fwlid_life%2f&amp;title=Wild%20Life"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=Wild%20Life&amp;body=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fproject%2fwlid_life%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-      </div>
-    </div>
-    
-  </div>
-</div>
-
-<div class="article-container d-xl-none">
-  <h1 itemprop="name">Wild Life</h1>
-
-  
-
-  
-
-
-
-<meta content="2019-05-03 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2019-05-03 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    <time>May 3, 2019</time>
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
   </span>
   
 
   
-
-  
-
-  
   
 
   
@@ -497,7 +408,7 @@
 
 </div>
 
-  
+    
 
 
 
@@ -516,6 +427,7 @@
 
 
 
+  
 </div>
 
 
@@ -525,16 +437,76 @@
     <div class="article-style" itemprop="articleBody">
       
 
-<h2 id="背景">背景</h2>
+<h2 id="1-どんなもの">1. どんなもの？</h2>
 
-<h2 id="手法">手法</h2>
+<p>推論時に時間がかかってしまうAnoGANを高速化する枠組み．</p>
+
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
+
+<p>AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた．
+つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．</p>
+
+<p>f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．</p>
+
+<h2 id="3-技術や手法の-キモ-はどこ">3. 技術や手法の&rdquo;キモ&rdquo;はどこ？</h2>
+
+<p>$z$ から$x$を推論する枠組みを3つ提案．</p>
+
+<h3 id="ziz-encoder">ziz encoder</h3>
+
+<p>学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．<br />
+$n$は総画素数．
+$$
+L(z) = \frac{1}{n}|z - E(G(z))|^2
+$$</p>
+
+<h3 id="izi-encoder">izi encoder</h3>
+
+<p>学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する．
+$$
+L(x) = \frac{1}{n}|x - G(E(x))|^2
+$$</p>
+
+<h3 id="izif-encoder">izif encoder</h3>
+
+<p>izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する．
+$f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．．
+$$
+L(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
+$$</p>
+
+<h3 id="異常度の算出">異常度の算出</h3>
+
+<p>$$
+A(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
+$$</p>
+
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
+
+<p>AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
+Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．</p>
+
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
+
+<p>追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood．
+構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？</p>
+
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
+
+<ul>
+<li>AnoGAN <a href="https://arxiv.org/abs/1703.05921" target="_blank">https://arxiv.org/abs/1703.05921</a></li>
+<li>GANomaly: Semi-Supervised Anomaly Detection via Adversarial Training  <a href="https://arxiv.org/abs/1805.06725" target="_blank">https://arxiv.org/abs/1805.06725</a></li>
+<li>Adversarially Learned Inference <a href="https://arxiv.org/abs/1606.00704" target="_blank">https://arxiv.org/abs/1606.00704</a></li>
+</ul>
 
     </div>
 
     
 
 
+
     
+      
 
 
 
@@ -635,26 +607,17 @@
 
 
 
-
-    
-    
-
-    
-    
+      
+      
     
 
     
-    
-    
 
     
-    
-    
+
 
   </div>
 </article>
-
-
 
 <div class="container">
   <footer class="site-footer">
@@ -711,6 +674,9 @@
 
     
     
+    
+    <script src="/portfolio/js/mathjax-config.js"></script>
+    
 
     
     
@@ -727,6 +693,8 @@
       
 
       
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
       
     
 
