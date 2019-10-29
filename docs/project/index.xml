@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on Nakatsuka Shunsuke</title>
-    <link>https://salty-vanilla.github.io/portfolio/project/</link>
+    <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/</link>
     <description>Recent content in Projects on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 03 May 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://salty-vanilla.github.io/portfolio/project/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="file:///D:/Documents/vagrant/hugo/src/academic/docs/project/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visual Inspection</title>
-      <link>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/visual_inspection/</link>
       <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/visual_inspection/</guid>
       <description>工業部品や食品の外観検査をニューラルネットワークによって自動化</description>
     </item>
     
     <item>
       <title>Wild Life</title>
-      <link>https://salty-vanilla.github.io/portfolio/project/wlid_life/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/wlid_life/</link>
       <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/project/wlid_life/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/wlid_life/</guid>
       <description>大量のカメラトラップ画像から野生動物が何頭いるかを自動判定</description>
     </item>
     

@@ -3,76 +3,76 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/</loc>
     <lastmod>2019-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/</loc>
     <lastmod>2019-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/f-anogan/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</loc>
     <lastmod>2019-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/project/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/</loc>
     <lastmod>2019-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/visual_inspection/</loc>
     <lastmod>2019-05-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/project/wlid_life/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/wlid_life/</loc>
     <lastmod>2019-05-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/author/admin/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/author/admin/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/authors/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/author/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/publication_types/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/publication_types/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/publication/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/publication/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/talk/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/talk/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/tags/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/authors/admin/</loc>
+    <loc>file:///D:/Documents/vagrant/hugo/src/academic/docs/authors/admin/</loc>
     <priority>0</priority>
   </url>
   
