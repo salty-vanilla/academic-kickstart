@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Nakatsuka Shunsuke</title>
-    <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/</link>
+    <link>https://salty-vanilla.github.io/portfolio/post/</link>
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="file:///D:/Documents/vagrant/hugo/src/academic/docs/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>
-      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</link>
+      <link>https://salty-vanilla.github.io/portfolio/post/f-anogan/</link>
       <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/post/f-anogan/</guid>
       <description>1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
 2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
 f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
