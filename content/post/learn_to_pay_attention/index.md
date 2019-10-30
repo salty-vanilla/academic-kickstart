@@ -5,6 +5,7 @@ title = "Learn to Pay Attention"
 summary = ""
 external_link = ""
 math = true
+katex = true
 +++
 
 ## 1. どんなもの？
@@ -22,29 +23,28 @@ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的�
 
 1. $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
 
-
 2. $s$個目のlocal feature vectorは
-$$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, ..., \bold{l_N^s} } $$
+$$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, ..., \mathbf{l_N^s} } $$
 ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
 
-3. 全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M'$に揃える
-$$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$
+3. 全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M'$に揃える
+$$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
 
 4. local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める
-$$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, ..., c_n^s} $$
-
-$$ c_i^s = \bold{\hat{l^s_i}} \cdot{\bold{g}} $$
+$$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, ..., c_n^s} $$
+$$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$
 
 5. Compatibility scoresに対して，softmaxを適用してAttention Mapを算出
 $$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$
 
 6. 各モジュールの出力はAttention MapとFeature Mapの内積
-$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$
+$$ \mathbf{g^s} = \sum_i^n a_i^s \cdot{\mathbf{l_i^s}} $$
 
 7. 最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層
-$$ \bold{g_{all}} = { \bold{g_{1}}, \bold{g_{2}}, ..., \bold{g_{S}}} $$
 
-$$ Output = W_{FC2} \cdot{\bold{g_{all}}} $$
+$$ \mathbf{g_a} = { \mathbf{g_1}, \mathbf{g_2}, ..., \mathbf{g_S}} $$
+$$ O = W \cdot{\mathbf{g_a}} $$
+
 
 ## 4. どうやって有効だと検証した？
 CIFAR10，CIFAR100，CUB200，SVHNで実験．

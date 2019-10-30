@@ -30,9 +30,9 @@
   <meta name="description" content="1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
 2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
  $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
- $s$個目のlocal feature vectorは $$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &hellip;, \bold{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
- 全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&rsquo;$に揃える $$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$
- local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$">
+ $s$個目のlocal feature vectorは $$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &hellip;, \mathbf{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
+ 全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&rsquo;$に揃える $$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
+ local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$">
 
   
   <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
@@ -137,9 +137,9 @@
   <meta property="og:description" content="1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
 2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
  $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
- $s$個目のlocal feature vectorは $$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &hellip;, \bold{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
- 全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&rsquo;$に揃える $$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$
- local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+ $s$個目のlocal feature vectorは $$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &hellip;, \mathbf{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
+ 全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&rsquo;$に揃える $$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
+ local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-05-06T00:00:00&#43;00:00">
@@ -451,30 +451,27 @@
 <li><p>$S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．</p></li>
 
 <li><p>$s$個目のlocal feature vectorは
-$$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &hellip;, \bold{l_N^s} } $$
+$$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &hellip;, \mathbf{l_N^s} } $$
 ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．</p></li>
 
-<li><p>全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&rsquo;$に揃える
-$$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$</p></li>
+<li><p>全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&rsquo;$に揃える
+$$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$</p></li>
 
 <li><p>local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める
-$$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$</p></li>
-</ol>
+$$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$
+$$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$</p></li>
 
-<p>$$ c_i^s = \bold{\hat{l^s_i}} \cdot{\bold{g}} $$</p>
-
-<ol>
 <li><p>Compatibility scoresに対して，softmaxを適用してAttention Mapを算出
 $$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$</p></li>
 
 <li><p>各モジュールの出力はAttention MapとFeature Mapの内積
-$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$</p></li>
+$$ \mathbf{g^s} = \sum_i^n a_i^s \cdot{\mathbf{l_i^s}} $$</p></li>
 
-<li><p>最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層
-$$ \bold{g<em>{all}} = { \bold{g</em>{1}}, \bold{g<em>{2}}, &hellip;, \bold{g</em>{S}}} $$</p></li>
+<li><p>最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層</p></li>
 </ol>
 
-<p>$$ Output = W<em>{FC2} \cdot{\bold{g</em>{all}}} $$</p>
+<p>$$ \mathbf{g_a} = { \mathbf{g_1}, \mathbf{g_2}, &hellip;, \mathbf{g_S}} $$
+$$ O = W \cdot{\mathbf{g_a}} $$</p>
 
 <h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 
