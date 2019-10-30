@@ -19,6 +19,8 @@ f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の
 ## 3. 技術や手法の"キモ"はどこ？
 $z$ から$x$を推論する枠組みを3つ提案．
 
+<img src="img/architecture.png">
+
 ### ziz encoder
 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．  
 $n$は総画素数．
@@ -46,6 +48,9 @@ $$
 ## 4. どうやって有効だと検証した？
 AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
 Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．
+
+<img src="img/vis.png">
+<img src="img/res_table.png">
 
 ## 5. 議論はあるか？
 追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood．

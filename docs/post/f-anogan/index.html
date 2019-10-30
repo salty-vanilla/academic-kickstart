@@ -452,6 +452,8 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
 <p>$z$ から$x$を推論する枠組みを3つ提案．</p>
 
+<p><img src="img/architecture.png"></p>
+
 <h3 id="ziz-encoder">ziz encoder</h3>
 
 <p>学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．<br />
@@ -485,6 +487,9 @@ $$</p>
 
 <p>AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
 Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．</p>
+
+<p><img src="img/vis.png">
+<img src="img/res_table.png"></p>
 
 <h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 

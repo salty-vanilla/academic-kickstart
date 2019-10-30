@@ -34,6 +34,8 @@
 
 &lt;p&gt;$z$ から$x$を推論する枠組みを3つ提案．&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&#34;img/architecture.png&#34;&gt;&lt;/p&gt;
+
 &lt;h3 id=&#34;ziz-encoder&#34;&gt;ziz encoder&lt;/h3&gt;
 
 &lt;p&gt;学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．&lt;br /&gt;
@@ -67,6 +69,9 @@ $$&lt;/p&gt;
 
 &lt;p&gt;AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
 Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/vis.png&#34;&gt;
+&lt;img src=&#34;img/res_table.png&#34;&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
 
