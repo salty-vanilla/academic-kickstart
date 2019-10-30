@@ -117,6 +117,80 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
     </item>
     
     <item>
+      <title>Learn to Pay Attention</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
+      <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
+      <description>
+
+&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
+
+&lt;p&gt;Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．&lt;/p&gt;
+
+&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する&lt;/li&gt;
+&lt;li&gt;Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる&lt;/li&gt;
+&lt;li&gt;適合度によって重要なLocal feature vectorだけを分類に活用する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-技術や手法の-キモ-はどこ&#34;&gt;3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？&lt;/h2&gt;
+
+&lt;p&gt;学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/architecture.png&#34;&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;$S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;$s$個目のlocal feature vectorは
+$$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &amp;hellip;, \bold{l_N^s} } $$
+ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&amp;rsquo;$に揃える
+$$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める
+$$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &amp;hellip;, c_n^s} $$&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;$$ c_i^s = \bold{\hat{l^s_i}} \cdot{\bold{g}} $$&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Compatibility scoresに対して，softmaxを適用してAttention Mapを算出
+$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;各モジュールの出力はAttention MapとFeature Mapの内積
+$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層
+$$ \bold{g&lt;em&gt;{all}} = { \bold{g&lt;/em&gt;{1}}, \bold{g&lt;em&gt;{2}}, &amp;hellip;, \bold{g&lt;/em&gt;{S}}} $$&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;$$ Output = W&lt;em&gt;{FC2} \cdot{\bold{g&lt;/em&gt;{all}}} $$&lt;/p&gt;
+
+&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
+
+&lt;p&gt;CIFAR10，CIFAR100，CUB200，SVHNで実験．
+BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
+浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/res.png&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
+
+&lt;p&gt;Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/adv_attack.png&#34;&gt;
+&lt;img src=&#34;img/cross_domain.png&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Publications</title>
       <link>https://salty-vanilla.github.io/portfolio/publication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

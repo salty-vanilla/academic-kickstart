@@ -27,10 +27,15 @@
   
     
   
-  <meta name="description" content="R&amp;D Engineer">
+  <meta name="description" content="1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
+2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
+ $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
+ $s$個目のlocal feature vectorは $$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &hellip;, \bold{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
+ 全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&rsquo;$に揃える $$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$
+ local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
 
   
 
@@ -110,15 +115,12 @@
   
 
   
-  <link rel="alternate" href="/portfolio/post/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  <link rel="feed" href="/portfolio/post/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
 
   
   
@@ -130,19 +132,26 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/">
-  <meta property="og:title" content="Posts | Nakatsuka Shunsuke">
-  <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
+  <meta property="og:title" content="Learn to Pay Attention | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
+2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
+ $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
+ $s$個目のlocal feature vectorは $$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &hellip;, \bold{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
+ 全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&rsquo;$に揃える $$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$
+ local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2019-10-14T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-05-06T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-05-06T00:00:00&#43;00:00">
   
 
   
 
   
 
-  <title>Posts | Nakatsuka Shunsuke</title>
+  <title>Learn to Pay Attention | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -321,7 +330,9 @@
 </nav>
 
 
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
+  
 
 
 
@@ -338,155 +349,14 @@
 
   
   
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Learn to Pay Attention</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Posts</h1>
-
-  
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-
-  
-
-  
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/f-anogan/" itemprop="url">f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出 …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-
-<meta content="2019-10-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2019-10-14 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    <time>Oct 14, 2019</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/learn_to_pay_attention/" itemprop="url">Learn to Pay Attention</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
-2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情 …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 
@@ -524,28 +394,225 @@
   
 
   
+    
+
+  
 
 </div>
 
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
       
+
+<h2 id="1-どんなもの">1. どんなもの？</h2>
+
+<p>Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．</p>
+
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
+
+<ul>
+<li>Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する</li>
+<li>Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる</li>
+<li>適合度によって重要なLocal feature vectorだけを分類に活用する</li>
+</ul>
+
+<h2 id="3-技術や手法の-キモ-はどこ">3. 技術や手法の&rdquo;キモ&rdquo;はどこ？</h2>
+
+<p>学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．</p>
+
+<p><img src="img/architecture.png"></p>
+
+<ol>
+<li><p>$S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．</p></li>
+
+<li><p>$s$個目のlocal feature vectorは
+$$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &hellip;, \bold{l_N^s} } $$
+ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．</p></li>
+
+<li><p>全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&rsquo;$に揃える
+$$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$</p></li>
+
+<li><p>local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める
+$$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$</p></li>
+</ol>
+
+<p>$$ c_i^s = \bold{\hat{l^s_i}} \cdot{\bold{g}} $$</p>
+
+<ol>
+<li><p>Compatibility scoresに対して，softmaxを適用してAttention Mapを算出
+$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$</p></li>
+
+<li><p>各モジュールの出力はAttention MapとFeature Mapの内積
+$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$</p></li>
+
+<li><p>最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層
+$$ \bold{g<em>{all}} = { \bold{g</em>{1}}, \bold{g<em>{2}}, &hellip;, \bold{g</em>{S}}} $$</p></li>
+</ol>
+
+<p>$$ Output = W<em>{FC2} \cdot{\bold{g</em>{all}}} $$</p>
+
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
+
+<p>CIFAR10，CIFAR100，CUB200，SVHNで実験．
+BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
+浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる</p>
+
+<p><img src="img/res.png"></p>
+
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
+
+<p>Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．</p>
+
+<p><img src="img/adv_attack.png">
+<img src="img/cross_domain.png"></p>
+
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
+
     </div>
 
     
 
-  </div>
-  <div class="ml-3">
+
+
     
-    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/portfolio/author/admin/avatar_hued5d70cfe56e48dc137dc1e3bdf77641_127119_250x250_fill_lanczos_center_2.png" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h6 class="card-subtitle">R&amp;D Engineer</h6>
+    <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/portfolio/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/_Shu_Nak" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/salty-vanilla" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.slideshare.net/ShunsukeNAKATSUKA1" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
   </div>
 </div>
 
+
+
+      
+      
     
-  
 
-  
+    
+
+    
 
 
-</div>
+  </div>
+</article>
+
 <div class="container">
   <footer class="site-footer">
   
@@ -601,6 +668,9 @@
 
     
     
+    
+    <script src="/portfolio/js/mathjax-config.js"></script>
+    
 
     
     
@@ -617,6 +687,8 @@
       
 
       
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
       
     
 

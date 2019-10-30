@@ -29,5 +29,19 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．</description>
     </item>
     
+    <item>
+      <title>Learn to Pay Attention</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
+      <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
+      <description>1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
+2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
+ $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
+ $s$個目のlocal feature vectorは $$ \bold{L^s} = { \bold{l_1^s}, \bold{l_2^s}, &amp;hellip;, \bold{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
+ 全結合層で各ベクトルの長さをglobal feature vector$\bold{g}$の長さ$M&amp;rsquo;$に揃える $$ \bold{\hat{l^s_i}} = w\cdot{\bold{l_i^s}} $$
+ local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\bold{\hat{L_s}}, \bold{g}) = {c_1^s, c_2^s, &amp;hellip;, c_n^s} $$</description>
+    </item>
+    
   </channel>
 </rss>
