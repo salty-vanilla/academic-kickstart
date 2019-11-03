@@ -45,13 +45,11 @@ $$
 $$
 
 $$
-\begin{aligned}
-{ L_{\text {fake }}(x, z)=\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}(0,1)}\right)\right)} 
-+\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}}\left(\mu_{\left.z | x, \Sigma_{z | x}\right)}\right)\right)+\log \left(p_{D}\left(\hat{x}_{\text {best-guess }}\right)\right)\right
-\end{aligned}
+\begin{array}{l}{L_{\text {fake }}(x, z)=\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}(0,1)}\right)\right)}  {+\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}}\left(\mu_{\left.z | x, \Sigma_{z | x}\right)}\right)\right)+\log \left(p_{D}\left(\hat{x}_{\text {best-guess }}\right)\right)\right.}\end{array}
 $$
 
 VAEのLoss関数は，
+
 $$
 \min _{G} L_{G}=\min _{G} L_{W T A}+K L\left(q_{\phi}(z | x) \| \mathcal{N}(0,1)\right)-L_{D}
 $$
