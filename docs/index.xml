@@ -6,10 +6,96 @@
     <description>Recent content on Nakatsuka Shunsuke</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="https://salty-vanilla.github.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
+      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
+      <description>&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
+
+&lt;p&gt;異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．&lt;/p&gt;
+
+&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった．&lt;/li&gt;
+&lt;li&gt;後述するMultiple-Hypothesesにより高周波成分の再構成に成功．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/rec.png&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;3-技術や手法のキモはどこ&#34;&gt;3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？&lt;/h2&gt;
+
+&lt;h3 id=&#34;multiplehypotheses&#34;&gt;Multiple-Hypotheses&lt;/h3&gt;
+
+&lt;p&gt;VAEのDecoderから得られる出力を複数にする．
+具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）．
+&lt;img src=&#34;img/arc.png&#34;&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;winnertakesall-wta-loss&#34;&gt;winner-takes-all (WTA) loss&lt;/h3&gt;
+
+&lt;p&gt;複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく，
+最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\begin{aligned}
+L_{W T A}\left(x_{i} | \theta_{h}\right) &amp;=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &amp;=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right]
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;discriminator&#34;&gt;Discriminator&lt;/h3&gt;
+
+&lt;p&gt;WTA Lossでは再構成誤差をBack Propagationする出力以外については更新がされないことになってしまう．
+そのため，それ以外の出力についても入力の分布に近づけるようにDiscriminatorを用意する．
+realはもちろん入力画像で，fakeはVAEの出力（Bestとそれ以外）とランダムサンプリングされた$z$からDecoderを介して得られた出力である．&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\begin{aligned}
+\min _{D} \max _{G} L_{D}(x, z)=&amp;\min _{D} \max _{G} \underbrace{-\log \left(p_{D}\left(x_{r e a l}\right)\right)}_{L_{real}} +L_{f a k e}(x, z)
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\begin{aligned}
+{ L_{\text {fake }}(x, z)=\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}(0,1)}\right)\right)} 
++\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}}\left(\mu_{\left.z | x, \Sigma_{z | x}\right)}\right)\right)+\log \left(p_{D}\left(\hat{x}_{\text {best-guess }}\right)\right)\right
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;VAEのLoss関数は，
+&lt;span  class=&#34;math&#34;&gt;\(
+\min _{G} L_{G}=\min _{G} L_{W T A}+K L\left(q_{\phi}(z | x) \| \mathcal{N}(0,1)\right)-L_{D}
+\)&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;異常度の算出&#34;&gt;異常度の算出&lt;/h3&gt;
+
+&lt;p&gt;WTA Lossを異常度とする．
+Sumしなければ，異常箇所のLocalizationに使えるのは従来のAutoencoder通り．&lt;/p&gt;
+
+&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
+
+&lt;p&gt;CIFAR10(1vs9)とMETAL ANOMALY（論文内にはリンクなし）で実験．
+CIFAR10でAUROC: 67.1．
+METAL ANOMALYでは異常度が大きいPixelの上位10%のSumを全体の異常度として算出．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/res.png&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Blurが解消されたのは，VAE-GAN構造にしたことによるところが大きいと思うが果たして．&lt;/li&gt;
+&lt;li&gt;高周波成分が再構成されることにより，今まで差分として出てこなかった部分もあると思う．&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
+</description>
+    </item>
     
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>

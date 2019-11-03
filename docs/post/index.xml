@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
+      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
+      <description>1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
+2. 先行研究と比べてどこがすごい？  Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった． 後述するMultiple-Hypothesesにより高周波成分の再構成に成功．  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Multiple-Hypotheses VAEのDecoderから得られる出力を複数にする． 具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）． winner-takes-all (WTA) loss 複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく， 最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．
+\[ \begin{aligned} L_{W T A}\left(x_{i} | \theta_{h}\right) &amp;=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &amp;=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right] \end{aligned} \]
+Discriminator WTA Lossでは再構成誤差をBack Propagationする出力以外については更新がされないことになってしまう． そのため，それ以外の出力についても入力の分布に近づけるようにDiscriminatorを用意する． realはもちろん入力画像で，fakeはVAEの出力（Bestとそれ以外）とランダムサンプリングされた$z$からDecoderを介して得られた出力である．
+\[ \begin{aligned} \min _{D} \max _{G} L_{D}(x, z)=&amp;\min _{D} \max _{G} \underbrace{-\log \left(p_{D}\left(x_{r e a l}\right)\right)}_{L_{real}} +L_{f a k e}(x, z) \end{aligned} \]</description>
+    </item>
     
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>

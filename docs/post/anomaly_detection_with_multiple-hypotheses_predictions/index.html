@@ -27,15 +27,14 @@
   
     
   
-  <meta name="description" content="1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
-2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
- $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
- $s$個目のlocal feature vectorは $$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &hellip;, \mathbf{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
- 全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&rsquo;$に揃える $$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
- local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$">
+  <meta name="description" content="1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
+2. 先行研究と比べてどこがすごい？  Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった． 後述するMultiple-Hypothesesにより高周波成分の再構成に成功．  3. 技術や手法の&quot;キモ&quot;はどこ？ Multiple-Hypotheses VAEのDecoderから得られる出力を複数にする． 具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）． winner-takes-all (WTA) loss 複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく， 最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．
+\[ \begin{aligned} L_{W T A}\left(x_{i} | \theta_{h}\right) &=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right] \end{aligned} \]
+Discriminator WTA Lossでは再構成誤差をBack Propagationする出力以外については更新がされないことになってしまう． そのため，それ以外の出力についても入力の分布に近づけるようにDiscriminatorを用意する． realはもちろん入力画像で，fakeはVAEの出力（Bestとそれ以外）とランダムサンプリングされた$z$からDecoderを介して得られた出力である．
+\[ \begin{aligned} \min _{D} \max _{G} L_{D}(x, z)=&\min _{D} \max _{G} \underbrace{-\log \left(p_{D}\left(x_{r e a l}\right)\right)}_{L_{real}} &#43;L_{f a k e}(x, z) \end{aligned} \]">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/">
 
   
 
@@ -120,7 +119,7 @@
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/">
 
   
   
@@ -132,26 +131,25 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/">
-  <meta property="og:title" content="Learn to Pay Attention | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
-2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
- $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
- $s$個目のlocal feature vectorは $$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &hellip;, \mathbf{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
- 全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&rsquo;$に揃える $$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
- local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/">
+  <meta property="og:title" content="Anomaly Detection With Multiple-Hypotheses Predictions | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
+2. 先行研究と比べてどこがすごい？  Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった． 後述するMultiple-Hypothesesにより高周波成分の再構成に成功．  3. 技術や手法の&quot;キモ&quot;はどこ？ Multiple-Hypotheses VAEのDecoderから得られる出力を複数にする． 具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）． winner-takes-all (WTA) loss 複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく， 最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．
+\[ \begin{aligned} L_{W T A}\left(x_{i} | \theta_{h}\right) &=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right] \end{aligned} \]
+Discriminator WTA Lossでは再構成誤差をBack Propagationする出力以外については更新がされないことになってしまう． そのため，それ以外の出力についても入力の分布に近づけるようにDiscriminatorを用意する． realはもちろん入力画像で，fakeはVAEの出力（Bestとそれ以外）とランダムサンプリングされた$z$からDecoderを介して得られた出力である．
+\[ \begin{aligned} \min _{D} \max _{G} L_{D}(x, z)=&\min _{D} \max _{G} \underbrace{-\log \left(p_{D}\left(x_{r e a l}\right)\right)}_{L_{real}} &#43;L_{f a k e}(x, z) \end{aligned} \]"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-05-06T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2019-11-01T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-05-06T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2019-11-01T00:00:00&#43;00:00">
   
 
   
 
-  <title>Learn to Pay Attention | Nakatsuka Shunsuke</title>
+  
+
+  <title>Anomaly Detection With Multiple-Hypotheses Predictions | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -351,7 +349,7 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Learn to Pay Attention</h1>
+  <h1 itemprop="name">Anomaly Detection With Multiple-Hypotheses Predictions</h1>
 
   
 
@@ -360,8 +358,8 @@
 
 
 
-<meta content="2018-05-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2018-05-06 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+<meta content="2019-11-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-11-01 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -374,7 +372,7 @@
     
       
     
-    <time>May 6, 2018</time>
+    <time>Nov 1, 2019</time>
   </span>
   
 
@@ -418,6 +416,41 @@
 
 
 
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1810.13292" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
 
   
 </div>
@@ -427,66 +460,81 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 
-<h2 id="1-どんなもの">1. どんなもの？</h2>
-
-<p>Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．</p>
+<p>異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．</p>
 
 <h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 
 <ul>
-<li>Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する</li>
-<li>Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる</li>
-<li>適合度によって重要なLocal feature vectorだけを分類に活用する</li>
+<li>Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった．</li>
+<li>後述するMultiple-Hypothesesにより高周波成分の再構成に成功．</li>
 </ul>
 
-<h2 id="3-技術や手法の-キモ-はどこ">3. 技術や手法の&rdquo;キモ&rdquo;はどこ？</h2>
+<p><img src="img/rec.png"></p>
 
-<p>学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．</p>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 
-<p><img src="img/architecture.png"></p>
+<h3 id="multiplehypotheses">Multiple-Hypotheses</h3>
 
-<ol>
-<li><p>$S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．</p></li>
+<p>VAEのDecoderから得られる出力を複数にする．
+具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）．
+<img src="img/arc.png"></p>
 
-<li><p>$s$個目のlocal feature vectorは
-$$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &hellip;, \mathbf{l_N^s} } $$
-ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．</p></li>
+<h3 id="winnertakesall-wta-loss">winner-takes-all (WTA) loss</h3>
 
-<li><p>全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&rsquo;$に揃える
-$$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$</p></li>
+<p>複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく，
+最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．</p>
 
-<li><p>local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める
-$$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$
-$$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$</p></li>
+<p><span  class="math">\[
+\begin{aligned}
+L_{W T A}\left(x_{i} | \theta_{h}\right) &=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right]
+\end{aligned}
+\]</span></p>
 
-<li><p>Compatibility scoresに対して，softmaxを適用してAttention Mapを算出
-$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$</p></li>
+<h3 id="discriminator">Discriminator</h3>
 
-<li><p>各モジュールの出力はAttention MapとFeature Mapの内積
-$$ \mathbf{g^s} = \sum_i^n a_i^s \cdot{\mathbf{l_i^s}} $$</p></li>
+<p>WTA Lossでは再構成誤差をBack Propagationする出力以外については更新がされないことになってしまう．
+そのため，それ以外の出力についても入力の分布に近づけるようにDiscriminatorを用意する．
+realはもちろん入力画像で，fakeはVAEの出力（Bestとそれ以外）とランダムサンプリングされた$z$からDecoderを介して得られた出力である．</p>
 
-<li><p>最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層</p></li>
-</ol>
+<p><span  class="math">\[
+\begin{aligned}
+\min _{D} \max _{G} L_{D}(x, z)=&\min _{D} \max _{G} \underbrace{-\log \left(p_{D}\left(x_{r e a l}\right)\right)}_{L_{real}} +L_{f a k e}(x, z)
+\end{aligned}
+\]</span></p>
 
-<p>$$ \mathbf{g_a} = { \mathbf{g_1}, \mathbf{g_2}, &hellip;, \mathbf{g_S}} $$
-$$ O = W \cdot{\mathbf{g_a}} $$</p>
+<p><span  class="math">\[
+\begin{aligned}
+{ L_{\text {fake }}(x, z)=\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}(0,1)}\right)\right)} 
++\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}}\left(\mu_{\left.z | x, \Sigma_{z | x}\right)}\right)\right)+\log \left(p_{D}\left(\hat{x}_{\text {best-guess }}\right)\right)\right
+\end{aligned}
+\]</span></p>
+
+<p>VAEのLoss関数は，
+<span  class="math">\(
+\min _{G} L_{G}=\min _{G} L_{W T A}+K L\left(q_{\phi}(z | x) \| \mathcal{N}(0,1)\right)-L_{D}
+\)</span></p>
+
+<h3 id="異常度の算出">異常度の算出</h3>
+
+<p>WTA Lossを異常度とする．
+Sumしなければ，異常箇所のLocalizationに使えるのは従来のAutoencoder通り．</p>
 
 <h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 
-<p>CIFAR10，CIFAR100，CUB200，SVHNで実験．
-BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
-浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる</p>
+<p>CIFAR10(1vs9)とMETAL ANOMALY（論文内にはリンクなし）で実験．
+CIFAR10でAUROC: 67.1．
+METAL ANOMALYでは異常度が大きいPixelの上位10%のSumを全体の異常度として算出．</p>
 
 <p><img src="img/res.png"></p>
 
 <h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 
-<p>Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．</p>
-
-<p><img src="img/adv_attack.png">
-<img src="img/cross_domain.png"></p>
+<ul>
+<li>Blurが解消されたのは，VAE-GAN構造にしたことによるところが大きいと思うが果たして．</li>
+<li>高周波成分が再構成されることにより，今まで差分として出てこなかった部分もあると思う．</li>
+</ul>
 
 <h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 
