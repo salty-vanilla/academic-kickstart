@@ -27,16 +27,19 @@
   
     
   
-  <meta name="description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
-f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
-ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
-$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
-izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
-izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．">
+  <meta name="description" content="1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
+2. 先行研究と比べてどこがすごい？  クラス分類モデルのSoftmaxを少し改良するだけで適用できる ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture 全体的な流れとしては， Base Block（VGGとかResNetとか）から特徴ベクトルを出力
+\[ x&#39; = f(x) \]
+出力された特徴ベクトルをL2正則化
+\[ x&#39;&#39; = \frac{x&#39;}{|x&#39;|^2} \]
+全結合層の重みをL2正則化
+\[ w&#39; = \frac{w}{|w|^2} \]
+正則化された特徴ベクトルと重みを内積（これがcosの値）
+\[ cos\theta = x&#39;&#39; \cdot w&#39; \]
+これにAdditive Angular Margin Penaltyを適用する．
+Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う． イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．
+正解クラス\(j\)の出力に対して，Marginを加算する
+\[ \theta_j&#39; = \{ \begin{array}{ll} arccos(cos\theta_i) &#43; m & i=j \\ arccos(cos\theta_i) & otherwise \end{array} \]">
 
   
   <link rel="alternate" hreflang="en-us" href="#ZgotmplZ">
@@ -136,30 +139,33 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/">
-  <meta property="og:title" content="f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
-f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&rdquo;キモ&rdquo;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
-ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
-$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
-izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
-izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．"><meta property="og:image" content="file:///D:/Documents/vagrant/hugo/src/academic/docs/img/icon-192.png">
+  <meta property="og:url" content="file:///D:/Documents/vagrant/hugo/src/academic/docs/post/arcface/">
+  <meta property="og:title" content="ArcFace: Additive Angular Margin Loss for Deep Face Recognition | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
+2. 先行研究と比べてどこがすごい？  クラス分類モデルのSoftmaxを少し改良するだけで適用できる ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture 全体的な流れとしては， Base Block（VGGとかResNetとか）から特徴ベクトルを出力
+\[ x&#39; = f(x) \]
+出力された特徴ベクトルをL2正則化
+\[ x&#39;&#39; = \frac{x&#39;}{|x&#39;|^2} \]
+全結合層の重みをL2正則化
+\[ w&#39; = \frac{w}{|w|^2} \]
+正則化された特徴ベクトルと重みを内積（これがcosの値）
+\[ cos\theta = x&#39;&#39; \cdot w&#39; \]
+これにAdditive Angular Margin Penaltyを適用する．
+Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う． イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．
+正解クラス\(j\)の出力に対して，Marginを加算する
+\[ \theta_j&#39; = \{ \begin{array}{ll} arccos(cos\theta_i) &#43; m & i=j \\ arccos(cos\theta_i) & otherwise \end{array} \]"><meta property="og:image" content="file:///D:/Documents/vagrant/hugo/src/academic/docs/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-10-14T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2019-11-17T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-10-14T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2019-11-17T00:00:00&#43;00:00">
   
 
   
 
-  <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke</title>
+  
+
+  <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -359,7 +365,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</h1>
+  <h1 itemprop="name">ArcFace: Additive Angular Margin Loss for Deep Face Recognition</h1>
 
   
 
@@ -368,8 +374,8 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
 
 
-<meta content="2019-10-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2019-10-14 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+<meta content="2019-11-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-11-17 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -382,7 +388,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
     
       
     
-    <time>Oct 14, 2019</time>
+    <time>Nov 17, 2019</time>
   </span>
   
 
@@ -426,6 +432,41 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
 
 
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1801.07698" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
 
   
 </div>
@@ -435,73 +476,112 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 
-<h2 id="1-どんなもの">1. どんなもの？</h2>
-
-<p>推論時に時間がかかってしまうAnoGANを高速化する枠組み．</p>
+<p>Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．</p>
 
 <h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 
-<p>AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた．
-つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．</p>
+<ul>
+<li>クラス分類モデルのSoftmaxを少し改良するだけで適用できる</li>
+<li>ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している</li>
+</ul>
 
-<p>f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．</p>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 
-<h2 id="3-技術や手法の-キモ-はどこ">3. 技術や手法の&rdquo;キモ&rdquo;はどこ？</h2>
+<h3 id="architecture">Architecture</h3>
 
-<p>$z$ から$x$を推論する枠組みを3つ提案．</p>
+<p><img src="img/arc.png"></p>
 
-<p><img src="img/architecture.png"></p>
+<p>全体的な流れとしては，
+Base Block（VGGとかResNetとか）から特徴ベクトルを出力</p>
 
-<h3 id="ziz-encoder">ziz encoder</h3>
+<p><span  class="math">\[
+x' = f(x)
+\]</span></p>
 
-<p>学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．<br />
-$n$は総画素数．
-$$
-L(z) = \frac{1}{n}|z - E(G(z))|^2
-$$</p>
+<p>出力された特徴ベクトルをL2正則化</p>
 
-<h3 id="izi-encoder">izi encoder</h3>
+<p><span  class="math">\[
+x'' = \frac{x'}{|x'|^2}
+\]</span></p>
 
-<p>学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する．
-$$
-L(x) = \frac{1}{n}|x - G(E(x))|^2
-$$</p>
+<p>全結合層の重みをL2正則化</p>
 
-<h3 id="izif-encoder">izif encoder</h3>
+<p><span  class="math">\[
+w' = \frac{w}{|w|^2}
+\]</span></p>
 
-<p>izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する．
-$f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．．
-$$
-L(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
-$$</p>
+<p>正則化された特徴ベクトルと重みを内積（これがcosの値）</p>
 
-<h3 id="異常度の算出">異常度の算出</h3>
+<p><span  class="math">\[
+cos\theta = x'' \cdot w'
+\]</span></p>
 
-<p>$$
-A(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
-$$</p>
+<p>これにAdditive Angular Margin Penaltyを適用する．</p>
+
+<h3 id="additive-angular-margin-penalty">Additive Angular Margin Penalty</h3>
+
+<p>Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う．
+イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．</p>
+
+<p>正解クラス<span  class="math">\(j\)</span>の出力に対して，Marginを加算する</p>
+
+<p><span  class="math">\[
+\theta_j' = \{
+\begin{array}{ll}
+arccos(cos\theta_i) + m & i=j \\
+arccos(cos\theta_i) & otherwise
+\end{array}
+\]</span></p>
+
+<p>各要素を定数倍する（温度パラメータ）</p>
+
+<p><span  class="math">\[
+logit = s cos(\theta_j')
+\]</span></p>
+
+<p>softmax関数にかける</p>
+
+<p><span  class="math">\[
+y = softmax(logit)
+\]</span></p>
+
+<p>この一連の流れを組み込んだLoss関数は</p>
+
+<p><span  class="math">\[
+L_{3}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(\theta_{y_{i}}+m\right)\right)}}{e^{s\left(\cos \left(\theta_{y_{i}}+m\right)\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
+\]</span></p>
+
+<h3 id="arcfacespeherefacecosfase-の一般化">ArcFace・SpehereFace・CosFase の一般化</h3>
+
+<p>$m_1$がSpehereFace，$m_2$がArcFace，$m_3$がCosFace．</p>
+
+<p><span  class="math">\[
+L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}}{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
+\]</span></p>
+
+<p>それぞれの識別境界の違いは下図になるらしい．
+<img src="img/bou.png"></p>
 
 <h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 
-<p>AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
-Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．</p>
+<p>顔認識データセットであるLFW，CFP-FP，AgeDB30で実験．
+比較手法がどれも精度が優秀なので，あまり有効さはわからない．</p>
 
-<p><img src="img/vis.png">
-<img src="img/res_table.png"></p>
+<p><img src="img/res.png"></p>
 
 <h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 
-<p>追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood．
-構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？</p>
+<ul>
+<li>Out of dataset のサンプルが来た時にどれくらい精度がでるか？</li>
+</ul>
 
 <h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 
 <ul>
-<li>AnoGAN <a href="https://arxiv.org/abs/1703.05921" target="_blank">https://arxiv.org/abs/1703.05921</a></li>
-<li>GANomaly: Semi-Supervised Anomaly Detection via Adversarial Training  <a href="https://arxiv.org/abs/1805.06725" target="_blank">https://arxiv.org/abs/1805.06725</a></li>
-<li>Adversarially Learned Inference <a href="https://arxiv.org/abs/1606.00704" target="_blank">https://arxiv.org/abs/1606.00704</a></li>
+<li>CosFace: Large Margin Cosine Loss for Deep Face Recognition <a href="https://arxiv.org/abs/1801.09414">https://arxiv.org/abs/1801.09414</a></li>
+<li>SphereFace: Deep Hypersphere Embedding for Face Recognition <a href="https://arxiv.org/abs/1704.08063">https://arxiv.org/abs/1704.08063</a></li>
 </ul>
 
     </div>

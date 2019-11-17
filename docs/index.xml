@@ -2,21 +2,137 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nakatsuka Shunsuke</title>
-    <link>https://salty-vanilla.github.io/portfolio/</link>
+    <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/</link>
     <description>Recent content on Nakatsuka Shunsuke</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	    <atom:link href="https://salty-vanilla.github.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="file:///D:/Documents/vagrant/hugo/src/academic/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition</title>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/arcface/</link>
+      <pubDate>Sun, 17 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/arcface/</guid>
+      <description>&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
+
+&lt;p&gt;Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．&lt;/p&gt;
+
+&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;クラス分類モデルのSoftmaxを少し改良するだけで適用できる&lt;/li&gt;
+&lt;li&gt;ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-技術や手法のキモはどこ&#34;&gt;3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？&lt;/h2&gt;
+
+&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/arc.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;全体的な流れとしては，
+Base Block（VGGとかResNetとか）から特徴ベクトルを出力&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+x&#39; = f(x)
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;出力された特徴ベクトルをL2正則化&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+x&#39;&#39; = \frac{x&#39;}{|x&#39;|^2}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;全結合層の重みをL2正則化&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+w&#39; = \frac{w}{|w|^2}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;正則化された特徴ベクトルと重みを内積（これがcosの値）&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+cos\theta = x&#39;&#39; \cdot w&#39;
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;これにAdditive Angular Margin Penaltyを適用する．&lt;/p&gt;
+
+&lt;h3 id=&#34;additive-angular-margin-penalty&#34;&gt;Additive Angular Margin Penalty&lt;/h3&gt;
+
+&lt;p&gt;Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う．
+イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．&lt;/p&gt;
+
+&lt;p&gt;正解クラス&lt;span  class=&#34;math&#34;&gt;\(j\)&lt;/span&gt;の出力に対して，Marginを加算する&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\theta_j&#39; = \{
+\begin{array}{ll}
+arccos(cos\theta_i) + m &amp; i=j \\
+arccos(cos\theta_i) &amp; otherwise
+\end{array}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;各要素を定数倍する（温度パラメータ）&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+logit = s cos(\theta_j&#39;)
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;softmax関数にかける&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+y = softmax(logit)
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;この一連の流れを組み込んだLoss関数は&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+L_{3}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(\theta_{y_{i}}+m\right)\right)}}{e^{s\left(\cos \left(\theta_{y_{i}}+m\right)\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;arcfacespeherefacecosfase-の一般化&#34;&gt;ArcFace・SpehereFace・CosFase の一般化&lt;/h3&gt;
+
+&lt;p&gt;$m_1$がSpehereFace，$m_2$がArcFace，$m_3$がCosFace．&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}}{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;それぞれの識別境界の違いは下図になるらしい．
+&lt;img src=&#34;img/bou.png&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
+
+&lt;p&gt;顔認識データセットであるLFW，CFP-FP，AgeDB30で実験．
+比較手法がどれも精度が優秀なので，あまり有効さはわからない．&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/res.png&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Out of dataset のサンプルが来た時にどれくらい精度がでるか？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CosFace: Large Margin Cosine Loss for Deep Face Recognition &lt;a href=&#34;https://arxiv.org/abs/1801.09414&#34;&gt;https://arxiv.org/abs/1801.09414&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SphereFace: Deep Hypersphere Embedding for Face Recognition &lt;a href=&#34;https://arxiv.org/abs/1704.08063&#34;&gt;https://arxiv.org/abs/1704.08063&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
       <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
       <description>&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
 
 &lt;p&gt;異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．&lt;/p&gt;
@@ -97,10 +213,10 @@ METAL ANOMALYでは異常度が大きいPixelの上位10%のSumを全体の異�
     
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/f-anogan/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</link>
       <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/post/f-anogan/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</guid>
       <description>
 
 &lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
@@ -174,10 +290,10 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
     
     <item>
       <title>Visual Inspection</title>
-      <link>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/visual_inspection/</link>
       <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/visual_inspection/</guid>
       <description>
 
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
@@ -188,10 +304,10 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
     
     <item>
       <title>Wild Life</title>
-      <link>https://salty-vanilla.github.io/portfolio/project/wlid_life/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/wlid_life/</link>
       <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/project/wlid_life/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/project/wlid_life/</guid>
       <description>
 
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
@@ -202,10 +318,10 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
     
     <item>
       <title>Learn to Pay Attention</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/learn_to_pay_attention/</link>
       <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/learn_to_pay_attention/</guid>
       <description>
 
 &lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
@@ -273,10 +389,10 @@ BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
     
     <item>
       <title>Publications</title>
-      <link>https://salty-vanilla.github.io/portfolio/publication/</link>
+      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/publication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/publication/</guid>
+      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/publication/</guid>
       <description>
 
 &lt;p&gt;&lt;link href=&#34;../css/publication.css&#34; rel=&#34;stylesheet&#34;&gt;&lt;/p&gt;
