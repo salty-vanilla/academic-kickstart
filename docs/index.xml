@@ -96,7 +96,7 @@ L_{3}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(\theta_{y_{i}}
 
 &lt;h3 id=&#34;arcfacespeherefacecosfase-の一般化&#34;&gt;ArcFace・SpehereFace・CosFase の一般化&lt;/h3&gt;
 
-&lt;p&gt;$m_1$がSpehereFace，$m_2$がArcFace，$m_3$がCosFace．&lt;/p&gt;
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\(m_1\)&lt;/span&gt;がSpehereFace，&lt;span  class=&#34;math&#34;&gt;\(m_2\)&lt;/span&gt;がArcFace，&lt;span  class=&#34;math&#34;&gt;\(m_3\)&lt;/span&gt;がCosFace．&lt;/p&gt;
 
 &lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
 L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}}{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}

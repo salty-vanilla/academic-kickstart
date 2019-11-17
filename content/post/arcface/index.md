@@ -79,7 +79,7 @@ L_{3}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(\theta_{y_{i}}
 $$
 
 ### ArcFace・SpehereFace・CosFase の一般化
-$m_1$がSpehereFace，$m_2$がArcFace，$m_3$がCosFace．
+$$m_1$$がSpehereFace，$$m_2$$がArcFace，$$m_3$$がCosFace．
 
 $$
 L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}}{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
