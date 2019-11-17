@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Nakatsuka Shunsuke</title>
-    <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/</link>
+    <link>https://salty-vanilla.github.io/portfolio/post/</link>
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="file:///D:/Documents/vagrant/hugo/src/academic/docs/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition</title>
-      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/arcface/</link>
+      <link>https://salty-vanilla.github.io/portfolio/post/arcface/</link>
       <pubDate>Sun, 17 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/arcface/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/post/arcface/</guid>
       <description>1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
 2. 先行研究と比べてどこがすごい？  クラス分類モデルのSoftmaxを少し改良するだけで適用できる ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Architecture 全体的な流れとしては， Base Block（VGGとかResNetとか）から特徴ベクトルを出力
 \[ x&#39; = f(x) \]
@@ -34,10 +34,10 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
     
     <item>
       <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
-      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
+      <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
       <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
       <description>1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
 2. 先行研究と比べてどこがすごい？  Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった． 後述するMultiple-Hypothesesにより高周波成分の再構成に成功．  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Multiple-Hypotheses VAEのDecoderから得られる出力を複数にする． 具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）． winner-takes-all (WTA) loss 複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく， 最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．
 \[ \begin{aligned} L_{W T A}\left(x_{i} | \theta_{h}\right) &amp;=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &amp;=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right] \end{aligned} \]
@@ -47,10 +47,10 @@ Discriminator WTA Lossでは再構成誤差をBack Propagationする出力以外
     
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>
-      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</link>
+      <link>https://salty-vanilla.github.io/portfolio/post/f-anogan/</link>
       <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/f-anogan/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/post/f-anogan/</guid>
       <description>1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
 2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
 f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
@@ -65,10 +65,10 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
     
     <item>
       <title>Learn to Pay Attention</title>
-      <link>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/learn_to_pay_attention/</link>
+      <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
       <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>file:///D:/Documents/vagrant/hugo/src/academic/docs/post/learn_to_pay_attention/</guid>
+      <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
       <description>1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
 2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
  $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
