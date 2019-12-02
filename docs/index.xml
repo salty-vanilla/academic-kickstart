@@ -6,385 +6,36 @@
     <description>Recent content on Nakatsuka Shunsuke</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0900</lastBuildDate>
     
 	    <atom:link href="https://salty-vanilla.github.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/arcface/</link>
-      <pubDate>Sun, 17 Nov 2019 00:00:00 +0000</pubDate>
+      <title>Projects</title>
+      <link>https://salty-vanilla.github.io/portfolio/project/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0900</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/post/arcface/</guid>
-      <description>&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
-
-&lt;p&gt;Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．&lt;/p&gt;
-
-&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;クラス分類モデルのSoftmaxを少し改良するだけで適用できる&lt;/li&gt;
-&lt;li&gt;ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;3-技術や手法のキモはどこ&#34;&gt;3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？&lt;/h2&gt;
-
-&lt;h3 id=&#34;architecture&#34;&gt;Architecture&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/arc.png&#34;&gt;&lt;/p&gt;
-
-&lt;p&gt;全体的な流れとしては，
-Base Block（VGGとかResNetとか）から特徴ベクトルを出力&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-x&#39; = f(x)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;出力された特徴ベクトルをL2正則化&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-x&#39;&#39; = \frac{x&#39;}{|x&#39;|^2}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;全結合層の重みをL2正則化&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-w&#39; = \frac{w}{|w|^2}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;正則化された特徴ベクトルと重みを内積（これがcosの値）&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-cos\theta = x&#39;&#39; \cdot w&#39;
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;これにAdditive Angular Margin Penaltyを適用する．&lt;/p&gt;
-
-&lt;h3 id=&#34;additive-angular-margin-penalty&#34;&gt;Additive Angular Margin Penalty&lt;/h3&gt;
-
-&lt;p&gt;Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う．
-イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．&lt;/p&gt;
-
-&lt;p&gt;正解クラス&lt;span  class=&#34;math&#34;&gt;\(j\)&lt;/span&gt;の出力に対して，Marginを加算する&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\theta_j&#39; = \{
-\begin{array}{ll}
-arccos(cos\theta_i) + m &amp; i=j \\
-arccos(cos\theta_i) &amp; otherwise
-\end{array}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;各要素を定数倍する（温度パラメータ）&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-logit = s cos(\theta_j&#39;)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;softmax関数にかける&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-y = softmax(logit)
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;この一連の流れを組み込んだLoss関数は&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-L_{3}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(\theta_{y_{i}}+m\right)\right)}}{e^{s\left(\cos \left(\theta_{y_{i}}+m\right)\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;arcfacespeherefacecosfase-の一般化&#34;&gt;ArcFace・SpehereFace・CosFase の一般化&lt;/h3&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\(m_1\)&lt;/span&gt;がSpehereFace，&lt;span  class=&#34;math&#34;&gt;\(m_2\)&lt;/span&gt;がArcFace，&lt;span  class=&#34;math&#34;&gt;\(m_3\)&lt;/span&gt;がCosFace．&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}}{e^{s\left(\cos \left(m_{1} \theta_{y_{i}}+m_{2}\right)-m_{3}\right)}+\sum_{j=1, j \neq y_{i}}^{n} e^{s \cos \theta_{j}}}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;それぞれの識別境界の違いは下図になるらしい．
-&lt;img src=&#34;img/bou.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
-
-&lt;p&gt;顔認識データセットであるLFW，CFP-FP，AgeDB30で実験．
-比較手法がどれも精度が優秀なので，あまり有効さはわからない．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/res.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Out of dataset のサンプルが来た時にどれくらい精度がでるか？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;CosFace: Large Margin Cosine Loss for Deep Face Recognition &lt;a href=&#34;https://arxiv.org/abs/1801.09414&#34;&gt;https://arxiv.org/abs/1801.09414&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;SphereFace: Deep Hypersphere Embedding for Face Recognition &lt;a href=&#34;https://arxiv.org/abs/1704.08063&#34;&gt;https://arxiv.org/abs/1704.08063&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>https://salty-vanilla.github.io/portfolio/project/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
-      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
+      <title>Posts</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/</link>
+      <pubDate>Sun, 17 Nov 2019 00:00:00 +0900</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
-      <description>&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
-
-&lt;p&gt;異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．&lt;/p&gt;
-
-&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正常と異常のSN比が小さいという問題があった．&lt;/li&gt;
-&lt;li&gt;後述するMultiple-Hypothesesにより高周波成分の再構成に成功．&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/rec.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;3-技術や手法のキモはどこ&#34;&gt;3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？&lt;/h2&gt;
-
-&lt;h3 id=&#34;multiplehypotheses&#34;&gt;Multiple-Hypotheses&lt;/h3&gt;
-
-&lt;p&gt;VAEのDecoderから得られる出力を複数にする．
-具体的には，$H$個のDeconv Layerを最終層に配置し，それぞれ独立のパラメータで出力させる（事後分布はGaussian）．
-&lt;img src=&#34;img/arc.png&#34;&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;winnertakesall-wta-loss&#34;&gt;winner-takes-all (WTA) loss&lt;/h3&gt;
-
-&lt;p&gt;複数のDecoderの出力に対して，全ておいて再構成誤差をBack Propagationするのではなく，
-最も再構成誤差が低い出力(winner)のみから再構成誤差をBack Propagationさせる．&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{aligned}
-L_{W T A}\left(x_{i} | \theta_{h}\right) &amp;=E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{h}}\left(x_{i} | z_{k}\right)\right] \\ \text { s.t. } h &amp;=\arg \max _{j} E_{z_{k} \sim q_{\phi}(z | x)}\left[\log p_{\theta_{j}}\left(x_{i} | z_{k}\right)\right]
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;discriminator&#34;&gt;Discriminator&lt;/h3&gt;
-
-&lt;p&gt;WTA Lossでは再構成誤差をBack Propagationする出力以外については更新がされないことになってしまう．
-そのため，それ以外の出力についても入力の分布に近づけるようにDiscriminatorを用意する．
-realはもちろん入力画像で，fakeはVAEの出力（Bestとそれ以外）とランダムサンプリングされた$z$からDecoderを介して得られた出力である．&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{aligned}
-\min _{D} \max _{G} L_{D}(x, z)=&amp;\min _{D} \max _{G} \underbrace{-\log \left(p_{D}\left(x_{r e a l}\right)\right)}_{L_{real}} +L_{f a k e}(x, z)
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\begin{array}{l}{L_{\text {fake }}(x, z)=\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}(0,1)}\right)\right)}  {+\log \left(p_{D}\left(\hat{x}_{z \sim \mathcal{N}}\left(\mu_{\left.z | x, \Sigma_{z | x}\right)}\right)\right)+\log \left(p_{D}\left(\hat{x}_{\text {best-guess }}\right)\right)\right.}\end{array}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;VAEのLoss関数は，&lt;/p&gt;
-
-&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
-\min _{G} L_{G}=\min _{G} L_{W T A}+K L\left(q_{\phi}(z | x) \| \mathcal{N}(0,1)\right)-L_{D}
-\]&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;異常度の算出&#34;&gt;異常度の算出&lt;/h3&gt;
-
-&lt;p&gt;WTA Lossを異常度とする．
-Sumしなければ，異常箇所のLocalizationに使えるのは従来のAutoencoder通り．&lt;/p&gt;
-
-&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
-
-&lt;p&gt;CIFAR10(1vs9)とMETAL ANOMALY（論文内にはリンクなし）で実験．
-CIFAR10でAUROC: 67.1．
-METAL ANOMALYでは異常度が大きいPixelの上位10%のSumを全体の異常度として算出．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/res.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Blurが解消されたのは，VAE-GAN構造にしたことによるところが大きいと思うが果たして．&lt;/li&gt;
-&lt;li&gt;高周波成分が再構成されることにより，今まで差分として出てこなかった部分もあると思う．&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
-</description>
+      <guid>https://salty-vanilla.github.io/portfolio/post/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/f-anogan/</link>
-      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <title>Authors</title>
+      <link>https://salty-vanilla.github.io/portfolio/author/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://salty-vanilla.github.io/portfolio/post/f-anogan/</guid>
-      <description>
-
-&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
-
-&lt;p&gt;推論時に時間がかかってしまうAnoGANを高速化する枠組み．&lt;/p&gt;
-
-&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
-
-&lt;p&gt;AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた．
-つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．&lt;/p&gt;
-
-&lt;p&gt;f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．&lt;/p&gt;
-
-&lt;h2 id=&#34;3-技術や手法の-キモ-はどこ&#34;&gt;3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？&lt;/h2&gt;
-
-&lt;p&gt;$z$ から$x$を推論する枠組みを3つ提案．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/architecture.png&#34;&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;ziz-encoder&#34;&gt;ziz encoder&lt;/h3&gt;
-
-&lt;p&gt;学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．&lt;br /&gt;
-$n$は総画素数．
-$$
-L(z) = \frac{1}{n}|z - E(G(z))|^2
-$$&lt;/p&gt;
-
-&lt;h3 id=&#34;izi-encoder&#34;&gt;izi encoder&lt;/h3&gt;
-
-&lt;p&gt;学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する．
-$$
-L(x) = \frac{1}{n}|x - G(E(x))|^2
-$$&lt;/p&gt;
-
-&lt;h3 id=&#34;izif-encoder&#34;&gt;izif encoder&lt;/h3&gt;
-
-&lt;p&gt;izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する．
-$f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．．
-$$
-L(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
-$$&lt;/p&gt;
-
-&lt;h3 id=&#34;異常度の算出&#34;&gt;異常度の算出&lt;/h3&gt;
-
-&lt;p&gt;$$
-A(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
-$$&lt;/p&gt;
-
-&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
-
-&lt;p&gt;AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
-Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/vis.png&#34;&gt;
-&lt;img src=&#34;img/res_table.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
-
-&lt;p&gt;追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood．
-構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？&lt;/p&gt;
-
-&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;AnoGAN &lt;a href=&#34;https://arxiv.org/abs/1703.05921&#34; target=&#34;_blank&#34;&gt;https://arxiv.org/abs/1703.05921&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;GANomaly: Semi-Supervised Anomaly Detection via Adversarial Training  &lt;a href=&#34;https://arxiv.org/abs/1805.06725&#34; target=&#34;_blank&#34;&gt;https://arxiv.org/abs/1805.06725&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Adversarially Learned Inference &lt;a href=&#34;https://arxiv.org/abs/1606.00704&#34; target=&#34;_blank&#34;&gt;https://arxiv.org/abs/1606.00704&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Visual Inspection</title>
-      <link>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</link>
-      <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</guid>
-      <description>
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;h2 id=&#34;手法&#34;&gt;手法&lt;/h2&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Wild Life</title>
-      <link>https://salty-vanilla.github.io/portfolio/project/wlid_life/</link>
-      <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://salty-vanilla.github.io/portfolio/project/wlid_life/</guid>
-      <description>
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;h2 id=&#34;手法&#34;&gt;手法&lt;/h2&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Learn to Pay Attention</title>
-      <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
-      <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
-      <description>
-
-&lt;h2 id=&#34;1-どんなもの&#34;&gt;1. どんなもの？&lt;/h2&gt;
-
-&lt;p&gt;Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．&lt;/p&gt;
-
-&lt;h2 id=&#34;2-先行研究と比べてどこがすごい&#34;&gt;2. 先行研究と比べてどこがすごい？&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する&lt;/li&gt;
-&lt;li&gt;Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる&lt;/li&gt;
-&lt;li&gt;適合度によって重要なLocal feature vectorだけを分類に活用する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;3-技術や手法の-キモ-はどこ&#34;&gt;3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？&lt;/h2&gt;
-
-&lt;p&gt;学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/architecture.png&#34;&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;$S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;$s$個目のlocal feature vectorは
-$$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &amp;hellip;, \mathbf{l_N^s} } $$
-ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&amp;rsquo;$に揃える
-$$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める
-$$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &amp;hellip;, c_n^s} $$
-$$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Compatibility scoresに対して，softmaxを適用してAttention Mapを算出
-$$ a_i^s = \frac{exp(c_i^s)}{\sum_j^N exp(c_j^s)} $$&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;各モジュールの出力はAttention MapとFeature Mapの内積
-$$ \mathbf{g^s} = \sum_i^n a_i^s \cdot{\mathbf{l_i^s}} $$&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;最終的には，全Moduleの出力を連結することでModule全体の出力として，最後にFC層&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;$$ \mathbf{g_a} = { \mathbf{g_1}, \mathbf{g_2}, &amp;hellip;, \mathbf{g_S}} $$
-$$ O = W \cdot{\mathbf{g_a}} $$&lt;/p&gt;
-
-&lt;h2 id=&#34;4-どうやって有効だと検証した&#34;&gt;4. どうやって有効だと検証した？&lt;/h2&gt;
-
-&lt;p&gt;CIFAR10，CIFAR100，CUB200，SVHNで実験．
-BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
-浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/res.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;5-議論はあるか&#34;&gt;5. 議論はあるか？&lt;/h2&gt;
-
-&lt;p&gt;Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/adv_attack.png&#34;&gt;
-&lt;img src=&#34;img/cross_domain.png&#34;&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;6-次に読むべき論文はある&#34;&gt;6. 次に読むべき論文はある？&lt;/h2&gt;
-</description>
+      <guid>https://salty-vanilla.github.io/portfolio/author/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -393,12 +44,8 @@ BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/publication/</guid>
-      <description>
-
-&lt;p&gt;&lt;link href=&#34;../css/publication.css&#34; rel=&#34;stylesheet&#34;&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;国内会議&#34;&gt;国内会議&lt;/h3&gt;
-
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;heading&#34;&gt;国内会議&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;中塚俊介, 加藤邦人, 中西洋輔 : &amp;ldquo;CNNによる回帰分析を用いた打痕判定に関する考察&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2016, pp.204-205(2016.12.9)&lt;/li&gt;
 &lt;li&gt;中塚俊介, 加藤邦人, 中西洋輔 : &amp;ldquo;回帰型CNNを用いた工業製品における外観検査手法の研究&amp;rdquo;, 第22回知能メカトロニクスワークショップ, 3A1-4(2017.8.28)&lt;/li&gt;
@@ -406,41 +53,40 @@ BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
 &lt;li&gt;中塚俊介, 相澤宏旭, 加藤邦人 : &amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と不良判別&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2017, pp.148-149(2017.12.8)&lt;/li&gt;
 &lt;li&gt;安藤正規，中塚俊介，相澤宏旭，中森さつき，池田敬，森部絢嗣，寺田和憲，加藤邦人: &amp;ldquo;機械学習による自動撮影カメラ画像からの獣種自動判別技術の開発&amp;rdquo;，日本哺乳類学会2018年度大会，S2-05，(2018.9)&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;国際会議&#34;&gt;国際会議&lt;/h3&gt;
-
+&lt;h3 id=&#34;heading1&#34;&gt;国際会議&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Shunsuke Nakatsuka, Kunihito Kato, Yosuke Nakanishi : &amp;ldquo;Study on Visual Inspection Method using CNN Regression&amp;rdquo;, Asia International Symposium on Mechatronics, D1-5(2017.9.15)&lt;/li&gt;
 &lt;li&gt;Kyosuke Komoto, Shunsuke Nakatsuka Hiroaki, Aizawa, Kunihito Kato, Hiroyuki Kobayashi, Kazumi Banno : &amp;ldquo;A Performance Evaluation of Defect Detection by using Denoising AutoEncoder Generative Adversarial Networks&amp;rdquo;, International Workshop on Advanced Image Technology 2018, Session E2-4 (2018.1.9)&lt;/li&gt;
 &lt;li&gt;Shunsuke Nakatsuka, Hiroaki Aizawa and Kunihito Kato : &amp;ldquo;A Method of Generation of Normal Model and Discrimination of Defects by Adversarial AutoEncoder under Small Number of Defective Samples&amp;rdquo;, Proceeding of 24rd International Workshop on Frontiers of Computer Vision, OS3-1,(2018.2.22)&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;論文誌&#34;&gt;論文誌&lt;/h3&gt;
-
+&lt;h3 id=&#34;heading2&#34;&gt;論文誌&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;中塚俊介，相澤宏旭，加藤邦人：&amp;rdquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と異常検出&amp;rdquo;，精密工学会誌，投稿中&lt;/li&gt;
+&lt;li&gt;中塚俊介，相澤宏旭，加藤邦人：&amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と異常検出&amp;rdquo;，精密工学会誌，投稿中&lt;/li&gt;
 &lt;li&gt;安藤正規，中塚俊介，相澤宏旭，中森さつき，池田敬，森部絢嗣，寺田和憲，加藤邦人: &amp;ldquo;深層学習（Deep Learning）によるカメラトラップ画像の判別&amp;rdquo;，哺乳類科学, 投稿中&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;雑誌&#34;&gt;雑誌&lt;/h3&gt;
-
+&lt;h3 id=&#34;heading3&#34;&gt;雑誌&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;中塚俊介, 相澤宏旭, 加藤邦人 : &amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と不良判別&amp;rdquo;, 映像情報インダストリアル, pp.57-68(2018.03)&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;特許&#34;&gt;特許&lt;/h3&gt;
-
+&lt;h3 id=&#34;heading4&#34;&gt;特許&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;加藤邦人, 中塚俊介, 相澤宏旭 : &amp;ldquo;異常品判定方法&amp;rdquo; (特願2017-&lt;sup&gt;196758&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2017&lt;/sub&gt;.10.10出願)&lt;/li&gt;
+&lt;li&gt;加藤邦人, 中塚俊介, 相澤宏旭 : &amp;ldquo;異常品判定方法&amp;rdquo; (特願2017-196758/2017.10.10出願)&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;受賞&#34;&gt;受賞&lt;/h3&gt;
-
+&lt;h3 id=&#34;heading5&#34;&gt;受賞&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Best Paper Award受賞 Shunsuke Nakatsuka, Kunihito Kato, Yosuke Nakanishi : &amp;ldquo;Study on Visual Inspection Method using CNN Regression&amp;rdquo;, Asia International Symposium on Mechatronics, D1-5(2017年9月15日受賞)&lt;/li&gt;
 &lt;li&gt;ViEW2017 ビジョン技術の実利用ワークショップ 小田原賞（優秀論文賞）, 中塚俊介, 相澤宏旭, 加藤邦人 : &amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と不良判別&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2017, pp.148-149 (2017年12月8日 受賞)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Recent &amp; Upcoming Talks</title>
+      <link>https://salty-vanilla.github.io/portfolio/talk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/talk/</guid>
+      <description></description>
     </item>
     
   </channel>

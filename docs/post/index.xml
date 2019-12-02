@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Nakatsuka Shunsuke</title>
@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition</title>
       <link>https://salty-vanilla.github.io/portfolio/post/arcface/</link>
-      <pubDate>Sun, 17 Nov 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 17 Nov 2019 00:00:00 +0900</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/arcface/</guid>
       <description>1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
@@ -35,7 +35,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
     <item>
       <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
       <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
-      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Nov 2019 00:00:00 +0900</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
       <description>1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
@@ -48,33 +48,34 @@ Discriminator WTA Lossでは再構成誤差をBack Propagationする出力以外
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>
       <link>https://salty-vanilla.github.io/portfolio/post/f-anogan/</link>
-      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0900</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/f-anogan/</guid>
       <description>1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
 2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
 f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
+3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
 ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
 $n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
 izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
 izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
 異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．</description>
+4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．
+5. 議論はあるか？ 追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood． 構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？</description>
     </item>
     
     <item>
       <title>Learn to Pay Attention</title>
       <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
-      <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 06 May 2018 00:00:00 +0900</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
       <description>1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
-2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&amp;rdquo;キモ&amp;rdquo;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
- $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
- $s$個目のlocal feature vectorは $$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &amp;hellip;, \mathbf{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
- 全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&amp;rsquo;$に揃える $$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
- local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &amp;hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$</description>
+2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる 適合度によって重要なLocal feature vectorだけを分類に活用する  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
+  $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
+  $s$個目のlocal feature vectorは $$ \mathbf{L^s} = { \mathbf{l_1^s}, \mathbf{l_2^s}, &amp;hellip;, \mathbf{l_N^s} } $$ ここで，ベクトルの長さ$M$はFeature Mapのチャネル数に等しく，ベクトルの個数$N$はFeature Mapの画素数に等しい．
+  全結合層で各ベクトルの長さをglobal feature vector $\mathbf{g}$の長さ$M&#39;$に揃える $$ \mathbf{\hat{l^s_i}} = w\cdot{\mathbf{l_i^s}} $$
+  local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &amp;hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$</description>
     </item>
     
   </channel>
