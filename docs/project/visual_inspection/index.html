@@ -523,7 +523,16 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="heading">はじめに</h2>
+      
+
+
+<figure>
+
+<img src="img/poster.png" />
+
+
+</figure>
+<h2 id="heading">はじめに</h2>
 <p>工業製品の製造工程において，出荷製品の品質安定化のために検査は必要不可欠である．
 とくに外観検査工程では人による目視検査が主であるが，検査員毎の判断基準のばらつきが長年の課題であった．
 近年では深層学習技術の進歩により，これまで困難とされてきた目視検査工程でも自動化が検討されている．
@@ -532,7 +541,7 @@
 また，画像検査においては，1枚の異常画像の中に正常な領域と異常な領域が混在していることがある．
 このとき，異常な領域が占める割合が大きければ，検出は容易であるが，小さい場合は難しい．
 また，異常には様々な種類が存在し，それぞれを検出するのに適した解像度が存在するはずである．
-そのため，本稿では Complementary GANに Multi-scale Patch の枠組みを加えたモデルに正常品のみを学習させ，正常分布とその補集合分布をモデリングし異常検知を行う手法を提案する．</p>
+そのため，本稿ではComplementary GANに Multi-scale Patch の枠組みを加えたモデルに正常品のみを学習させ，正常分布とその補集合分布をモデリングし異常検知を行う手法を提案する．</p>
 <h2 id="nn">従来のNNを使った異常検知</h2>
 <h3 id="heading1">差分ベース</h3>
 <ul>
@@ -550,6 +559,15 @@
 <li>外観検査においては差分の出づらい欠陥が存在する</li>
 <li>Blurが発生し，高周波成分が差分として現れてしまう</li>
 </ul>
+
+
+
+<figure>
+
+<img src="img/diff.png" width="50%" />
+
+
+</figure>
 <h3 id="heading4">潜在変数ベース</h3>
 <ul>
 <li>Flow-based Model</li>
@@ -565,6 +583,16 @@
 <li>欠陥情報が消失してしまう</li>
 <li>Out of distributionのデータでも尤度が高くなってしまうことがある．</li>
 </ul>
+
+
+
+<figure>
+
+<img src="img/ood.png" width="50%" />
+
+
+</figure>
+<!-- raw HTML omitted -->
 <h2 id="complementary-gan">Complementary GAN</h2>
 <h3 id="gan">そもそもGANとは？</h3>
 <ul>
@@ -580,6 +608,7 @@
 <li>Generatorは算出された”離れ度合い”を最小化する</li>
 <li>その結果，生成分布とデータ分布が近づいていき，本物に近い画像が生成できる</li>
 </ul>
+<p><img src="img/gan.png" alt=""></p>
 <h3 id="discriminator">Discriminatorの出力って異常検知に使える？</h3>
 <ul>
 <li>Discriminatorは，本物と偽物が見極められるので，本物を正常データとすれば，正常/異常が分別できるのでは！？という考え</li>
@@ -592,6 +621,87 @@
 <li>Complementary GANはデータ分布と生成分布を測り，データ分布の補集合分布と生成分布を近づける</li>
 <li>つまり，Complementary GANは<strong>正常データには存在しないデータを生成</strong>し，Discriminatorは<strong>正常と正常ではないの識別境界</strong>となる</li>
 </ul>
+<p><img src="img/cgan.png" alt=""></p>
+<h2 id="multiscale-patch-discriminator">Multi-scale Patch Discriminator</h2>
+<ul>
+<li>外観検査では，欠陥の大きさは様々</li>
+<li>CNNで，Conv + Poolingを積み重ねていくと小さい欠陥の情報は消えてしまう</li>
+<li>かといって，浅すぎるCNNでは識別はできない</li>
+</ul>
+<p><img src="img/def_scale.png" alt=""></p>
+<p>そこで，Discriminatorの出力を[0, 1]のスカラーではなく，正常度MAPとすることで↑の問題に対処する</p>
+<p><img src="img/mspcgan.png" alt=""></p>
+<h2 id="heading7">実験</h2>
+<h3 id="led">LEDチップ画像</h3>
+<h4 id="heading8">サンプル</h4>
+<p><img src="img/sample.png" alt=""></p>
+<h4 id="heading9">データ内訳</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>良品</th>
+<th>不良品</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>training</td>
+<td>70000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>test</td>
+<td>10000</td>
+<td>204</td>
+</tr>
+</tbody>
+</table>
+<h4 id="heading10">生成された補集合画像</h4>
+<ul>
+<li>不良品画像とは一致しないが，良品画像には近いが良品ではないものが生成できていることを確認</li>
+</ul>
+
+
+
+<figure>
+
+<img src="img/gen.png" width="50%" />
+
+
+</figure>
+<h4 id="discriminatormap">Discriminatorによる異常度MAP</h4>
+<ul>
+<li>赤に近いほど異常度が大きく，青に近いほど異常度が低い</li>
+<li>各行左から，入力・8x8 MAP・4x4 MAP・2x2 MAP</li>
+<li>8x8 MAPでは小さい欠陥が，2x2 MAPでは面積の大きい欠陥が検出される</li>
+</ul>
+
+
+
+<figure>
+
+<img src="img/dis_res.png" width="50%" />
+
+
+</figure>
+<h4 id="heading11">精度</h4>
+
+
+
+<figure>
+
+<img src="img/res.png" width="70%" />
+
+
+</figure>
+<h2 id="reference">Reference</h2>
+<ol>
+<li>Goodfellow, I. J., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., … Bengio, Y. (2014). Generative Adversarial Nets. Advances in Neural Information Processing Systems, 2672–2680.</li>
+<li>Zheng, P., Yuan, S., Wu, X., Li, J., &amp; Lu, A. (2018). One-Class Adversarial Nets for Fraud Detection. ArXiv Preprint ArXiv:1803.01798.</li>
+<li>Bergmann, P., Fauser, M., Sattlegger, D., &amp; Steger, C. (2019). MVTec AD &ndash; A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection. The IEEE Conference on Computer Vision and Pattern Recognition (CVPR).</li>
+<li>Karras, T., Laine, S., &amp; Aila, T. (2018). A Style-Based Generator Architecture for Generative Adversarial Networks. Retrieved from <a href="https://arxiv.org/abs/1812.04948">https://arxiv.org/abs/1812.04948</a></li>
+</ol>
 
     </div>
 
