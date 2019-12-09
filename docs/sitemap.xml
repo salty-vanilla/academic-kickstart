@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</loc>
+    <lastmod>2019-12-09T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <lastmod>2019-12-09T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</loc>
     <lastmod>2019-12-09T00:00:00+09:00</lastmod>
   </url>
@@ -14,6 +24,11 @@
   
   <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2019-12-09T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/vae/</loc>
     <lastmod>2019-12-09T00:00:00+09:00</lastmod>
   </url>
   
@@ -57,15 +72,11 @@
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
-  </url>
-  
-  <url>
     <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
   </url>
   
   <url>

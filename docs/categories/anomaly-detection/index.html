@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/">
 
   
 
@@ -112,15 +112,15 @@
   
 
   
-  <link rel="alternate" href="/portfolio/categories/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  <link rel="feed" href="/portfolio/categories/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="alternate" href="/portfolio/categories/anomaly-detection/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/anomaly-detection/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
   
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/">
 
   
   
@@ -132,8 +132,8 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/">
-  <meta property="og:title" content="Categories | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/">
+  <meta property="og:title" content="Anomaly Detection | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
@@ -144,7 +144,7 @@
 
   
 
-  <title>Categories | Nakatsuka Shunsuke</title>
+  <title>Anomaly Detection | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -344,7 +344,7 @@
     
   
 <div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Categories</h1>
+  <h1 itemprop="name">Anomaly Detection</h1>
 
   
 
@@ -359,15 +359,13 @@
   
   
   <div>
-    <h2><a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></h2>
+    <h2><a href="/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/">Iterative energy-based projection on a normal data manifold for anomaly localization</a></h2>
     <div class="article-style">
       
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/categories/vae/">VAE</a></h2>
-    <div class="article-style">
+      1. どんなもの？ Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．
+2. 先行研究と比べてどこがすごい？  Autoencoderベースのモデルでは，異常画像が入力された際に異常部位以外も再構成が崩れてしまい上手くLocalizationできないという問題があった また，Blurが発生してしまう 上記2点を繰り返し，$x$を更新していく方法で解決する  3. 技術や手法の&quot;キモ&quot;はどこ？   エネルギー関数は，再構成誤差($L_r$)と正則化項（更新しても原画像から離れすぎないようにする正則化） $$ E(x_t) = L_r(x_t) + \lambda|| x_t - x_0 || $$ $$ L_r(x_t) = \mathbb{E} [ | f_{VAE}(x_t) - x_t | ^r ] $$
+  エネルギー関数を最小化するように，入力画像$x_0$を更新していく $$ x_{t+1} = x_t - \alpha \nabla_x E(x_t) $$
+  再構成が大きい部位は更新量を大きく，小さい部位は小さくすればなお良し $$ x_{x+1} = x_t - \alpha ( \nabla_xE(x_t) \odot | f_{VAE}(x_t) - x_t | ^2 ) $$
       
     </div>
   </div>

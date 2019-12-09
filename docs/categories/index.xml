@@ -6,9 +6,28 @@
     <description>Recent content in Categories on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Anomaly Detection</title>
+      <link>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VAE</title>
+      <link>https://salty-vanilla.github.io/portfolio/categories/vae/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/categories/vae/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
