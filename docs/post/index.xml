@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Nov 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Iterative energy-based projection on a normal data manifold for anomaly localization</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</guid>
+      <description>1. どんなもの？ Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．
+2. 先行研究と比べてどこがすごい？  Autoencoderベースのモデルでは，異常画像が入力された際に異常部位以外も再構成が崩れてしまい上手くLocalizationできないという問題があった また，Blurが発生してしまう 上記2点を繰り返し，$x$を更新していく方法で解決する  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？   エネルギー関数は，再構成誤差($L_r$)と正則化項（更新しても原画像から離れすぎないようにする正則化） $$ E(x_t) = L_r(x_t) + \lambda|| x_t - x_0 || $$ $$ L_r(x_t) = \mathbb{E} [ | f_{VAE}(x_t) - x_t | ^r ] $$
+  エネルギー関数を最小化するように，入力画像$x_0$を更新していく $$ x_{t+1} = x_t - \alpha \nabla_x E(x_t) $$
+  再構成が大きい部位は更新量を大きく，小さい部位は小さくすればなお良し $$ x_{x+1} = x_t - \alpha ( \nabla_xE(x_t) \odot | f_{VAE}(x_t) - x_t | ^2 ) $$</description>
+    </item>
     
     <item>
       <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition</title>

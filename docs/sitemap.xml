@@ -3,8 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</loc>
+    <lastmod>2019-12-09T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://salty-vanilla.github.io/portfolio/</loc>
-    <lastmod>2019-12-01T00:00:00+09:00</lastmod>
+    <lastmod>2019-12-09T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2019-12-09T00:00:00+09:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +29,6 @@
   
   <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/arcface/</loc>
-    <lastmod>2019-11-17T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
     <lastmod>2019-11-17T00:00:00+09:00</lastmod>
   </url>
   
