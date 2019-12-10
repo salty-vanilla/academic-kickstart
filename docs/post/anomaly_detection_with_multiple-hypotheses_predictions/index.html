@@ -722,7 +722,10 @@ METAL ANOMALYでは異常度が大きいPixelの上位10%のSumを全体の異�
       document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {delimiters: [
           {left: "$$", right: "$$", display: true},
-          {left: "$", right: "$", display: false}]
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", dispaly: false},
+          ]
         });
       });
     </script>

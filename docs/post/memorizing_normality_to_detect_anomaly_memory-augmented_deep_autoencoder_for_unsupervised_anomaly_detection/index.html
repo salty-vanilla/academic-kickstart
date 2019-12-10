@@ -27,20 +27,12 @@
   
     
   
-  <meta name="description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
-f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&quot;キモ&quot;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
-ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
-$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
-izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
-izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．
-5. 議論はあるか？ 追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood． 構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？">
+  <meta name="description" content="1. どんなもの？  Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ  2. 先行研究と比べてどこがすごい？  Autoencoderを使った異常検知では，モデルが汎化してしまい異常データまでも復元できてしまう問題があった 潜在変数にMemory構造を追加することで，正常データの分布内のデータしか復元できないようにした  3. 技術や手法の&quot;キモ&quot;はどこ？  Memory構造がキモ  全体の流れ  Encoderからまず$z$を得る $$ z = f_e(x; \theta_e) $$ メモリ構造を用いて$\hat{z}$を得る（後述） Decoderで$\hat{z}$から復元する  $$ \hat{x} = f_d(\hat{z}; \theta_d) $$
+Memory   それぞれ変数を定義する
+ $M \in \mathbb{R}^{N \times C}$: Memory行列 $m_i$: $M$の$i$行目Vector $N$: メモリ数 $C$: $\hat{z}$の次元数（論文内では$z$の次元数と一致） $w \in \mathbb{R}^{1 \times N} $: Attention Weight Vector    Encoderから得られた$z$と$m_i$の距離（内積）を算出して，softmaxすることで$w$を求める $$ w_i = \frac{\exp(d(z, m_i))}{\Sigma^N_{j=1}\exp(d(z, m_j))} $$">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">
 
   
 
@@ -125,7 +117,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">
 
   
   
@@ -137,31 +129,23 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
-  <meta property="og:title" content="f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
-f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&quot;キモ&quot;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
-ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
-$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
-izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
-izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．
-5. 議論はあるか？ 追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood． 構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">
+  <meta property="og:title" content="Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？  Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ  2. 先行研究と比べてどこがすごい？  Autoencoderを使った異常検知では，モデルが汎化してしまい異常データまでも復元できてしまう問題があった 潜在変数にMemory構造を追加することで，正常データの分布内のデータしか復元できないようにした  3. 技術や手法の&quot;キモ&quot;はどこ？  Memory構造がキモ  全体の流れ  Encoderからまず$z$を得る $$ z = f_e(x; \theta_e) $$ メモリ構造を用いて$\hat{z}$を得る（後述） Decoderで$\hat{z}$から復元する  $$ \hat{x} = f_d(\hat{z}; \theta_d) $$
+Memory   それぞれ変数を定義する
+ $M \in \mathbb{R}^{N \times C}$: Memory行列 $m_i$: $M$の$i$行目Vector $N$: メモリ数 $C$: $\hat{z}$の次元数（論文内では$z$の次元数と一致） $w \in \mathbb{R}^{1 \times N} $: Attention Weight Vector    Encoderから得られた$z$と$m_i$の距離（内積）を算出して，softmaxすることで$w$を求める $$ w_i = \frac{\exp(d(z, m_i))}{\Sigma^N_{j=1}\exp(d(z, m_j))} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-10-14T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-10T00:00:00&#43;09:00">
   
-  <meta property="article:modified_time" content="2019-10-14T00:00:00&#43;09:00">
-  
-
+  <meta property="article:modified_time" content="2019-12-10T00:00:00&#43;09:00">
   
 
   
 
-  <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke</title>
+  
+
+  <title>Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -361,7 +345,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</h1>
+  <h1 itemprop="name">Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection</h1>
 
   
 
@@ -370,8 +354,8 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
 
 
-<meta content="2019-10-14 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-10-14 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-10 00:00:00 &#43;0900 JST" itemprop="datePublished">
+<meta content="2019-12-10 00:00:00 &#43;0900 JST" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -384,7 +368,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
     
       
     
-    <time>Oct 14, 2019</time>
+    <time>Dec 10, 2019</time>
   </span>
   
 
@@ -402,6 +386,11 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
   
   
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
+  
 
   
     
@@ -427,6 +416,41 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
 
 
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1904.02639" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
 
   
@@ -438,48 +462,94 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
     <div class="article-style" itemprop="articleBody">
       <h2 id="1-">1. どんなもの？</h2>
-<p>推論時に時間がかかってしまうAnoGANを高速化する枠組み．</p>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
-<p>AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた．
-つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．</p>
-<p>f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．</p>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
-<p>$z$ から$x$を推論する枠組みを3つ提案．</p>
-<!-- raw HTML omitted -->
-<h3 id="ziz-encoder">ziz encoder</h3>
-<p>学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．<br>
-$n$は総画素数．
-$$
-L(z) = \frac{1}{n}|z - E(G(z))|^2
-$$</p>
-<h3 id="izi-encoder">izi encoder</h3>
-<p>学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する．
-$$
-L(x) = \frac{1}{n}|x - G(E(x))|^2
-$$</p>
-<h3 id="izif-encoder">izif encoder</h3>
-<p>izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する．
-$f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．．
-$$
-L(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
-$$</p>
-<h3 id="heading">異常度の算出</h3>
-<p>$$
-A(x) = \frac{1}{n}|x - G(E(x))|^2 + \frac{k}{n_d}|f(x)-f(G(E(x)))|^2
-$$</p>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
-<p>AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験．
-Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．</p>
-<!-- raw HTML omitted -->
-<h2 id="5-">5. 議論はあるか？</h2>
-<p>追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood．
-構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？</p>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
 <ul>
-<li>AnoGAN <a href="https://arxiv.org/abs/1703.05921">https://arxiv.org/abs/1703.05921</a></li>
-<li>GANomaly: Semi-Supervised Anomaly Detection via Adversarial Training  <a href="https://arxiv.org/abs/1805.06725">https://arxiv.org/abs/1805.06725</a></li>
-<li>Adversarially Learned Inference <a href="https://arxiv.org/abs/1606.00704">https://arxiv.org/abs/1606.00704</a></li>
+<li>Autoencoder（差分ベース）の異常検知モデル</li>
+<li>潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ</li>
 </ul>
+<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<ul>
+<li>Autoencoderを使った異常検知では，モデルが汎化してしまい異常データまでも復元できてしまう問題があった</li>
+<li>潜在変数にMemory構造を追加することで，正常データの分布内のデータしか復元できないようにした</li>
+</ul>
+<p><img src="img/overview.png" alt=""></p>
+<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<ul>
+<li><strong>Memory構造がキモ</strong></li>
+</ul>
+<h3 id="heading">全体の流れ</h3>
+<p><img src="img/arch.png" alt=""></p>
+<ul>
+<li>Encoderからまず$z$を得る
+$$
+z = f_e(x; \theta_e)
+$$</li>
+<li>メモリ構造を用いて$\hat{z}$を得る（後述）</li>
+<li>Decoderで$\hat{z}$から復元する</li>
+</ul>
+<p>$$
+\hat{x} = f_d(\hat{z}; \theta_d)
+$$</p>
+<h3 id="memory">Memory</h3>
+<ul>
+<li>
+<p>それぞれ変数を定義する</p>
+<ul>
+<li>$M \in \mathbb{R}^{N \times C}$:  Memory行列</li>
+<li>$m_i$:    $M$の$i$行目Vector</li>
+<li>$N$:  メモリ数</li>
+<li>$C$:  $\hat{z}$の次元数（論文内では$z$の次元数と一致）</li>
+<li>$w \in \mathbb{R}^{1 \times N} $: Attention Weight Vector</li>
+</ul>
+</li>
+<li>
+<p>Encoderから得られた$z$と$m_i$の距離（内積）を算出して，softmaxすることで$w$を求める
+$$
+w_i = \frac{\exp(d(z, m_i))}{\Sigma^N_{j=1}\exp(d(z, m_j))}
+$$</p>
+</li>
+</ul>
+<p>$$
+d(z, m_i) = \frac{zm_i^T}{|z||m_i|}
+$$</p>
+<ul>
+<li>$\hat{z}$を求める
+$$
+\hat{z} = wM = \Sigma^N_{i=1}w_im_i
+$$</li>
+</ul>
+<h4 id="hard-shrinkage-for-sparse-addressing">Hard Shrinkage for Sparse Addressing</h4>
+<p>上述のMemory構造でも復元できてしまう異常サンプルは出てくるので，$w$をスパースにすることでより制限する</p>
+<p>\[
+\hat{w}_i =
+\begin{cases}
+w_i  &amp; \text{ if } w_i &gt; \lambda  \\ 0 &amp; \text{ otherwise }
+\end{cases}
+\]</p>
+<h3 id="objective">Objective</h3>
+<p>再構成誤差と$\hat{w}$そスパースにするための誤差の重み付き和
+$$
+L(\theta_e, \theta_d, M) = \frac{1}{T} \Sigma^T_{t=1}[R(x^t, \hat{x}^t) + \alpha E(\hat{w}^t)]
+$$</p>
+<p>$$
+R(x^t, \hat{x}^t) = |x^t - \hat{x}^t| ^2
+$$</p>
+<p>$$
+E(\hat{w}^t) = \Sigma^T_{i=1}-\hat{w}^t\log{\hat{w}^t}
+$$</p>
+<p>論文内では,$\alpha = 0.0002$</p>
+<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<p>画像では，MNIST・Cifar10で実験
+<img src="img/res_i.png" alt="">
+<img src="img/rec_i.png" alt=""></p>
+<p>動画では，UCSD-Ped2・CUHK・ShanghaiTechで実験
+<img src="img/res_v.png" alt="">
+<img src="img/rec_v.png" alt=""></p>
+<h2 id="5-">5. 議論はあるか？</h2>
+<ul>
+<li>汎化にスポット当てた論文でgood</li>
+<li>MVTec で実験してみたい</li>
+</ul>
+<h2 id="6-">6. 次に読むべき論文はある？</h2>
 
     </div>
 

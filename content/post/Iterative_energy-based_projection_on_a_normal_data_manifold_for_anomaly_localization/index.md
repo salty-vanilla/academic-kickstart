@@ -3,7 +3,7 @@
 date = 2019-12-09
 title = "Iterative energy-based projection on a normal data manifold for anomaly localization"
 summary = ""
-summaryexternal_link = "https://openreview.net/forum?id=HJx81ySKwr"
+external_link = "https://openreview.net/forum?id=HJx81ySKwr"
 categories = ["Anomaly Detection", "VAE"]
 math = true
 markup = "goldmark"
