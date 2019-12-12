@@ -27,10 +27,11 @@
   
     
   
-  <meta name="description" content="R&amp;D Engineer">
+  <meta name="description" content="1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&rsquo; = z &#43; \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
+ ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F&rsquo; = g \cdot g^T &#43; \beta I $$">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/logan/">
 
   
 
@@ -110,15 +111,12 @@
   
 
   
-  <link rel="alternate" href="/portfolio/post/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  <link rel="feed" href="/portfolio/post/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/logan/">
 
   
   
@@ -130,19 +128,22 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/">
-  <meta property="og:title" content="Posts | Nakatsuka Shunsuke">
-  <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/logan/">
+  <meta property="og:title" content="LOGAN: Latent Optimisation for Generative Adversarial Networks | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&rsquo; = z &#43; \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
+ ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F&rsquo; = g \cdot g^T &#43; \beta I $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2019-12-10T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-10T00:00:00&#43;09:00">
+  
+  <meta property="article:modified_time" content="2019-12-10T00:00:00&#43;09:00">
   
 
   
 
   
 
-  <title>Posts | Nakatsuka Shunsuke</title>
+  <title>LOGAN: Latent Optimisation for Generative Adversarial Networks | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -321,7 +322,9 @@
 </nav>
 
 
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
+  
 
 
 
@@ -338,62 +341,14 @@
 
   
   
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">LOGAN: Latent Optimisation for Generative Adversarial Networks</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Posts</h1>
-
-  
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-
-  
-
-  
-  
-    
-      
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/logan/" itemprop="url">LOGAN: Latent Optimisation for Generative Adversarial Networks</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラ …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 
@@ -436,589 +391,253 @@
   
 
   
+    
+
+  
 
 </div>
 
-      
-    </div>
-
     
 
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://openreview.net/forum?id=rJeU_1SFvr" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
-    
-  
-    
-      
-
-
-
-
-
-
 
   
+</div>
 
 
 
+  <div class="article-container">
 
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/" itemprop="url">Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection</a>
-    </h3>
-
-    
     <div class="article-style" itemprop="articleBody">
-      1. どんなもの？  Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ  2. 先行研究と比べてどこがすごい？  Autoencoderを使った異常検知では，モデルが汎化してし …
+      <h2 id="1-">1. どんなもの？</h2>
+<ul>
+<li>GANのIS，FIDを向上させる系の論文</li>
+<li>BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．</li>
+</ul>
+<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<ul>
+<li>ベースはBigGAN</li>
+<li>潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現</li>
+</ul>
+<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<ul>
+<li>キモは，<strong>潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること</strong></li>
+</ul>
+<h3 id="latent-optimisation">Latent Optimisation</h3>
+<ul>
+<li>潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する
+$$
+\Delta z = \alpha \frac{\partial f(z)}{\partial z}
+$$
+$$
+z&rsquo; = z + \Delta z
+$$</li>
+<li>ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力</li>
+</ul>
+<p><img src="img/lo.png" alt="">
+<img src="img/alg.png" alt=""></p>
+<h3 id="natural-gradient-descent">Natural Gradient Descent</h3>
+<ul>
+<li>更新する$z$の空間はユークリッド空間でないことが多い．</li>
+<li>通常の勾配法ではうまく更新できないことがある．</li>
+<li>自然勾配法を用いて$z$を更新する．</li>
+</ul>
+<p>$$
+\Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g
+$$</p>
+<ul>
+<li>ここで，$F$はフィッシャー情報行列</li>
+<li>$F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)</li>
+</ul>
+<p>$$
+F&rsquo; = g \cdot g^T + \beta I
+$$</p>
+<p>$$
+\Delta z=\alpha\left(\frac{I}{\beta}-\frac{g g^{T}}{\beta^{2}+\beta g^{T} g}\right) g=\frac{\alpha}{\beta}\left(1-\frac{|g|^{2}}{\beta+|g|^{2}}\right) g
+$$</p>
+<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<p>Imagenetの生成で実験．
+baseline(a)よりLOGAN(b)の方がdiversityのある生成ができている．
+<img src="img/gen.png" alt="">
+<img src="img/res.png" alt=""></p>
+<h2 id="5-">5. 議論はあるか？</h2>
+<ul>
+<li>$z$を更新するだけでここまで精度が上がるのは驚き</li>
+<li>ただ，baselineがBigGANなので庶民には手が出せない</li>
+<li>dynamicの話とかappendixについては，まだ見れてない</li>
+</ul>
+<h2 id="6-">6. 次に読むべき論文はある？</h2>
+
     </div>
+
     
 
-    <div class="stream-meta article-metadata">
 
+
+    
       
 
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/portfolio/author/admin/avatar_hued5d70cfe56e48dc137dc1e3bdf77641_127119_250x250_fill_lanczos_center_2.png" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h6 class="card-subtitle">R&amp;D Engineer</h6>
+    <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
       
         
-
-
-
-<meta content="2019-12-10 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-10 00:00:00 &#43;0900 JST" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    <time>Dec 10, 2019</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder"></i>
-    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
-  
-
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
       
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/" itemprop="url">Iterative energy-based projection on a normal data manifold for anomaly localization</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．
-2. 先行研究と比べてどこがすごい？ …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
       
-
       
         
-
-
-
-<meta content="2019-12-09 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-09 00:00:00 &#43;0900 JST" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    <time>Dec 9, 2019</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder"></i>
-    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a>, <a href="/portfolio/categories/vae/">VAE</a></span>
-  
-
-  
-
-</div>
-
+      <li>
+        <a itemprop="sameAs" href="/portfolio/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
       
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/arcface/" itemprop="url">ArcFace: Additive Angular Margin Loss for Deep Face Recognition</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
-2. 先行研究と比べてどこがすごい？  クラス分類モデルのSoftmax …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
       
-
       
         
-
-
-
-<meta content="2019-11-17 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-11-17 00:00:00 &#43;0900 JST" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    <time>Nov 17, 2019</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
       
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/" itemprop="url">Anomaly Detection With Multiple-Hypotheses Predictions</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
-2. 先行研究と比べてどこがすごい？  Autoencoderの入出力による異常検知では，出力がぼやけてしまい高周波成分が再構成できず正 …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
       
-
       
         
-
-
-
-<meta content="2019-11-01 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-11-01 00:00:00 &#43;0900 JST" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    <time>Nov 1, 2019</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-
-  
-
-</div>
-
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/_Shu_Nak" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
       
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/f-anogan/" itemprop="url">f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出 …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
       
-
       
         
-
-
-
-<meta content="2019-10-14 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-10-14 00:00:00 &#43;0900 JST" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    <time>Oct 14, 2019</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
       
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0" itemprop="name">
-      <a href="/portfolio/post/learn_to_pay_attention/" itemprop="url">Learn to Pay Attention</a>
-    </h3>
-
-    
-    <div class="article-style" itemprop="articleBody">
-      1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．
-2. 先行研究と比べてどこがすごい？  Saliency Mapを用いることで有効な領域の情 …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
       
-
       
         
-
-
-
-<meta content="2018-05-06 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2018-05-06 00:00:00 &#43;0900 JST" itemprop="dateModified">
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    <time>May 6, 2018</time>
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-
-  
-
-</div>
-
+      <li>
+        <a itemprop="sameAs" href="https://github.com/salty-vanilla" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.slideshare.net/ShunsukeNAKATSUKA1" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
   </div>
 </div>
 
+
+
+      
+      
     
-  
 
-  
+    
+
+    
 
 
-</div>
+  </div>
+</article>
+
 <div class="container">
   <footer class="site-footer">
   
@@ -1073,6 +692,25 @@
     
 
     
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", dispaly: false},
+          ]
+        });
+      });
+    </script>
 
     
 
