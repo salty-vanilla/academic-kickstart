@@ -5,7 +5,7 @@ title = "Learn to Pay Attention"
 summary = ""
 external_link = ""
 math = true
-katex = true
+markup = "goldmark"
 +++
 
 ## 1. どんなもの？
@@ -19,7 +19,7 @@ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的�
 ## 3. 技術や手法の"キモ"はどこ？
 学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．
 
-<img src="img/architecture.png">
+![](img/architecture.png)
 
 1. $S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．
 
@@ -51,12 +51,12 @@ CIFAR10，CIFAR100，CUB200，SVHNで実験．
 BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
 浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる
 
-<img src="img/res.png">
+![](img/res.png)
 
 ## 5. 議論はあるか？
 Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．
 
-<img src="img/adv_attack.png">
-<img src="img/cross_domain.png">
+![](img/adv_attack.png)
+![](img/cross_domain.png)
 
 ## 6. 次に読むべき論文はある？

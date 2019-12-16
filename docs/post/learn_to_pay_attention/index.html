@@ -437,7 +437,7 @@
 </ul>
 <h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <p>学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．</p>
-<!-- raw HTML omitted -->
+<p><img src="img/architecture.png" alt=""></p>
 <ol>
 <li>
 <p>$S$個のAttention Moduleを↑のようにCNNに加える．$s$個目のAttention Moduleは，長さ$M$のベクトル$N$個からなる集合である．</p>
@@ -474,10 +474,11 @@ $$ O = W \cdot{\mathbf{g_a}} $$</p>
 <p>CIFAR10，CIFAR100，CUB200，SVHNで実験．
 BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
 浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる</p>
-<!-- raw HTML omitted -->
+<p><img src="img/res.png" alt=""></p>
 <h2 id="5-">5. 議論はあるか？</h2>
 <p>Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．</p>
-<!-- raw HTML omitted -->
+<p><img src="img/adv_attack.png" alt="">
+<img src="img/cross_domain.png" alt=""></p>
 <h2 id="6-">6. 次に読むべき論文はある？</h2>
 
     </div>
