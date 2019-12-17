@@ -3,12 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</loc>
-    <lastmod>2019-12-10T00:00:00+09:00</lastmod>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/</loc>
+    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/normalization/</loc>
+    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/pono/</loc>
+    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</loc>
     <lastmod>2019-12-10T00:00:00+09:00</lastmod>
   </url>
   
@@ -24,16 +44,6 @@
   
   <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/</loc>
-    <lastmod>2019-12-10T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/</loc>
-    <lastmod>2019-12-10T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
     <lastmod>2019-12-10T00:00:00+09:00</lastmod>
   </url>
   
