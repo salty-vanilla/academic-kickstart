@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/time-series/">
 
   
 
@@ -112,15 +112,15 @@
   
 
   
-  <link rel="alternate" href="/portfolio/categories/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  <link rel="feed" href="/portfolio/categories/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="alternate" href="/portfolio/categories/time-series/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/time-series/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
   
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/time-series/">
 
   
   
@@ -132,8 +132,8 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/">
-  <meta property="og:title" content="Categories | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/time-series/">
+  <meta property="og:title" content="Time Series | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
@@ -144,7 +144,7 @@
 
   
 
-  <title>Categories | Nakatsuka Shunsuke</title>
+  <title>Time Series | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -344,7 +344,7 @@
     
   
 <div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Categories</h1>
+  <h1 itemprop="name">Time Series</h1>
 
   
 
@@ -359,36 +359,10 @@
   
   
   <div>
-    <h2><a href="/portfolio/categories/time-series/">Time Series</a></h2>
+    <h2><a href="/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/">An End-to-End Audio Classification System based on Raw Waveforms and Mix-Training Strategy</a></h2>
     <div class="article-style">
       
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/categories/normalization/">Normalization</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/categories/gan/">GAN</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/categories/vae/">VAE</a></h2>
-    <div class="article-style">
+      1. どんなもの？  音の生波形から，eventのclassificationを行う raw waveformを1D CNNで周波数解析し，得られたTransformed Imageを2D CNNで識別 training dataが少ない場合でも有効なMix-trainingを提案  2. 先行研究と比べてどこがすごい？  Audio ClassificationはGoogleのBottleneck featureを使った識別，Handcrafted featureを使った識別がBaselineだった Bottleneckは情報のlostが，Handcraftedは抽出の困難さが問題 end-to-endな周波数特徴の抽出，識別を可能に  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，周波数特徴を抽出する1D CNNとその特徴を識別する2D CNN  Raw-waveforms-based network 1D CNN  1D CNNで時間方向にdownsamplingをかけることで，周波数特徴を抽出 FFTをNNに任せてるイメージで，識別に適した周波数特徴を抽出してくれることを期待 最終的には，$C \times 1 \times T$ (channel, 1, time)のfeature mapをtransposeして，$1 \times C \times T$ (1, channel, time)の画像に  2D CNN  得られた周波数特徴画像を2D Convolution 勾配消失を防ぐため，multi-resolutionalなfeature mapからpredictionを出力 attentionつき（attentionは多分，以下の構造）   Avg Poolは多分GAP．．．？  Mix-training strategy  training dataが少ない場合に有効なMix-training．pretraining的な扱い 2つの入力を$\alpha \in (0, 1)$でblend  $$ \tilde{x}_k = \alpha x_i + (1-\alpha) x_j $$
       
     </div>
   </div>

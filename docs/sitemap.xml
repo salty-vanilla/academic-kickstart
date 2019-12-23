@@ -3,13 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/</loc>
+    <lastmod>2019-12-23T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
-    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
+    <lastmod>2019-12-23T00:00:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://salty-vanilla.github.io/portfolio/</loc>
-    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
+    <lastmod>2019-12-23T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2019-12-23T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/time-series/</loc>
+    <lastmod>2019-12-23T00:00:00+09:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +34,6 @@
   
   <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/pono/</loc>
-    <lastmod>2019-12-17T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
     <lastmod>2019-12-17T00:00:00+09:00</lastmod>
   </url>
   
@@ -97,11 +107,11 @@
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
   </url>
   
   <url>
