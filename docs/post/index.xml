@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Analyzing and Improving the Image Quality of StyleGAN</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/stylegan2/</link>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/stylegan2/</guid>
+      <description>1. どんなもの？  StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上  2. 先行研究と比べてどこがすごい？  StyleGANの問題であった水滴状のノイズ，潜在変数を走査しても顔のパーツが自然に変化しないなどの問題を改善 Instance Normの見直し，Progressive Growingの見直し，PPLの導入  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Revisit Instance Norm  StyleGANでは雨粒状のノイズ (artifact)が現れていた 原因はAdaINの演算    NVIDIAの動画がわかりやすい     この原因は Instance Norm にあり
+ INは各feature mapの平均と分散で正規化 絶対値が小さくてもスパイク状の分布のfeature mapがあるとartifactが出てしまう INを無くせば，artifactが出ないらしい    a. StyleGAN
+b. StyleGANの詳細
+c. INのartifactを考慮した形
+ A(mapping networkの出力$f(z)$)，conv後のstdのみを使うように変更 B(noise image)のaddはBlockの外に出した  d. (c)のoperationをweight demodulationで簡易化
+ AのAdaINではAのstdで割り算していた これをfeature mapに対して割り算するのではなく，convのweightに対して割り算することで等価の演算に $s$はAをaffineして得られたスケールベクトル，$w \in \mathbb{R} ^{{ch_{in}} \times {ch_{out}} \times {hw}}$はconvのweight $$ w_{ijk}^{\prime} = s_i \cdot w_{ijk} $$ $$ w_{ijk}^{\prime\prime} = \frac{w_{ijk}^{\prime}}{\sqrt{\Sigma_{i,k}{{w_{ijk}^{\prime}}^2 + \epsilon}}} $$ 入力が標準偏差1のrandom variableであることを仮定している．これは$\sigma$割っていることと同義 $$ \sigma_j = \sqrt{\Sigma_{i,k}{{w_{ijk}^{\prime}}^2}} $$  Image quality and generator smoothness While Perceptual Path Length  潜在空間のPerceptual Path Length: PPLが小さい ⇔ 生成のQuality高い PPLを正則化項として追加する $$ \mathbb{E}_{w,y \sim N(0,\mathbf{I})} ( ||\mathbf{J_w^T y}|| - a)^2 $$ $$ \mathbf{J_w^T y} = \nabla_w(g(w) \cdot y) $$   Lazy Reguralization  loss関数は，logistic lossと$R_1$[1] $R_1$は毎ミニバッチごとに算出しなくても，16ミニバッチごとくらいでいいよということ それがlazy  Revisiting Progressive Growing   StyleGANでは，顔のパーツが潜在変数の変化に追従しないという問題あり</description>
+    </item>
     
     <item>
       <title>An End-to-End Audio Classification System based on Raw Waveforms and Mix-Training Strategy</title>

@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GAN</title>
+      <link>https://salty-vanilla.github.io/portfolio/categories/gan/</link>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/categories/gan/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Time Series</title>
@@ -35,15 +44,6 @@
       <pubDate>Tue, 10 Dec 2019 00:00:00 +0900</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GAN</title>
-      <link>https://salty-vanilla.github.io/portfolio/categories/gan/</link>
-      <pubDate>Tue, 10 Dec 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://salty-vanilla.github.io/portfolio/categories/gan/</guid>
       <description></description>
     </item>
     
