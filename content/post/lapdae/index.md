@@ -4,7 +4,7 @@ date = 2020-01-18
 title = "Laplacian Denoising Autoencoder"
 summary = ""
 external_link = "https://openreview.net/forum?id=HygHtpVtPH"
-categories = ["Reperesentation Learning"]
+categories = ["Representation Learning"]
 math = true
 markup = "goldmark"
 +++
