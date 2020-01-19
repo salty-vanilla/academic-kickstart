@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <lastmod>2020-01-18T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/lapdae/</loc>
+    <lastmod>2020-01-18T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/</loc>
+    <lastmod>2020-01-18T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2020-01-18T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/reperesentation-learning/</loc>
+    <lastmod>2020-01-18T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/stylegan2/</loc>
     <lastmod>2019-12-30T00:00:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
-    <lastmod>2019-12-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://salty-vanilla.github.io/portfolio/categories/gan/</loc>
-    <lastmod>2019-12-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/</loc>
-    <lastmod>2019-12-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
     <lastmod>2019-12-30T00:00:00+09:00</lastmod>
   </url>
   
@@ -112,11 +122,11 @@
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
   </url>
   
   <url>

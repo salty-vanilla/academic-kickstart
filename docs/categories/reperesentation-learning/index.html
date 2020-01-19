@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -30,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/reperesentation-learning/">
 
   
 
@@ -110,12 +112,15 @@
   
 
   
+  <link rel="alternate" href="/portfolio/categories/reperesentation-learning/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/reperesentation-learning/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/reperesentation-learning/">
 
   
   
@@ -127,19 +132,19 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/404.html">
-  <meta property="og:title" content="404 Page not found | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/reperesentation-learning/">
+  <meta property="og:title" content="Reperesentation Learning | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  
-  
-
+  <meta property="og:updated_time" content="2020-01-18T00:00:00&#43;09:00">
   
 
   
 
-  <title>404 Page not found | Nakatsuka Shunsuke</title>
+  
+
+  <title>Reperesentation Learning | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -317,56 +322,52 @@
   </div>
 </nav>
 
-<div class="container">
 
-  <h1>Page not found</h1>
-  <p>Perhaps you were looking for one of these?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   
   
   
-    <h2>Latest</h2>
     
-    <ul>
-      <li><a href="/portfolio/post/lapdae/">Laplacian Denoising Autoencoder</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/stylegan2/">Analyzing and Improving the Image Quality of StyleGAN</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/">An End-to-End Audio Classification System based on Raw Waveforms and Mix-Training Strategy</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/pono/">POSITIONAL NORMALIZATION</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/logan/">LOGAN: Latent Optimisation for Generative Adversarial Networks</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/">Iterative energy-based projection on a normal data manifold for anomaly localization</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/project/visual_inspection/">Visual Inspection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/arcface/">ArcFace: Additive Angular Margin Loss for Deep Face Recognition</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/">Anomaly Detection With Multiple-Hypotheses Predictions</a></li>
-    </ul>
-    
+  
+<div class="universal-wrapper pt-3">
+  <h1 itemprop="name">Reperesentation Learning</h1>
+
+  
+
+  
+</div>
+
+
+
+<div class="universal-wrapper">
+  
+
+  
+  
+  <div>
+    <h2><a href="/portfolio/post/lapdae/">Laplacian Denoising Autoencoder</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  表現学習の枠組み Denoising Autoencoderをベースにより良い特徴表現を獲得 具体的には，入力データにノイズを付加するのではなくLaplacian Pyramidのrandom level目でノイズを付加する   2. 先行研究と比べてどこがすごい？  通常のDAEより優れた特徴表現の獲得 他の表現学習とは異なり，domain assumptionやpseudo labelを必要としない  3. 技術や手法の&quot;キモ&quot;はどこ？  入力データにノイズを付加するのではなく，Laplacian Pyramidのlevel $l$層目でノイズを付加する $l$層目のLaplacian Pyramid $x_l^L$ は，$l$層目のGaussian Pyramid $x_l^G$ を用いて下式 $$ x_l^L = x_l^G - upsample(x_{l+1}^G) $$ $x_0^G$ は元画像に等しい．上式の $l$ を 0 に向かって繰り返し計算すると元画像が求められる $$ x_l^G = x_l^L + upsample(x_{l+1}^G) $$ この繰り返しの途中でノイズを付加する   algorithmは以下  $c \in C$ はどんなノイズを付加するかのセットと要素 objectiveは通常のMSE     4. どうやって有効だと検証した？ MNIST  通常のDAEと比較して，input space, laplacian spaceどちらのnoiseに対しても正確に復元できていることがわかる 再構成Lossも低い   CIFAR10  再構成，画像検索共に通常のDAEより高精度   Imagenet  Supervised learningと同じようなconv filterが学習できている  conv層後の特徴を線形分類したときの精度比較．  LapDAEとAET-project[1]を組み合わせた LapDAE + Transが最高精度    Pascal VOCに転移学習しても最高精度   5.
+      
+    </div>
+  </div>
+  
+
   
 
 </div>
@@ -519,4 +520,6 @@
 
   </body>
 </html>
+
+
 
