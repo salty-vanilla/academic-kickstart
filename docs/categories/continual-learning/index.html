@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -30,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/continual-learning/">
 
   
 
@@ -110,12 +112,15 @@
   
 
   
+  <link rel="alternate" href="/portfolio/categories/continual-learning/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/continual-learning/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/continual-learning/">
 
   
   
@@ -127,19 +132,19 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/404.html">
-  <meta property="og:title" content="404 Page not found | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/continual-learning/">
+  <meta property="og:title" content="Continual Learning | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  
-  
-
+  <meta property="og:updated_time" content="2020-01-20T00:00:00&#43;09:00">
   
 
   
 
-  <title>404 Page not found | Nakatsuka Shunsuke</title>
+  
+
+  <title>Continual Learning | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -317,56 +322,52 @@
   </div>
 </nav>
 
-<div class="container">
 
-  <h1>Page not found</h1>
-  <p>Perhaps you were looking for one of these?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   
   
   
-    <h2>Latest</h2>
     
-    <ul>
-      <li><a href="/portfolio/post/ova-inn/">OvA-INN: Continual Learning with Invertible Neural Networks</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/lapdae/">Laplacian Denoising Autoencoder</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/stylegan2/">Analyzing and Improving the Image Quality of StyleGAN</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/">An End-to-End Audio Classification System based on Raw Waveforms and Mix-Training Strategy</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/pono/">POSITIONAL NORMALIZATION</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/logan/">LOGAN: Latent Optimisation for Generative Adversarial Networks</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/">Iterative energy-based projection on a normal data manifold for anomaly localization</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/project/visual_inspection/">Visual Inspection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/arcface/">ArcFace: Additive Angular Margin Loss for Deep Face Recognition</a></li>
-    </ul>
-    
+  
+<div class="universal-wrapper pt-3">
+  <h1 itemprop="name">Continual Learning</h1>
+
+  
+
+  
+</div>
+
+
+
+<div class="universal-wrapper">
+  
+
+  
+  
+  <div>
+    <h2><a href="/portfolio/post/ova-inn/">OvA-INN: Continual Learning with Invertible Neural Networks</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応  2. 先行研究と比べてどこがすごい？  1クラスごとに学習するので，学習済みのデータは消しても良い クラス数の追加は好きなだけできる catastrophic forgetting を回避  3. 技術や手法の&quot;キモ&quot;はどこ？  クラスごとにNICEを学習することで，OoD問題に持っていく  NICE  invertibleな生成モデル 潜在変数を仮定し，尤度最大化  OvA-INN では標準正規分布を仮定 最大化する対数尤度は下式 $$ l_{i}(x)=\sum_{d} \log \left( p_{d} \left(f_{i, d}(x)\right)\right)=-\sum_{d} \frac{1}{2} f_{i, d}(x)^{2}+\sum_{d} \log \left(\frac{1}{\sqrt{2 \pi}}\right)=-\frac{1}{2}\left|f_{i}(x)\right|_{2}^{2}+\beta $$    OvA-INN (One vs All - Invertible Neural Networks)  任意のクラス数分のNICEを用意して，それぞれ最適化 クラスそれぞれにNICEがあるので，forgetするわけはない クラス数が増えてもincremental に学習ができる $i$番目のクラスのNICE $f_i$のNLL $$ \mathcal{L}(\mathcal{X} _ i)= \frac{1}{| \mathcal{X} _ i |} \sum_{x \in \mathcal{X} _ i} |f_{i}(x)|_{2}^{2} $$ OvA-INN の最終的な推論のラベルは $$ y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2} $$  4.
+      
+    </div>
+  </div>
+  
+
   
 
 </div>
@@ -519,4 +520,6 @@
 
   </body>
 </html>
+
+
 
