@@ -3,8 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</loc>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
-    <lastmod>2020-01-20T00:00:00+09:00</lastmod>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/</loc>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/novelty-detection/</loc>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/svdrnd/</loc>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/out-of-distribution-detection/</loc>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2020-01-21T00:00:00+09:00</lastmod>
   </url>
   
   <url>
@@ -18,17 +48,7 @@
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/</loc>
-    <lastmod>2020-01-20T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/ova-inn/</loc>
-    <lastmod>2020-01-20T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
     <lastmod>2020-01-20T00:00:00+09:00</lastmod>
   </url>
   
@@ -70,11 +90,6 @@
   <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/pono/</loc>
     <lastmod>2019-12-17T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</loc>
-    <lastmod>2019-12-10T00:00:00+09:00</lastmod>
   </url>
   
   <url>
