@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Jan 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Anomaly Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</link>
-      <pubDate>Tue, 21 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0900</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Self-supervised Learning</title>
+      <link>https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/</guid>
       <description></description>
     </item>
     
