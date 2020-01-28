@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/semi-supervised-learning/">
 
   
 
@@ -112,15 +112,15 @@
   
 
   
-  <link rel="alternate" href="/portfolio/categories/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  <link rel="feed" href="/portfolio/categories/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="alternate" href="/portfolio/categories/semi-supervised-learning/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/semi-supervised-learning/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
   
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/semi-supervised-learning/">
 
   
   
@@ -132,8 +132,8 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/">
-  <meta property="og:title" content="Categories | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/semi-supervised-learning/">
+  <meta property="og:title" content="Semi-supervised Learning | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
@@ -144,7 +144,7 @@
 
   
 
-  <title>Categories | Nakatsuka Shunsuke</title>
+  <title>Semi-supervised Learning | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -344,7 +344,7 @@
     
   
 <div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Categories</h1>
+  <h1 itemprop="name">Semi-supervised Learning</h1>
 
   
 
@@ -359,30 +359,16 @@
   
   
   <div>
-    <h2><a href="/portfolio/categories/normalization/">Normalization</a></h2>
+    <h2><a href="/portfolio/post/fixmatch/">FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence</a></h2>
     <div class="article-style">
       
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/categories/vae/">VAE</a></h2>
-    <div class="article-style">
+      1. どんなもの？  Pseudo labelとConsistency regularizationを組み合わせたSemi-supervised learning (SSL) 非常に単純な枠組みだが，Cifar10を40labels だけでerror率：11.39を達成  2. 先行研究と比べてどこがすごい？  Pseudo labelとConsistency regularizationの組み合わせでSSLのSOTA  3. 技術や手法の&quot;キモ&quot;はどこ？  Pseudo labelとConsistency regularizationの組み合わせ 変数の定義  $x_b$ : labeled training exmaple $p_b$ : one-hot label $\mathbb{X} = { (x_b, p_b): b \in (1, \cdots, B) }$ : labelありデータの集合 $u_b$: unlabeled training exmaple $\mathbb{U} = {(u_b): b \in (1, \cdots, \mu B)}$ : labelなしデータの集合 $H(p, q)$ : $p$, $q$のcrossentropy    Consistency regularization  loss関数は確率的なaugmentation $\alpha$と$p_m$を用いて， $$ \sum_{b=1}^{\mu B}\left|p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)-p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)\right|_{2}^{2} $$ 確率的なので，↑は0にはならないことに注意  Pseudo label  $u_b$に対して，擬似的ラベル$q_b$を付与する $$ q_b = p_m(y|u_b) $$ unlabeld dataに対するloss関数は，指示関数 $\mathbb{I}$，しきい値 $\tau$を用いて $$ \frac{1}{\mu B} \sum_{b=1}^{\mu B} \mathbb{I}\left(\max \left(q_{b}\right) \geq \tau\right) \mathrm{H}\left(\hat{q}_{b}, q_{b}\right) $$ $$ \hat{q}_{b} = argmax(q_b) $$  FixMatch  labeled exmapleに対してはConsistency regularization (図の上側) $\alpha$は弱いaugmentation (e.
       
     </div>
   </div>
   
 
   
-<nav>
-  <ul class="pagination justify-content-center">
-    
-    <li class="page-item"><a class="page-link" href="/portfolio/categories/">&laquo;</a></li>
-    
-    
-  </ul>
-</nav>
-
 
 </div>
 <div class="container">
