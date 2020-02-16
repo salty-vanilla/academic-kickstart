@@ -6,10 +6,19 @@
     <description>Recent content in Anomaly Detection on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 16 Feb 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deep One-Class Classification</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/deep_svdd/</link>
+      <pubDate>Sun, 16 Feb 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/deep_svdd/</guid>
+      <description>1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|_{\mathcal{F}_{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.</description>
+    </item>
     
     <item>
       <title>Classification-Based Anomaly Detection for General Data</title>
