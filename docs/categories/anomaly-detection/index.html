@@ -359,6 +359,15 @@
   
   
   <div>
+    <h2><a href="/portfolio/post/devnet/">Deep Anomaly Detection with Deviation Networks</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 枠組みとしてはDeep SVDDに近い  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる end2end  AnoGANなどはnot end2end    3. 技術や手法の&quot;キモ&quot;はどこ？  大量の正常データと少量の異常データからAnomaly Detectionを行う  変数の定義  $ \mathcal{X} = \{ x_1, x_2, \cdots, x_N, x_{N+1}, \cdots, x_{N+K} \} $ : training samples $\mathcal{U} = \{ x_1, x_2, \cdots, x_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{K} = \{ x_{N+1}, x_{N+2}, \cdots, x_{N+K} \}$ : labeled samples (少量の異常データ) $K &laquo; N$ : 異常データは少量 $\phi(x, \theta)$ : Scoring Network  Framework   Scoring NetworkからScoreを算出
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/portfolio/post/deep_svdd/">Deep One-Class Classification</a></h2>
     <div class="article-style">
       
