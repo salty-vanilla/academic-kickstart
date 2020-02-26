@@ -151,7 +151,7 @@
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2020-02-16T00:00:00&#43;09:00">
+  <meta property="og:updated_time" content="2020-02-26T00:00:00&#43;09:00">
   
 
   
@@ -371,6 +371,15 @@
   
 
   
+  
+  <div>
+    <h2><a href="/portfolio/post/prenet/">Deep Weakly-supervised Anomaly Detection</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 入力は2入力でWeight SharingされたNNから得られた特徴ベクトル同士を結合して異常度回帰  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる DevNetの異常度のreference scoreがデータに一切依存していないことを改善？  3. 技術や手法の&quot;キモ&quot;はどこ？  Pairwise Relation を学習 大量の正常データと少量の異常データからAnomaly Detectionを行う テスト時には正常データと異常データと比較することで異常度算出  変数の定義  $\mathcal{U} = \{ u_1, u_2, \cdots, u_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{A} = \{ a_1, a_2, \cdots, a_K \}$ : labeled samples (少量の異常データ) その他の変数は下を参照   Loss関数 $$ \underset{\Theta}{\arg \min } \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} _ {i}, \mathbf{x} _ {j}, y_{i j} \in \mathcal{B}}\left|y_{i j}-\phi\left(\left(\mathbf{x} _ {i}, \mathbf{x}_{j}\right) ; \Theta\right)\right|+\lambda R(\Theta) $$
+      
+    </div>
+  </div>
   
   <div>
     <h2><a href="/portfolio/post/devnet/">Deep Anomaly Detection with Deviation Networks</a></h2>
