@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.2.5">
+  <meta name="google-site-verification" content="Cc3qNeWjzkkGUiml6I-IY_Zs9QqvMsQIUFS07CCjlts" />
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nakatsuka Shunsuke ">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う Deep SVDDベースのDeep SADを提案  Deep SVDD &#43; 少量の教師つきデータ &#43; mutual info    2. 先行研究と比べてどこがすごい？  Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ &#43; 少量の教師つきデータ の枠組みを追加 最近この問題設定流行り？  より実利用に近い感じがしてgood   classification と one-class learning のいいとこどり   3. 技術や手法の&quot;キモ&quot;はどこ？  Deep SVDD &#43; 少量の教師つきデータ &#43; mutual info  Mutual Information  Information Bottleneck (classification)では，入力$x$と潜在変数$z$，ラベル$y$それぞれのmutual info $\mathbb{I}$を最大化 $$ min_{p(z|x)} {\mathbb{I}(X; Z) - \alpha\mathbb{I}(Z; Y)} $$ Unsupervisedなら，正則化項$R$を使って $$ max_{p(z|x)} {\mathbb{I}(X; Z) &#43; \beta R(Z)} $$ autoencoderはInfomaxの枠組みとも考えられる  Deep SVDD  以前まとめた https://salty-vanilla.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/deep_sad/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#ef8354">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/portfolio/css/academic.d3afa0f553c7cc00bac3afdaa697922d.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-158935517-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/portfolio/site.webmanifest">
+  <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
+
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/deep_sad/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/deep_sad/">
+  <meta property="og:title" content="Deep Semi-Supervised Anomaly Detection | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う Deep SVDDベースのDeep SADを提案  Deep SVDD &#43; 少量の教師つきデータ &#43; mutual info    2. 先行研究と比べてどこがすごい？  Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ &#43; 少量の教師つきデータ の枠組みを追加 最近この問題設定流行り？  より実利用に近い感じがしてgood   classification と one-class learning のいいとこどり   3. 技術や手法の&quot;キモ&quot;はどこ？  Deep SVDD &#43; 少量の教師つきデータ &#43; mutual info  Mutual Information  Information Bottleneck (classification)では，入力$x$と潜在変数$z$，ラベル$y$それぞれのmutual info $\mathbb{I}$を最大化 $$ min_{p(z|x)} {\mathbb{I}(X; Z) - \alpha\mathbb{I}(Z; Y)} $$ Unsupervisedなら，正則化項$R$を使って $$ max_{p(z|x)} {\mathbb{I}(X; Z) &#43; \beta R(Z)} $$ autoencoderはInfomaxの枠組みとも考えられる  Deep SVDD  以前まとめた https://salty-vanilla."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-02-27T00:00:00&#43;09:00">
+  
+  <meta property="article:modified_time" content="2020-02-27T00:00:00&#43;09:00">
+  
+
+  
+
+  
+
+  <title>Deep Semi-Supervised Anomaly Detection | Nakatsuka Shunsuke</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#projects">
+            
+            <span>Researches</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/publication">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Deep Semi-Supervised Anomaly Detection</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2020-02-27 00:00:00 &#43;0900 JST" itemprop="datePublished">
+<meta content="2020-02-27 00:00:00 &#43;0900 JST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Feb 27, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/deep_sad/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
+  
+
+  
+    
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://openreview.net/forum?id=HkgH0TEYwH" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h2 id="1-">1. どんなもの？</h2>
+<ul>
+<li>大量の正常データと少量の異常データからAnomaly Detectionを行う</li>
+<li>Deep SVDDベースのDeep SADを提案
+<ul>
+<li>Deep SVDD + 少量の教師つきデータ + mutual info</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<ul>
+<li>Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ + 少量の教師つきデータ の枠組みを追加</li>
+<li>最近この問題設定流行り？
+<ul>
+<li>より実利用に近い感じがしてgood</li>
+</ul>
+</li>
+<li>classification と one-class learning のいいとこどり
+<img src="img/comp.png" alt=""></li>
+</ul>
+<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<ul>
+<li><strong>Deep SVDD + 少量の教師つきデータ + mutual info</strong></li>
+</ul>
+<h3 id="mutual-information">Mutual Information</h3>
+<ul>
+<li>Information Bottleneck (classification)では，入力$x$と潜在変数$z$，ラベル$y$それぞれのmutual info $\mathbb{I}$を最大化
+$$
+min_{p(z|x)} {\mathbb{I}(X; Z) - \alpha\mathbb{I}(Z; Y)}
+$$</li>
+<li>Unsupervisedなら，正則化項$R$を使って
+$$
+max_{p(z|x)} {\mathbb{I}(X; Z) + \beta R(Z)}
+$$</li>
+<li>autoencoderはInfomaxの枠組みとも考えられる</li>
+</ul>
+<h3 id="deep-svdd">Deep SVDD</h3>
+<p><img src="../deep_svdd/img/overview.png" alt=""></p>
+<ul>
+<li>以前まとめた <a href="https://salty-vanilla.github.io/portfolio/post/deep_svdd/">https://salty-vanilla.github.io/portfolio/post/deep_svdd/</a> を参照
+$$
+\min _ {w} \frac{1}{n} \sum_{i=1}^{n}\left|\phi\left(\boldsymbol{x} _ {i} ; \mathcal{W}\right)-\boldsymbol{c}\right|^{2}+\frac{\lambda}{2} \sum_{\ell=1}^{L}\left|\boldsymbol{W}^{\ell}\right|_{F}^{2}, \quad \lambda&gt;0
+$$</li>
+<li>Deep SVDDはemprical varianceを最小化している</li>
+<li>$s(x) = \left|\phi\left(\boldsymbol{x} _ {i} ; \mathcal{W}\right)-\boldsymbol{c}\right|^{2} $ はlatent gaussian のentropyの上界とみなせて，それの最小化をしている
+<ul>
+<li>AutoencoderでNNを初期化していることが前提</li>
+</ul>
+</li>
+</ul>
+<h3 id="deep-sad-semisupervised-anomaly-dection">Deep SAD (Semi-supervised Anomaly Dection)</h3>
+<h4 id="heading">変数の定義</h4>
+<ul>
+<li>$x_1, \cdots, x_n$ : unlabeled samples</li>
+<li>$(\tilde{x_1}, \tilde{y_1}), \cdots, (\tilde{x_m}, \tilde{y_m})$ : labeled samples
+<ul>
+<li>normalなら $\tilde{y} = +1$</li>
+<li>anomalyなら $\tilde{y} = -1$</li>
+</ul>
+</li>
+</ul>
+<h3 id="heading1">目的関数</h3>
+<ul>
+<li>
+<p>Unsupervised のInfomaxを適用して
+$$
+max_{p(z|x)} {\mathbb{I}(X; Z) + \beta (\mathbb{H}(Z^{-}) - \mathbb{H}(Z^{+}))}
+$$</p>
+<ul>
+<li>$\mathbb{H}$ : entropy</li>
+<li>$Z^{-}$ : $\tilde{y} = -1$ の$x$に対する潜在変数</li>
+<li>$Z^{+}$ : $\tilde{y} = +1$ の$x$に対する潜在変数</li>
+</ul>
+</li>
+<li>
+<p>これにDeep SVDDの枠組みを適用すると
+$$
+\min _ {\boldsymbol{w}} \frac{1}{n+m} \sum_{i=1}^{n}\left|\phi\left(\boldsymbol{x} _ {i} ; \mathcal{W}\right)-\boldsymbol{c}\right|^{2}+\frac{\eta}{n+m} \sum_{j=1}^{m}\left(\left|\phi\left(\tilde{\boldsymbol{x}} _ {j} ; \mathcal{W}\right)-\boldsymbol{c}\right|^{2}\right)^{\tilde{y} _ {j}}+\frac{\lambda}{2} \sum_{\ell=1}^{L}\left|\boldsymbol{W}^{\ell}\right|_{F}^{2}
+$$</p>
+<ul>
+<li>1, 3項目はDeepSVDD</li>
+<li>2項目が↑式の正則化項にあたる
+<ul>
+<li>normalなら$c$に近く</li>
+<li>anomalyなら$c$から遠く</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<ul>
+<li>MNIST, Fashion-MNIST, Cifar10で実験</li>
+<li>labelつきデータの異常データを増やすほどAUC上昇
+<img src="img/res1.png" alt=""></li>
+<li>labelなしデータの中に異常データが混入しても他手法よりも精度が落ちない
+<img src="img/res2.png" alt=""></li>
+</ul>
+<h2 id="5-">5. 議論はあるか？</h2>
+<ul>
+<li>Deep SVDD + Semisupervisedは自分も考えていただけに先越された感</li>
+<li>今年はこの問題設定流行りそう</li>
+</ul>
+<h2 id="6-">6. 次に読むべき論文はある？</h2>
+
+    </div>
+
+    
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/portfolio/author/admin/avatar_hued5d70cfe56e48dc137dc1e3bdf77641_127119_250x250_fill_lanczos_center_2.png" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h6 class="card-subtitle">R&amp;D Engineer</h6>
+    <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/portfolio/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/_Shu_Nak" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/salty-vanilla" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.slideshare.net/ShunsukeNAKATSUKA1" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "saltyvanilla" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", dispaly: false},
+          ]
+        });
+      });
+    </script>
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//saltyvanilla.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/portfolio/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/portfolio/js/academic.min.ee93f50e7bcdd181a29c10939fba4467.js"></script>
+
+  </body>
+</html>
+
