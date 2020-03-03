@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
+    <lastmod>2020-03-02T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/</loc>
+    <lastmod>2020-03-02T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/</loc>
+    <lastmod>2020-03-02T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
+    <lastmod>2020-03-02T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://salty-vanilla.github.io/portfolio/categories/svm/</loc>
+    <lastmod>2020-03-02T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</loc>
     <lastmod>2020-02-27T00:00:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/categories/</loc>
-    <lastmod>2020-02-27T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://salty-vanilla.github.io/portfolio/post/deep_sad/</loc>
-    <lastmod>2020-02-27T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/</loc>
-    <lastmod>2020-02-27T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://salty-vanilla.github.io/portfolio/post/</loc>
     <lastmod>2020-02-27T00:00:00+09:00</lastmod>
   </url>
   
@@ -192,11 +202,11 @@
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
   </url>
   
   <url>
-    <loc>https://salty-vanilla.github.io/portfolio/author/</loc>
+    <loc>https://salty-vanilla.github.io/portfolio/authors/</loc>
   </url>
   
   <url>

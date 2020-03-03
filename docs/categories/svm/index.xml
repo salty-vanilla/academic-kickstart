@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SVM on Nakatsuka Shunsuke</title>
+    <link>https://salty-vanilla.github.io/portfolio/categories/svm/</link>
+    <description>Recent content in SVM on Nakatsuka Shunsuke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/svm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Large-Margin Classification in Hyperbolic Space Hyunghoon</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/</link>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/</guid>
+      <description>1. どんなもの？  SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか  2. 先行研究と比べてどこがすごい？  SVMの距離算出を比ユークリッド空間で行う  階層構造を持つデータなどに対して精度良く識別ができる textとかgraphとか    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ 前提知識 Hyperbolid model  内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space $n$次元のhyperbolid model $\mathbb{L_n}$は$\mathbb{R} ^ {n+1}$の単位球の上半平面上にある $$ \mathbb{L}^{n}=\left \{ x: x=\left(x_{0}, \ldots, x_{n}\right) \in \mathbb{R}^{n+1}, x * x=1, x_{0}&amp;gt;0\right \} $$   Poincare Ball  有名なポアンカレ円盤 $$ \mathbb{B}^{n}=\left \{ x: x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n},|x|^{2}&amp;lt;1\right \} $$ hyperbolidの特殊な形と言える $$ \left(x_{0}, \ldots, x_{n}\right) \in \mathbb{L}^{n} \Leftrightarrow\left(\frac{x_{1}}{1+x_{0}}, \ldots, \frac{x_{n}}{1+x_{0}}\right) \in \mathbb{B}^{n} $$   https://qiita.</description>
+    </item>
+    
+  </channel>
+</rss>

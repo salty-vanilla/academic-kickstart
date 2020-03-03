@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -30,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/svm/">
 
   
 
@@ -124,12 +126,15 @@
   
 
   
+  <link rel="alternate" href="/portfolio/categories/svm/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/svm/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/svm/">
 
   
   
@@ -141,19 +146,19 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/404.html">
-  <meta property="og:title" content="404 Page not found | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/svm/">
+  <meta property="og:title" content="SVM | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  
-  
-
+  <meta property="og:updated_time" content="2020-03-02T00:00:00&#43;09:00">
   
 
   
 
-  <title>404 Page not found | Nakatsuka Shunsuke</title>
+  
+
+  <title>SVM | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -331,56 +336,52 @@
   </div>
 </nav>
 
-<div class="container">
 
-  <h1>Page not found</h1>
-  <p>Perhaps you were looking for one of these?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   
   
   
-    <h2>Latest</h2>
     
-    <ul>
-      <li><a href="/portfolio/post/hyperbolic_svm/">Large-Margin Classification in Hyperbolic Space Hyunghoon</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/deep_sad/">Deep Semi-Supervised Anomaly Detection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/prenet/">Deep Weakly-supervised Anomaly Detection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/devnet/">Deep Anomaly Detection with Deviation Networks</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/deep_svdd/">Deep One-Class Classification</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/fixmatch/">FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/classification-based_anomaly_detection_for_general_data/">Classification-Based Anomaly Detection for General Data</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/svdrnd/">Novelty Detection Via Blurring</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/ova-inn/">OvA-INN: Continual Learning with Invertible Neural Networks</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/lapdae/">Laplacian Denoising Autoencoder</a></li>
-    </ul>
-    
+  
+<div class="universal-wrapper pt-3">
+  <h1 itemprop="name">SVM</h1>
+
+  
+
+  
+</div>
+
+
+
+<div class="universal-wrapper">
+  
+
+  
+  
+  <div>
+    <h2><a href="/portfolio/post/hyperbolic_svm/">Large-Margin Classification in Hyperbolic Space Hyunghoon</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか  2. 先行研究と比べてどこがすごい？  SVMの距離算出を比ユークリッド空間で行う  階層構造を持つデータなどに対して精度良く識別ができる textとかgraphとか    3. 技術や手法の&quot;キモ&quot;はどこ？ 前提知識 Hyperbolid model  内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space $n$次元のhyperbolid model $\mathbb{L_n}$は$\mathbb{R} ^ {n+1}$の単位球の上半平面上にある $$ \mathbb{L}^{n}=\left \{ x: x=\left(x_{0}, \ldots, x_{n}\right) \in \mathbb{R}^{n+1}, x * x=1, x_{0}&gt;0\right \} $$   Poincare Ball  有名なポアンカレ円盤 $$ \mathbb{B}^{n}=\left \{ x: x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n},|x|^{2}&lt;1\right \} $$ hyperbolidの特殊な形と言える $$ \left(x_{0}, \ldots, x_{n}\right) \in \mathbb{L}^{n} \Leftrightarrow\left(\frac{x_{1}}{1+x_{0}}, \ldots, \frac{x_{n}}{1+x_{0}}\right) \in \mathbb{B}^{n} $$   https://qiita.
+      
+    </div>
+  </div>
+  
+
   
 
 </div>
@@ -535,4 +536,6 @@
 
   </body>
 </html>
+
+
 
