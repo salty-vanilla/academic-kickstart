@@ -6,7 +6,7 @@
     <description>Recent content in GAN on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Dec 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/gan/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Analyzing and Improving the Image Quality of StyleGAN</title>
       <link>https://salty-vanilla.github.io/portfolio/post/stylegan2/</link>
-      <pubDate>Mon, 30 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/stylegan2/</guid>
       <description>1. どんなもの？  StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上  2. 先行研究と比べてどこがすごい？  StyleGANの問題であった水滴状のノイズ，潜在変数を走査しても顔のパーツが自然に変化しないなどの問題を改善 Instance Normの見直し，Progressive Growingの見直し，PPLの導入  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Revisit Instance Norm  StyleGANでは雨粒状のノイズ (artifact)が現れていた 原因はAdaINの演算    NVIDIAの動画がわかりやすい     この原因は Instance Norm にあり
@@ -28,7 +28,7 @@ c. INのartifactを考慮した形
     <item>
       <title>LOGAN: Latent Optimisation for Generative Adversarial Networks</title>
       <link>https://salty-vanilla.github.io/portfolio/post/logan/</link>
-      <pubDate>Tue, 10 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/logan/</guid>
       <description>1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&amp;rsquo; = z + \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$

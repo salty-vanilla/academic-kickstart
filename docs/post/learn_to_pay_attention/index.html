@@ -96,7 +96,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -156,9 +156,9 @@
   local feature vectorとglobal feature vectorから各画素のCompatibility scoresを求める $$ C^s(\mathbf{\hat{L_s}}, \mathbf{g}) = {c_1^s, c_2^s, &hellip;, c_n^s} $$ $$ c_i^s = \mathbf{\hat{l^s_i}} \cdot{\mathbf{g}} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-05-06T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2018-05-06T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-05-06T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2018-05-06T00:00:00&#43;00:00">
   
 
   
@@ -374,8 +374,8 @@
 
 
 
-<meta content="2018-05-06 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2018-05-06 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2018-05-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2018-05-06 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -444,15 +444,15 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <p>Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．</p>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>Saliency Mapを用いることで有効な領域の情報を重視し，無関係な情報を抑制する</li>
 <li>Local feature vector (CNNの中間層の出力)とGlobal feature vector (CNNの後段のFCの出力)を組み合わせる</li>
 <li>適合度によって重要なLocal feature vectorだけを分類に活用する</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <p>学習可能なAttention Estimatorを通常のCNNに付け加えるだけで，Attention Mapによる解釈性，精度の向上．</p>
 <p><img src="img/architecture.png" alt=""></p>
 <ol>
@@ -487,16 +487,16 @@ $$ \mathbf{g^s} = \sum_i^n a_i^s \cdot{\mathbf{l_i^s}} $$</p>
 </ol>
 <p>$$ \mathbf{g_a} = { \mathbf{g_1}, \mathbf{g_2}, &hellip;, \mathbf{g_S}} $$
 $$ O = W \cdot{\mathbf{g_a}} $$</p>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <p>CIFAR10，CIFAR100，CUB200，SVHNで実験．
 BaselineであるVGG，VGG+GAP, VGG+PAN, ResNet164と比較して精度向上．
 浅い層では局所的な情報を重視し，深い層では物体全体の情報を重視していることがわかる</p>
 <p><img src="img/res.png" alt=""></p>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <p>Adversarial AttackやCross Domainな認識タスクに対しても有効であることが示されている．</p>
 <p><img src="img/adv_attack.png" alt="">
 <img src="img/cross_domain.png" alt=""></p>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 
     </div>
 

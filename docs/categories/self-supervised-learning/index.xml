@@ -6,7 +6,7 @@
     <description>Recent content in Self-supervised Learning on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Classification-Based Anomaly Detection for General Data</title>
       <link>https://salty-vanilla.github.io/portfolio/post/classification-based_anomaly_detection_for_general_data/</link>
-      <pubDate>Mon, 27 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/classification-based_anomaly_detection_for_general_data/</guid>
       <description>1. どんなもの？  Classification-BasedなSelf-supervised learningモデルを使った異常検知手法 幾何変換モデルを発展させた  2. 先行研究と比べてどこがすごい？  ベースはGeometric-transformation classification(GEOM) ↓2点の解決  GEOMでは，Anomalyに対しても正常度が高くなってしまうことがあった GEOMでは，画像しか対応できず1次元データに対しては適用不可だった    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  GEOMのSoftmax + Categorical Cross Entoropyをcenter vectorをanchorとしたtripletに 幾何変換ではなく，アフィン変換（幾何ではなく，$Wx+b$）に  GEOM   GEOMでは画像$x \in X$を幾何変換$m \in M$で変換することで$T(x, m)$を生成

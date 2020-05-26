@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応  2. 先行研究と比べてどこがすごい？  1クラスごとに学習するので，学習済みのデータは消しても良い クラス数の追加は好きなだけできる catastrophic forgetting を回避  3. 技術や手法の&quot;キモ&quot;はどこ？  クラスごとにNICEを学習することで，OoD問題に持っていく  NICE  invertibleな生成モデル 潜在変数を仮定し，尤度最大化  OvA-INN では標準正規分布を仮定 最大化する対数尤度は下式 $$ l_{i}(x)=\sum_{d} \log \left( p_{d} \left(f_{i, d}(x)\right)\right)=-\sum_{d} \frac{1}{2} f_{i, d}(x)^{2}&#43;\sum_{d} \log \left(\frac{1}{\sqrt{2 \pi}}\right)=-\frac{1}{2}\left|f_{i}(x)\right|_{2}^{2}&#43;\beta $$    OvA-INN (One vs All - Invertible Neural Networks)  任意のクラス数分のNICEを用意して，それぞれ最適化 クラスそれぞれにNICEがあるので，forgetするわけはない クラス数が増えてもincremental に学習ができる $i$番目のクラスのNICE $f_i$のNLL $$ \mathcal{L}(\mathcal{X} _ i)= \frac{1}{| \mathcal{X} _ i |} \sum_{x \in \mathcal{X} _ i} |f_{i}(x)|_{2}^{2} $$ OvA-INN の最終的な推論のラベルは $$ y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2} $$  4."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-01-20T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2020-01-20T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-01-20T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2020-01-20T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2020-01-20 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2020-01-20 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2020-01-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-01-20 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,18 +474,18 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>継続学習の枠組み</li>
 <li>1クラスごとに，NICEを学習することで追加クラスに対応</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>1クラスごとに学習するので，学習済みのデータは消しても良い</li>
 <li>クラス数の追加は好きなだけできる</li>
 <li>catastrophic forgetting を回避</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li>クラスごとにNICEを学習することで，OoD問題に持っていく</li>
 </ul>
@@ -502,7 +502,7 @@ $$</li>
 </ul>
 </li>
 </ul>
-<h3 id="ovainn-one-vs-all--invertible-neural-networks">OvA-INN (One vs All - Invertible Neural Networks)</h3>
+<h3 id="ova-inn-one-vs-all---invertible-neural-networks">OvA-INN (One vs All - Invertible Neural Networks)</h3>
 <ul>
 <li>任意のクラス数分のNICEを用意して，それぞれ最適化</li>
 <li>クラスそれぞれにNICEがあるので，forgetするわけはない</li>
@@ -516,7 +516,7 @@ $$
 y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2}
 $$</li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <h3 id="mnist">MNIST</h3>
 <ul>
 <li>MNISTをincremental に学習させて，Acc算出</li>
@@ -528,13 +528,13 @@ $$</li>
 <li>クラス数が増えても，精度があまり落ちない
 <img src="img/cifar.png" alt=""></li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>クラス数分だけ，NICEがあるならforgetしないのは当たり前では？</li>
 <li>Flow based model がOoD 検出には使えないかも？という問題には全く触れていない[1]</li>
 <li>ICLR2020 reject</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ol>
 <li>Choi, H., Jang, E., &amp; Alemi, A. A. (2018). WAIC, but Why? Generative Ensembles for Robust Anomaly Detection. Retrieved from <a href="http://arxiv.org/abs/1810.01392">http://arxiv.org/abs/1810.01392</a></li>
 </ol>

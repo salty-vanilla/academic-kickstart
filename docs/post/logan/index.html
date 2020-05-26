@@ -92,7 +92,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -148,9 +148,9 @@
  ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F&rsquo; = g \cdot g^T &#43; \beta I $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-12-10T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-10T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-12-10T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2019-12-10T00:00:00&#43;00:00">
   
 
   
@@ -366,8 +366,8 @@
 
 
 
-<meta content="2019-12-10 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-10 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-12-10 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -476,17 +476,17 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>GANのIS，FIDを向上させる系の論文</li>
 <li>BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>ベースはBigGAN</li>
 <li>潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li>キモは，<strong>潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること</strong></li>
 </ul>
@@ -522,18 +522,18 @@ $$</p>
 <p>$$
 \Delta z=\alpha\left(\frac{I}{\beta}-\frac{g g^{T}}{\beta^{2}+\beta g^{T} g}\right) g=\frac{\alpha}{\beta}\left(1-\frac{|g|^{2}}{\beta+|g|^{2}}\right) g
 $$</p>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <p>Imagenetの生成で実験．
 baseline(a)よりLOGAN(b)の方がdiversityのある生成ができている．
 <img src="img/gen.png" alt="">
 <img src="img/res.png" alt=""></p>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>$z$を更新するだけでここまで精度が上がるのは驚き</li>
 <li>ただ，baselineがBigGANなので庶民には手が出せない</li>
 <li>dynamicの話とかappendixについては，まだ見れてない</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 
     </div>
 

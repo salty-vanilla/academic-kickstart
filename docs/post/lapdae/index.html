@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  表現学習の枠組み Denoising Autoencoderをベースにより良い特徴表現を獲得 具体的には，入力データにノイズを付加するのではなくLaplacian Pyramidのrandom level目でノイズを付加する   2. 先行研究と比べてどこがすごい？  通常のDAEより優れた特徴表現の獲得 他の表現学習とは異なり，domain assumptionやpseudo labelを必要としない  3. 技術や手法の&quot;キモ&quot;はどこ？  入力データにノイズを付加するのではなく，Laplacian Pyramidのlevel $l$層目でノイズを付加する $l$層目のLaplacian Pyramid $x_l^L$ は，$l$層目のGaussian Pyramid $x_l^G$ を用いて下式 $$ x_l^L = x_l^G - upsample(x_{l&#43;1}^G) $$ $x_0^G$ は元画像に等しい．上式の $l$ を 0 に向かって繰り返し計算すると元画像が求められる $$ x_l^G = x_l^L &#43; upsample(x_{l&#43;1}^G) $$ この繰り返しの途中でノイズを付加する   algorithmは以下  $c \in C$ はどんなノイズを付加するかのセットと要素 objectiveは通常のMSE     4. どうやって有効だと検証した？ MNIST  通常のDAEと比較して，input space, laplacian spaceどちらのnoiseに対しても正確に復元できていることがわかる 再構成Lossも低い   CIFAR10  再構成，画像検索共に通常のDAEより高精度   Imagenet  Supervised learningと同じようなconv filterが学習できている  conv層後の特徴を線形分類したときの精度比較．  LapDAEとAET-project[1]を組み合わせた LapDAE &#43; Transが最高精度    Pascal VOCに転移学習しても最高精度   5."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-01-18T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2020-01-18T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-01-18T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2020-01-18T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2020-01-18 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2020-01-18 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2020-01-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-01-18 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,19 +474,19 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>表現学習の枠組み</li>
 <li>Denoising Autoencoderをベースにより良い特徴表現を獲得</li>
 <li>具体的には，入力データにノイズを付加するのではなくLaplacian Pyramidのrandom level目でノイズを付加する
 <img src="img/overview.png" alt=""></li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>通常のDAEより優れた特徴表現の獲得</li>
 <li>他の表現学習とは異なり，domain assumptionやpseudo labelを必要としない</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li>入力データにノイズを付加するのではなく，<strong>Laplacian Pyramidのlevel $l$層目でノイズを付加する</strong></li>
 <li>$l$層目のLaplacian Pyramid $x_l^L$ は，$l$層目のGaussian Pyramid $x_l^G$ を用いて下式
@@ -509,7 +509,7 @@ $$</li>
 </ul>
 </li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <h3 id="mnist">MNIST</h3>
 <ul>
 <li>通常のDAEと比較して，input space, laplacian spaceどちらのnoiseに対しても正確に復元できていることがわかる</li>
@@ -534,13 +534,13 @@ $$</li>
 <li>Pascal VOCに転移学習しても最高精度
 <img src="img/res2.png" alt=""></li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>単純な方法でより良い特徴表現の獲得に成功している</li>
 <li>objectiveはMSEのままなのに，blurが軽減されているのはなぜ？</li>
 <li>Gaussian pyramidを作る際にGaussian filterはかけてる？</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ol>
 <li>Zhang, L., Qi, G.-J., Wang, L., &amp; Luo, J. (2019). AET vs. AED: Unsupervised Representation Learning by Auto-Encoding Transformations rather than Data. Retrieved from <a href="http://arxiv.org/abs/1901.04596">http://arxiv.org/abs/1901.04596</a></li>
 </ol>

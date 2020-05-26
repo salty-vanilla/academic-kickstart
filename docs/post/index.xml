@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Large-Margin Classification in Hyperbolic Space Hyunghoon</title>
       <link>https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/</link>
-      <pubDate>Mon, 02 Mar 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/</guid>
       <description>1. どんなもの？  SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか  2. 先行研究と比べてどこがすごい？  SVMの距離算出を比ユークリッド空間で行う  階層構造を持つデータなどに対して精度良く識別ができる textとかgraphとか    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ 前提知識 Hyperbolid model  内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space $n$次元のhyperbolid model $\mathbb{L_n}$は$\mathbb{R} ^ {n+1}$の単位球の上半平面上にある $$ \mathbb{L}^{n}=\left \{ x: x=\left(x_{0}, \ldots, x_{n}\right) \in \mathbb{R}^{n+1}, x * x=1, x_{0}&amp;gt;0\right \} $$   Poincare Ball  有名なポアンカレ円盤 $$ \mathbb{B}^{n}=\left \{ x: x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n},|x|^{2}&amp;lt;1\right \} $$ hyperbolidの特殊な形と言える $$ \left(x_{0}, \ldots, x_{n}\right) \in \mathbb{L}^{n} \Leftrightarrow\left(\frac{x_{1}}{1+x_{0}}, \ldots, \frac{x_{n}}{1+x_{0}}\right) \in \mathbb{B}^{n} $$   https://qiita.</description>
@@ -23,7 +23,7 @@
     <item>
       <title>Deep Semi-Supervised Anomaly Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/post/deep_sad/</link>
-      <pubDate>Thu, 27 Feb 2020 00:00:00 +0900</pubDate>
+      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/deep_sad/</guid>
       <description>1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う Deep SVDDベースのDeep SADを提案  Deep SVDD + 少量の教師つきデータ + mutual info    2. 先行研究と比べてどこがすごい？  Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ + 少量の教師つきデータ の枠組みを追加 最近この問題設定流行り？  より実利用に近い感じがしてgood   classification と one-class learning のいいとこどり   3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  Deep SVDD + 少量の教師つきデータ + mutual info  Mutual Information  Information Bottleneck (classification)では，入力$x$と潜在変数$z$，ラベル$y$それぞれのmutual info $\mathbb{I}$を最大化 $$ min_{p(z|x)} {\mathbb{I}(X; Z) - \alpha\mathbb{I}(Z; Y)} $$ Unsupervisedなら，正則化項$R$を使って $$ max_{p(z|x)} {\mathbb{I}(X; Z) + \beta R(Z)} $$ autoencoderはInfomaxの枠組みとも考えられる  Deep SVDD  以前まとめた https://salty-vanilla.</description>
@@ -32,7 +32,7 @@
     <item>
       <title>Deep Weakly-supervised Anomaly Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/post/prenet/</link>
-      <pubDate>Wed, 26 Feb 2020 00:00:00 +0900</pubDate>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/prenet/</guid>
       <description>1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 入力は2入力でWeight SharingされたNNから得られた特徴ベクトル同士を結合して異常度回帰  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる DevNetの異常度のreference scoreがデータに一切依存していないことを改善？  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  Pairwise Relation を学習 大量の正常データと少量の異常データからAnomaly Detectionを行う テスト時には正常データと異常データと比較することで異常度算出  変数の定義  $\mathcal{U} = \{ u_1, u_2, \cdots, u_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{A} = \{ a_1, a_2, \cdots, a_K \}$ : labeled samples (少量の異常データ) その他の変数は下を参照   Loss関数 $$ \underset{\Theta}{\arg \min } \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} _ {i}, \mathbf{x} _ {j}, y_{i j} \in \mathcal{B}}\left|y_{i j}-\phi\left(\left(\mathbf{x} _ {i}, \mathbf{x}_{j}\right) ; \Theta\right)\right|+\lambda R(\Theta) $$</description>
@@ -41,7 +41,7 @@
     <item>
       <title>Deep Anomaly Detection with Deviation Networks</title>
       <link>https://salty-vanilla.github.io/portfolio/post/devnet/</link>
-      <pubDate>Sun, 16 Feb 2020 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 16 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/devnet/</guid>
       <description>1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 枠組みとしてはDeep SVDDに近い  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる end2end  AnoGANなどはnot end2end    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  大量の正常データと少量の異常データからAnomaly Detectionを行う  変数の定義  $ \mathcal{X} = \{ x_1, x_2, \cdots, x_N, x_{N+1}, \cdots, x_{N+K} \} $ : training samples $\mathcal{U} = \{ x_1, x_2, \cdots, x_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{K} = \{ x_{N+1}, x_{N+2}, \cdots, x_{N+K} \}$ : labeled samples (少量の異常データ) $K &amp;laquo; N$ : 異常データは少量 $\phi(x, \theta)$ : Scoring Network  Framework   Scoring NetworkからScoreを算出</description>
@@ -50,7 +50,7 @@
     <item>
       <title>Deep One-Class Classification</title>
       <link>https://salty-vanilla.github.io/portfolio/post/deep_svdd/</link>
-      <pubDate>Sun, 16 Feb 2020 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 16 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/deep_svdd/</guid>
       <description>1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|_{\mathcal{F}_{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.</description>
@@ -59,7 +59,7 @@
     <item>
       <title>FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence</title>
       <link>https://salty-vanilla.github.io/portfolio/post/fixmatch/</link>
-      <pubDate>Tue, 28 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/fixmatch/</guid>
       <description>1. どんなもの？  Pseudo labelとConsistency regularizationを組み合わせたSemi-supervised learning (SSL) 非常に単純な枠組みだが，Cifar10を40labels だけでerror率：11.39を達成  2. 先行研究と比べてどこがすごい？  Pseudo labelとConsistency regularizationの組み合わせでSSLのSOTA  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  Pseudo labelとConsistency regularizationの組み合わせ 変数の定義  $x_b$ : labeled training exmaple $p_b$ : one-hot label $\mathbb{X} = { (x_b, p_b): b \in (1, \cdots, B) }$ : labelありデータの集合 $u_b$: unlabeled training exmaple $\mathbb{U} = {(u_b): b \in (1, \cdots, \mu B)}$ : labelなしデータの集合 $H(p, q)$ : $p$, $q$のcrossentropy    Consistency regularization  loss関数は確率的なaugmentation $\alpha$と$p_m$を用いて， $$ \sum_{b=1}^{\mu B}\left|p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)-p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)\right|_{2}^{2} $$ 確率的なので，↑は0にはならないことに注意  Pseudo label  $u_b$に対して，擬似的ラベル$q_b$を付与する $$ q_b = p_m(y|u_b) $$ unlabeld dataに対するloss関数は，指示関数 $\mathbb{I}$，しきい値 $\tau$を用いて $$ \frac{1}{\mu B} \sum_{b=1}^{\mu B} \mathbb{I}\left(\max \left(q_{b}\right) \geq \tau\right) \mathrm{H}\left(\hat{q}_{b}, q_{b}\right) $$ $$ \hat{q}_{b} = argmax(q_b) $$  FixMatch  labeled exmapleに対してはConsistency regularization (図の上側) $\alpha$は弱いaugmentation (e.</description>
@@ -68,7 +68,7 @@
     <item>
       <title>Classification-Based Anomaly Detection for General Data</title>
       <link>https://salty-vanilla.github.io/portfolio/post/classification-based_anomaly_detection_for_general_data/</link>
-      <pubDate>Mon, 27 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/classification-based_anomaly_detection_for_general_data/</guid>
       <description>1. どんなもの？  Classification-BasedなSelf-supervised learningモデルを使った異常検知手法 幾何変換モデルを発展させた  2. 先行研究と比べてどこがすごい？  ベースはGeometric-transformation classification(GEOM) ↓2点の解決  GEOMでは，Anomalyに対しても正常度が高くなってしまうことがあった GEOMでは，画像しか対応できず1次元データに対しては適用不可だった    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  GEOMのSoftmax + Categorical Cross Entoropyをcenter vectorをanchorとしたtripletに 幾何変換ではなく，アフィン変換（幾何ではなく，$Wx+b$）に  GEOM   GEOMでは画像$x \in X$を幾何変換$m \in M$で変換することで$T(x, m)$を生成
@@ -80,7 +80,7 @@
     <item>
       <title>Novelty Detection Via Blurring</title>
       <link>https://salty-vanilla.github.io/portfolio/post/svdrnd/</link>
-      <pubDate>Tue, 21 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 21 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/svdrnd/</guid>
       <description>1. どんなもの？  OoD Detectionの枠組み 入力をSVD + 特異値0埋めでBlurして，low-rank projectorとなるようなNNを学習 ↑のようなNNを用いることで，target distribution specificな特徴を抽出  2. 先行研究と比べてどこがすごい？  従来のOoD Detectionの手法では，OoDなデータに対しても高い尤度を持つことが多々あった 幾何変換は使わないので，幾何的な意味を持たないDomainにも適用できそう  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  入力をSVD + 特異値0埋めでBlur low-rank projectorとなるようなNN  GENERATING BLURRED DATA  変数の定義  target distribution (training dataset): $D$ training data sample: $d \in \mathbb{R}^{H \times W \times i}$ $d$の$j$番目のチャネル画像$d_j$のnonzero singular values: $[ \sigma_{j1}, \sigma_{j2}, \cdots, \sigma_{jN_j} ]$ $d_j$のnonzero singular valuesの数: N_j   $d_j$をSVDすると $$ d_{j}=\Sigma_{t=1}^{N_{j}} \sigma_{j t} u_{j t} v_{j t}^{T} $$ $[ \sigma_{j1}, \sigma_{j2}, \cdots, \sigma_{jN_j} ]$ のbottom $K$個を0にして，復元するとBlurredなデータが生成される  rankが落ちるから    OOD DETECTION VIA SVD-RND  変数の定義  Predictor Network: $f$ $i$番目のbottom K: $K_i$ $i$番目のtarget network: $g_i$ (random networkで学習時に一切更新されない) $i$の個数: $b_{train}$   $b_{train} = 1$のときのモデル構造  Objective $$ f^{*}=\arg \min _ {f}\left[\Sigma_{x \in D_{\text {train }}}\left|f(x)-g_{0}(x)\right| _ {2}^{2}+\Sigma_{i=1}^{b_{\text {train }}} \Sigma_{x \in D_{K_{i}}}\left|f(x)-g_{i}(x)\right|_{2}^{2}\right] $$ $f(x)$を$g_i(x)$に近づけることで，$f$がlow-rank projectorになることを期待 $f$がtarget distribution specificな特徴を獲得する 推論時にはscoreとして下を用いる $$ \left|f(x)-g_{0}(x)\right|_2^2 $$ VQ-VAEやRNDではtarget distribution specificな特徴を獲得できていないため，blurred dataでも高い尤度を持つ   4.</description>
@@ -89,7 +89,7 @@
     <item>
       <title>OvA-INN: Continual Learning with Invertible Neural Networks</title>
       <link>https://salty-vanilla.github.io/portfolio/post/ova-inn/</link>
-      <pubDate>Mon, 20 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/ova-inn/</guid>
       <description>1. どんなもの？  継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応  2. 先行研究と比べてどこがすごい？  1クラスごとに学習するので，学習済みのデータは消しても良い クラス数の追加は好きなだけできる catastrophic forgetting を回避  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  クラスごとにNICEを学習することで，OoD問題に持っていく  NICE  invertibleな生成モデル 潜在変数を仮定し，尤度最大化  OvA-INN では標準正規分布を仮定 最大化する対数尤度は下式 $$ l_{i}(x)=\sum_{d} \log \left( p_{d} \left(f_{i, d}(x)\right)\right)=-\sum_{d} \frac{1}{2} f_{i, d}(x)^{2}+\sum_{d} \log \left(\frac{1}{\sqrt{2 \pi}}\right)=-\frac{1}{2}\left|f_{i}(x)\right|_{2}^{2}+\beta $$    OvA-INN (One vs All - Invertible Neural Networks)  任意のクラス数分のNICEを用意して，それぞれ最適化 クラスそれぞれにNICEがあるので，forgetするわけはない クラス数が増えてもincremental に学習ができる $i$番目のクラスのNICE $f_i$のNLL $$ \mathcal{L}(\mathcal{X} _ i)= \frac{1}{| \mathcal{X} _ i |} \sum_{x \in \mathcal{X} _ i} |f_{i}(x)|_{2}^{2} $$ OvA-INN の最終的な推論のラベルは $$ y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2} $$  4.</description>
@@ -98,7 +98,7 @@
     <item>
       <title>Laplacian Denoising Autoencoder</title>
       <link>https://salty-vanilla.github.io/portfolio/post/lapdae/</link>
-      <pubDate>Sat, 18 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/lapdae/</guid>
       <description>1. どんなもの？  表現学習の枠組み Denoising Autoencoderをベースにより良い特徴表現を獲得 具体的には，入力データにノイズを付加するのではなくLaplacian Pyramidのrandom level目でノイズを付加する   2. 先行研究と比べてどこがすごい？  通常のDAEより優れた特徴表現の獲得 他の表現学習とは異なり，domain assumptionやpseudo labelを必要としない  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  入力データにノイズを付加するのではなく，Laplacian Pyramidのlevel $l$層目でノイズを付加する $l$層目のLaplacian Pyramid $x_l^L$ は，$l$層目のGaussian Pyramid $x_l^G$ を用いて下式 $$ x_l^L = x_l^G - upsample(x_{l+1}^G) $$ $x_0^G$ は元画像に等しい．上式の $l$ を 0 に向かって繰り返し計算すると元画像が求められる $$ x_l^G = x_l^L + upsample(x_{l+1}^G) $$ この繰り返しの途中でノイズを付加する   algorithmは以下  $c \in C$ はどんなノイズを付加するかのセットと要素 objectiveは通常のMSE     4. どうやって有効だと検証した？ MNIST  通常のDAEと比較して，input space, laplacian spaceどちらのnoiseに対しても正確に復元できていることがわかる 再構成Lossも低い   CIFAR10  再構成，画像検索共に通常のDAEより高精度   Imagenet  Supervised learningと同じようなconv filterが学習できている  conv層後の特徴を線形分類したときの精度比較．  LapDAEとAET-project[1]を組み合わせた LapDAE + Transが最高精度    Pascal VOCに転移学習しても最高精度   5.</description>
@@ -107,7 +107,7 @@
     <item>
       <title>Analyzing and Improving the Image Quality of StyleGAN</title>
       <link>https://salty-vanilla.github.io/portfolio/post/stylegan2/</link>
-      <pubDate>Mon, 30 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/stylegan2/</guid>
       <description>1. どんなもの？  StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上  2. 先行研究と比べてどこがすごい？  StyleGANの問題であった水滴状のノイズ，潜在変数を走査しても顔のパーツが自然に変化しないなどの問題を改善 Instance Normの見直し，Progressive Growingの見直し，PPLの導入  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Revisit Instance Norm  StyleGANでは雨粒状のノイズ (artifact)が現れていた 原因はAdaINの演算    NVIDIAの動画がわかりやすい     この原因は Instance Norm にあり
@@ -121,7 +121,7 @@ c. INのartifactを考慮した形
     <item>
       <title>An End-to-End Audio Classification System based on Raw Waveforms and Mix-Training Strategy</title>
       <link>https://salty-vanilla.github.io/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/</link>
-      <pubDate>Mon, 23 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/</guid>
       <description>1. どんなもの？  音の生波形から，eventのclassificationを行う raw waveformを1D CNNで周波数解析し，得られたTransformed Imageを2D CNNで識別 training dataが少ない場合でも有効なMix-trainingを提案  2. 先行研究と比べてどこがすごい？  Audio ClassificationはGoogleのBottleneck featureを使った識別，Handcrafted featureを使った識別がBaselineだった Bottleneckは情報のlostが，Handcraftedは抽出の困難さが問題 end-to-endな周波数特徴の抽出，識別を可能に  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  キモは，周波数特徴を抽出する1D CNNとその特徴を識別する2D CNN  Raw-waveforms-based network 1D CNN  1D CNNで時間方向にdownsamplingをかけることで，周波数特徴を抽出 FFTをNNに任せてるイメージで，識別に適した周波数特徴を抽出してくれることを期待 最終的には，$C \times 1 \times T$ (channel, 1, time)のfeature mapをtransposeして，$1 \times C \times T$ (1, channel, time)の画像に  2D CNN  得られた周波数特徴画像を2D Convolution 勾配消失を防ぐため，multi-resolutionalなfeature mapからpredictionを出力 attentionつき（attentionは多分，以下の構造）   Avg Poolは多分GAP．．．？  Mix-training strategy  training dataが少ない場合に有効なMix-training．pretraining的な扱い 2つの入力を$\alpha \in (0, 1)$でblend  $$ \tilde{x}_k = \alpha x_i + (1-\alpha) x_j $$</description>
@@ -130,7 +130,7 @@ c. INのartifactを考慮した形
     <item>
       <title>POSITIONAL NORMALIZATION</title>
       <link>https://salty-vanilla.github.io/portfolio/post/pono/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/pono/</guid>
       <description>1. どんなもの？  pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transferなど）に適用すると良い生成  2. 先行研究と比べてどこがすごい？  BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる もちろん収束は早くなるし，安定もする  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Positional Normalization  feature mapの各Pixel（position)ごとにチャネル方向にstaticsを求める つまり，staticsのshapeは（b, h, w)  $$ \mu_{b, h, w}=\frac{1}{C} \sum_{c=1}^{C} X_{b, c, h, w}, \quad \sigma_{b, h, w}=\sqrt{\frac{1}{C} \sum_{c=1}^{C}\left(X_{b, c, h, w}^{2}-\mu_{b, h, w}\right)+\epsilon} $$
@@ -141,7 +141,7 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+
     <item>
       <title>LOGAN: Latent Optimisation for Generative Adversarial Networks</title>
       <link>https://salty-vanilla.github.io/portfolio/post/logan/</link>
-      <pubDate>Tue, 10 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/logan/</guid>
       <description>1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&amp;rsquo; = z + \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
@@ -151,7 +151,7 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+
     <item>
       <title>Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/</link>
-      <pubDate>Tue, 10 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/</guid>
       <description>1. どんなもの？  Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ  2. 先行研究と比べてどこがすごい？  Autoencoderを使った異常検知では，モデルが汎化してしまい異常データまでも復元できてしまう問題があった 潜在変数にMemory構造を追加することで，正常データの分布内のデータしか復元できないようにした  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  Memory構造がキモ  全体の流れ  Encoderからまず$z$を得る $$ z = f_e(x; \theta_e) $$ メモリ構造を用いて$\hat{z}$を得る（後述） Decoderで$\hat{z}$から復元する  $$ \hat{x} = f_d(\hat{z}; \theta_d) $$
@@ -162,7 +162,7 @@ Memory   それぞれ変数を定義する
     <item>
       <title>Iterative energy-based projection on a normal data manifold for anomaly localization</title>
       <link>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</link>
-      <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</guid>
       <description>1. どんなもの？ Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．
@@ -174,7 +174,7 @@ Memory   それぞれ変数を定義する
     <item>
       <title>ArcFace: Additive Angular Margin Loss for Deep Face Recognition</title>
       <link>https://salty-vanilla.github.io/portfolio/post/arcface/</link>
-      <pubDate>Sun, 17 Nov 2019 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 17 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/arcface/</guid>
       <description>1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
@@ -195,7 +195,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
     <item>
       <title>Anomaly Detection With Multiple-Hypotheses Predictions</title>
       <link>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</link>
-      <pubDate>Fri, 01 Nov 2019 00:00:00 +0900</pubDate>
+      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/anomaly_detection_with_multiple-hypotheses_predictions/</guid>
       <description>1. どんなもの？ 異常検知の論文．Autoencoderの出力を複数にすることでAutoencoderの異常検知の問題を解決する．
@@ -208,7 +208,7 @@ Discriminator WTA Lossでは再構成誤差をBack Propagationする出力以外
     <item>
       <title>f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks</title>
       <link>https://salty-vanilla.github.io/portfolio/post/f-anogan/</link>
-      <pubDate>Mon, 14 Oct 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/f-anogan/</guid>
       <description>1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
@@ -227,7 +227,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
     <item>
       <title>Learn to Pay Attention</title>
       <link>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</link>
-      <pubDate>Sun, 06 May 2018 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 06 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/learn_to_pay_attention/</guid>
       <description>1. どんなもの？ Attention Mapを使ってCNNが分類を行うときに使う有効な視覚的情報の空間的なサポートを見つけ出し，利用することで一般物体認識の精度を向上させる．

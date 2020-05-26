@@ -6,7 +6,7 @@
     <description>Recent content on Nakatsuka Shunsuke</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="https://salty-vanilla.github.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Posts</title>
       <link>https://salty-vanilla.github.io/portfolio/post/</link>
-      <pubDate>Mon, 02 Mar 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>Projects</title>
       <link>https://salty-vanilla.github.io/portfolio/project/</link>
-      <pubDate>Sun, 01 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/project/</guid>
       <description></description>
@@ -45,37 +45,46 @@
       
       <guid>https://salty-vanilla.github.io/portfolio/publication/</guid>
       <description>&lt;!-- raw HTML omitted --&gt;
-&lt;h3 id=&#34;heading&#34;&gt;国内会議&lt;/h3&gt;
+&lt;h3 id=&#34;国内会議&#34;&gt;国内会議&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;中塚俊介, 加藤邦人, 中西洋輔 : &amp;ldquo;CNNによる回帰分析を用いた打痕判定に関する考察&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2016, pp.204-205(2016.12.9)&lt;/li&gt;
 &lt;li&gt;中塚俊介, 加藤邦人, 中西洋輔 : &amp;ldquo;回帰型CNNを用いた工業製品における外観検査手法の研究&amp;rdquo;, 第22回知能メカトロニクスワークショップ, 3A1-4(2017.8.28)&lt;/li&gt;
 &lt;li&gt;神本恭佑, 中塚俊介, 相澤宏旭, 加藤邦人, 小林裕幸, 坂野和見 : &amp;ldquo;Denoising Autoencoder Generative Adversarial Networks を用いた欠損検出の検討&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2017, pp.54-55(2017.12.7)&lt;/li&gt;
 &lt;li&gt;中塚俊介, 相澤宏旭, 加藤邦人 : &amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と不良判別&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2017, pp.148-149(2017.12.8)&lt;/li&gt;
 &lt;li&gt;安藤正規，中塚俊介，相澤宏旭，中森さつき，池田敬，森部絢嗣，寺田和憲，加藤邦人: &amp;ldquo;機械学習による自動撮影カメラ画像からの獣種自動判別技術の開発&amp;rdquo;，日本哺乳類学会2018年度大会，S2-05，(2018.9)&lt;/li&gt;
+&lt;li&gt;神本恭佑，中塚俊介，加藤邦人:&amp;ldquo;SSIMを用いたAutoEncoderによる欠陥検出の検証&amp;rdquo;,動的画像処理実利用化ワークショップ DIA2019,OS2-20, pp.346-351,(2019.3.8)&lt;/li&gt;
+&lt;li&gt;中塚俊介, 加藤邦人:&amp;ldquo;多重解像度マップを持つ補集合GANを用いた正常データのみの学習による外観検査法&amp;rdquo;，ビジョン技術の実利用ワークショップ ViEW2019, OS3-H1(IS2-C10) (2019.12.6)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;heading1&#34;&gt;国際会議&lt;/h3&gt;
+&lt;h3 id=&#34;国際会議&#34;&gt;国際会議&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Shunsuke Nakatsuka, Kunihito Kato, Yosuke Nakanishi : &amp;ldquo;Study on Visual Inspection Method using CNN Regression&amp;rdquo;, Asia International Symposium on Mechatronics, D1-5(2017.9.15)&lt;/li&gt;
 &lt;li&gt;Kyosuke Komoto, Shunsuke Nakatsuka Hiroaki, Aizawa, Kunihito Kato, Hiroyuki Kobayashi, Kazumi Banno : &amp;ldquo;A Performance Evaluation of Defect Detection by using Denoising AutoEncoder Generative Adversarial Networks&amp;rdquo;, International Workshop on Advanced Image Technology 2018, Session E2-4 (2018.1.9)&lt;/li&gt;
 &lt;li&gt;Shunsuke Nakatsuka, Hiroaki Aizawa and Kunihito Kato : &amp;ldquo;A Method of Generation of Normal Model and Discrimination of Defects by Adversarial AutoEncoder under Small Number of Defective Samples&amp;rdquo;, Proceeding of 24rd International Workshop on Frontiers of Computer Vision, OS3-1,(2018.2.22)&lt;/li&gt;
+&lt;li&gt;Shunsuke Nakatsuka, Hiroaki Aizawa, Kunihito Kato, “Defective Products Detection using Adversarial AutoEncoder”, International Workshop on Advanced Image Technology 2019 (IWAIT2019), (2019.1.9)&lt;/li&gt;
+&lt;li&gt;Keisuke Goto, Kunihito Kato, Shunsuke Nakatsuka, Takaho Saito and Hiroaki Aizawa:&amp;ldquo;Anomaly Detection of solder joint on print circuit board by using Adversarial Autoencoder&amp;rdquo;, Proceedings of the International Conference on Quality Control by Artificial Vision 2019 (QCAV2019),AV200-84 (2019.5.16)&lt;/li&gt;
+&lt;li&gt;Kimiya Murase, Shunsuke Nakatsuka, Mariko Hosoe, Kunihito Kato: &amp;ldquo;Handwriting Feature Extraction Method for Writer Verification Independent of Character Type by using AdaBN and AdaIN&amp;rdquo;, International Workshop on Advanced Image Technology 2020 (IWAIT2020), Session 1A, Paper No.90 (2020.1.6)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;heading2&#34;&gt;論文誌&lt;/h3&gt;
+&lt;h3 id=&#34;論文誌&#34;&gt;論文誌&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;中塚俊介，相澤宏旭，加藤邦人：&amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と異常検出&amp;rdquo;，精密工学会誌，投稿中&lt;/li&gt;
-&lt;li&gt;安藤正規，中塚俊介，相澤宏旭，中森さつき，池田敬，森部絢嗣，寺田和憲，加藤邦人: &amp;ldquo;深層学習（Deep Learning）によるカメラトラップ画像の判別&amp;rdquo;，哺乳類科学, 投稿中&lt;/li&gt;
+&lt;li&gt;中塚俊介，相澤宏旭，加藤邦人：&amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と異常検出&amp;rdquo;, 精密工学会誌, Vol.84, No.12, pp.1071-1078 (2018)&lt;/li&gt;
+&lt;li&gt;安藤正規，中塚俊介，相澤宏旭，中森さつき，池田敬，森部絢嗣，寺田和憲，加藤邦人，“深層学習（Deep Learning）によるカメラトラップ画像の判別”，哺乳類科学，Vol.59, No.1, pp.49-60, (2019)&lt;/li&gt;
+&lt;li&gt;中塚俊介, 加藤邦人:“多重解像度マップを持つ補集合GANを用いた正常データのみの学習による異常品検出”，精密工学会誌，投稿中&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;heading3&#34;&gt;雑誌&lt;/h3&gt;
+&lt;h3 id=&#34;雑誌&#34;&gt;雑誌&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;中塚俊介, 相澤宏旭, 加藤邦人 : &amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と不良判別&amp;rdquo;, 映像情報インダストリアル, pp.57-68(2018.03)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;heading4&#34;&gt;特許&lt;/h3&gt;
+&lt;h3 id=&#34;特許&#34;&gt;特許&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;加藤邦人, 中塚俊介, 相澤宏旭 : &amp;ldquo;異常品判定方法&amp;rdquo; (特願2017-196758/2017.10.10出願)&lt;/li&gt;
+&lt;li&gt;加藤邦人, 中塚俊介, 相澤宏旭, 齊藤岳穂, 高田裕樹, 伊澤仁:&amp;ldquo;異常品判定方法&amp;rdquo;(特願2019-73372/2019.4.8出願)&lt;/li&gt;
+&lt;li&gt;齊藤岳穂, 加藤邦人, 中塚俊介 :&amp;ldquo;異常判別システムおよびその構築方法&amp;rdquo;(特願2019-77205/2019.4.15出願)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;heading5&#34;&gt;受賞&lt;/h3&gt;
+&lt;h3 id=&#34;受賞&#34;&gt;受賞&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Best Paper Award受賞 Shunsuke Nakatsuka, Kunihito Kato, Yosuke Nakanishi : &amp;ldquo;Study on Visual Inspection Method using CNN Regression&amp;rdquo;, Asia International Symposium on Mechatronics, D1-5(2017年9月15日受賞)&lt;/li&gt;
 &lt;li&gt;ViEW2017 ビジョン技術の実利用ワークショップ 小田原賞（優秀論文賞）, 中塚俊介, 相澤宏旭, 加藤邦人 : &amp;ldquo;少数不良品サンプル下におけるAdversarial AutoEncoderによる正常モデルの生成と不良判別&amp;rdquo;, ビジョン技術の実利用ワークショップ ViEW2017, pp.148-149 (2017年12月8日 受賞)&lt;/li&gt;
+&lt;li&gt;ViEW2019 ビジョン技術の実利用ワークショップ 小田原賞（優秀論文賞）, 中塚俊介,加藤邦人:&amp;ldquo;多重解像度マップを持つ補集合GANを用いた正常データのみの学習による外観検査法&amp;rdquo;,ビジョン技術の実利用ワークショップ ViEW2019, OS3-H1(IS2-C10) (2019年12月6日 受賞)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

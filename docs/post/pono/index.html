@@ -93,7 +93,7 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -150,9 +150,9 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&
  VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&rsquo; = \gamma x &#43; \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-12-17T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-17T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-12-17T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2019-12-17T00:00:00&#43;00:00">
   
 
   
@@ -368,8 +368,8 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&
 
 
 
-<meta content="2019-12-17 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-17 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-12-17 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -478,17 +478,17 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法</li>
 <li>Encoder-Decoder構造（Domain transferなど）に適用すると良い生成</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる</li>
 <li>もちろん収束は早くなるし，安定もする</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <h3 id="positional-normalization">Positional Normalization</h3>
 <p><img src="img/no.png" alt=""></p>
 <ul>
@@ -517,7 +517,7 @@ $$</li>
 <li>CycleGANやPix2Pixで有効</li>
 <li>$\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案</li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>Domain transfer (Map &lt;-&gt; Photo, Horse &lt;-&gt; Zebra)で実験</li>
 <li>CycleGAN (baseline)を上回るのはもちろん，SPADEにも勝っている</li>
@@ -525,13 +525,13 @@ $$</li>
 </ul>
 <p><img src="img/res.png" alt="">
 <img src="img/res2.png" alt=""></p>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>情報量的には軽量版Unetと感じた</li>
 <li>Unetはパラメータ数，計算量も格段に多くなるのでGood</li>
 <li>MUNITはlatent spaceにたどり着かないかもしれない情報がでるけど，大丈夫なのか</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 
     </div>
 

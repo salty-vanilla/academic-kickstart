@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  Pseudo labelとConsistency regularizationを組み合わせたSemi-supervised learning (SSL) 非常に単純な枠組みだが，Cifar10を40labels だけでerror率：11.39を達成  2. 先行研究と比べてどこがすごい？  Pseudo labelとConsistency regularizationの組み合わせでSSLのSOTA  3. 技術や手法の&quot;キモ&quot;はどこ？  Pseudo labelとConsistency regularizationの組み合わせ 変数の定義  $x_b$ : labeled training exmaple $p_b$ : one-hot label $\mathbb{X} = { (x_b, p_b): b \in (1, \cdots, B) }$ : labelありデータの集合 $u_b$: unlabeled training exmaple $\mathbb{U} = {(u_b): b \in (1, \cdots, \mu B)}$ : labelなしデータの集合 $H(p, q)$ : $p$, $q$のcrossentropy    Consistency regularization  loss関数は確率的なaugmentation $\alpha$と$p_m$を用いて， $$ \sum_{b=1}^{\mu B}\left|p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)-p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)\right|_{2}^{2} $$ 確率的なので，↑は0にはならないことに注意  Pseudo label  $u_b$に対して，擬似的ラベル$q_b$を付与する $$ q_b = p_m(y|u_b) $$ unlabeld dataに対するloss関数は，指示関数 $\mathbb{I}$，しきい値 $\tau$を用いて $$ \frac{1}{\mu B} \sum_{b=1}^{\mu B} \mathbb{I}\left(\max \left(q_{b}\right) \geq \tau\right) \mathrm{H}\left(\hat{q}_{b}, q_{b}\right) $$ $$ \hat{q}_{b} = argmax(q_b) $$  FixMatch  labeled exmapleに対してはConsistency regularization (図の上側) $\alpha$は弱いaugmentation (e."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-01-28T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2020-01-28T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-01-28T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2020-01-28T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2020-01-28 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2020-01-28 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2020-01-28 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-01-28 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,16 +474,16 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>Pseudo labelとConsistency regularizationを組み合わせたSemi-supervised learning (SSL)</li>
 <li>非常に単純な枠組みだが，Cifar10を40labels だけでerror率：11.39を達成</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>Pseudo labelとConsistency regularizationの組み合わせでSSLのSOTA</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li><strong>Pseudo label</strong>と<strong>Consistency regularization</strong>の組み合わせ</li>
 <li>変数の定義
@@ -546,7 +546,7 @@ $$
 \eta \cos (\frac{7 \pi K}{16K} )
 $$</li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>Cifar10，Cifar100，SVHNで実験
 <ul>
@@ -557,7 +557,7 @@ $$</li>
 <li>下の10枚（つまり1クラス1枚）だけを用いてCifar10学習しても78%のAccuracy
 <img src="img/res2.png" alt=""></li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>Section 5は気が向いたら</li>
 <li>単純な方法 + 少ラベルでこれほどの精度が出るのは驚き</li>
@@ -566,7 +566,7 @@ $$</li>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ol>
 <li>David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Ku- rakin, Kihyuk Sohn, Han Zhang, and Colin Raffel. Remix- match: Semi-supervised learning with distribution matching and augmentation anchoring. In Eighth International Conference on Learning Representations, 2020.</li>
 <li>Ekin D. Cubuk, Barret Zoph, Jonathon Shlens, and Quoc V. Le. Randaugment: Practical automated data augmen- tation with a reduced search space. arXiv preprint arXiv:1909.13719, 2019.</li>

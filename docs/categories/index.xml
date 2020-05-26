@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>SVM</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/svm/</link>
-      <pubDate>Mon, 02 Mar 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/svm/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>Anomaly Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</link>
-      <pubDate>Thu, 27 Feb 2020 00:00:00 +0900</pubDate>
+      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>Semi-supervised Learning</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/semi-supervised-learning/</link>
-      <pubDate>Tue, 28 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/semi-supervised-learning/</guid>
       <description></description>
@@ -41,7 +41,7 @@
     <item>
       <title>Self-supervised Learning</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/</link>
-      <pubDate>Mon, 27 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/</guid>
       <description></description>
@@ -50,7 +50,7 @@
     <item>
       <title>Novelty Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/novelty-detection/</link>
-      <pubDate>Tue, 21 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 21 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/novelty-detection/</guid>
       <description></description>
@@ -59,7 +59,7 @@
     <item>
       <title>Out of Distribution Detection</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/out-of-distribution-detection/</link>
-      <pubDate>Tue, 21 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 21 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/out-of-distribution-detection/</guid>
       <description></description>
@@ -68,7 +68,7 @@
     <item>
       <title>Continual Learning</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/continual-learning/</link>
-      <pubDate>Mon, 20 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/continual-learning/</guid>
       <description></description>
@@ -77,7 +77,7 @@
     <item>
       <title>Flow Based</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/flow-based/</link>
-      <pubDate>Mon, 20 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/flow-based/</guid>
       <description></description>
@@ -86,7 +86,7 @@
     <item>
       <title>Representation Learning</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/representation-learning/</link>
-      <pubDate>Sat, 18 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/representation-learning/</guid>
       <description></description>
@@ -95,7 +95,7 @@
     <item>
       <title>GAN</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/gan/</link>
-      <pubDate>Mon, 30 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/gan/</guid>
       <description></description>
@@ -104,7 +104,7 @@
     <item>
       <title>Time Series</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/time-series/</link>
-      <pubDate>Mon, 23 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/time-series/</guid>
       <description></description>
@@ -113,7 +113,7 @@
     <item>
       <title>Normalization</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/normalization/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/normalization/</guid>
       <description></description>
@@ -122,7 +122,7 @@
     <item>
       <title>VAE</title>
       <link>https://salty-vanilla.github.io/portfolio/categories/vae/</link>
-      <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/categories/vae/</guid>
       <description></description>

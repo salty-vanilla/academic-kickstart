@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う Deep SVDDベースのDeep SADを提案  Deep SVDD &#43; 少量の教師つきデータ &#43; mutual info    2. 先行研究と比べてどこがすごい？  Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ &#43; 少量の教師つきデータ の枠組みを追加 最近この問題設定流行り？  より実利用に近い感じがしてgood   classification と one-class learning のいいとこどり   3. 技術や手法の&quot;キモ&quot;はどこ？  Deep SVDD &#43; 少量の教師つきデータ &#43; mutual info  Mutual Information  Information Bottleneck (classification)では，入力$x$と潜在変数$z$，ラベル$y$それぞれのmutual info $\mathbb{I}$を最大化 $$ min_{p(z|x)} {\mathbb{I}(X; Z) - \alpha\mathbb{I}(Z; Y)} $$ Unsupervisedなら，正則化項$R$を使って $$ max_{p(z|x)} {\mathbb{I}(X; Z) &#43; \beta R(Z)} $$ autoencoderはInfomaxの枠組みとも考えられる  Deep SVDD  以前まとめた https://salty-vanilla."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-02-27T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2020-02-27T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-02-27T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2020-02-27T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2020-02-27 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2020-02-27 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2020-02-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-02-27 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,7 +474,7 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>大量の正常データと少量の異常データからAnomaly Detectionを行う</li>
 <li>Deep SVDDベースのDeep SADを提案
@@ -483,7 +483,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ + 少量の教師つきデータ の枠組みを追加</li>
 <li>最近この問題設定流行り？
@@ -494,7 +494,7 @@
 <li>classification と one-class learning のいいとこどり
 <img src="img/comp.png" alt=""></li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li><strong>Deep SVDD + 少量の教師つきデータ + mutual info</strong></li>
 </ul>
@@ -524,8 +524,8 @@ $$</li>
 </ul>
 </li>
 </ul>
-<h3 id="deep-sad-semisupervised-anomaly-dection">Deep SAD (Semi-supervised Anomaly Dection)</h3>
-<h4 id="heading">変数の定義</h4>
+<h3 id="deep-sad-semi-supervised-anomaly-dection">Deep SAD (Semi-supervised Anomaly Dection)</h3>
+<h4 id="変数の定義">変数の定義</h4>
 <ul>
 <li>$x_1, \cdots, x_n$ : unlabeled samples</li>
 <li>$(\tilde{x_1}, \tilde{y_1}), \cdots, (\tilde{x_m}, \tilde{y_m})$ : labeled samples
@@ -535,7 +535,7 @@ $$</li>
 </ul>
 </li>
 </ul>
-<h3 id="heading1">目的関数</h3>
+<h3 id="目的関数">目的関数</h3>
 <ul>
 <li>
 <p>Unsupervised のInfomaxを適用して
@@ -564,7 +564,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>MNIST, Fashion-MNIST, Cifar10で実験</li>
 <li>labelつきデータの異常データを増やすほどAUC上昇
@@ -572,12 +572,12 @@ $$</p>
 <li>labelなしデータの中に異常データが混入しても他手法よりも精度が落ちない
 <img src="img/res2.png" alt=""></li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>Deep SVDD + Semisupervisedは自分も考えていただけに先越された感</li>
 <li>今年はこの問題設定流行りそう</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 
     </div>
 

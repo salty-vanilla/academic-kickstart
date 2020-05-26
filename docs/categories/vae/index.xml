@@ -6,7 +6,7 @@
     <description>Recent content in VAE on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/vae/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Iterative energy-based projection on a normal data manifold for anomaly localization</title>
       <link>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</link>
-      <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/</guid>
       <description>1. どんなもの？ Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．

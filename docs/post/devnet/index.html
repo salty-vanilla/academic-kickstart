@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 枠組みとしてはDeep SVDDに近い  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる end2end  AnoGANなどはnot end2end    3. 技術や手法の&quot;キモ&quot;はどこ？  大量の正常データと少量の異常データからAnomaly Detectionを行う  変数の定義  $ \mathcal{X} = \{ x_1, x_2, \cdots, x_N, x_{N&#43;1}, \cdots, x_{N&#43;K} \} $ : training samples $\mathcal{U} = \{ x_1, x_2, \cdots, x_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{K} = \{ x_{N&#43;1}, x_{N&#43;2}, \cdots, x_{N&#43;K} \}$ : labeled samples (少量の異常データ) $K &laquo; N$ : 異常データは少量 $\phi(x, \theta)$ : Scoring Network  Framework   Scoring NetworkからScoreを算出"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-02-16T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2020-02-16T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-02-16T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2020-02-16T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2020-02-16 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2020-02-16 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2020-02-16 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-02-16 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,12 +474,12 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>大量の正常データと少量の異常データからAnomaly Detectionを行う</li>
 <li>枠組みとしてはDeep SVDDに近い</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>正常データからAnomaly Detectionモデルを作れるのは当たり前</li>
 <li>実利用においては，少量の異常データを如何にうまく使うかが求められる</li>
@@ -489,11 +489,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li>大量の正常データと<strong>少量の異常データ</strong>からAnomaly Detectionを行う</li>
 </ul>
-<h3 id="heading">変数の定義</h3>
+<h3 id="変数の定義">変数の定義</h3>
 <ul>
 <li>$ \mathcal{X} = \{ x_1, x_2, \cdots, x_N, x_{N+1}, \cdots, x_{N+K} \} $ : training samples</li>
 <li>$\mathcal{U} = \{ x_1, x_2, \cdots, x_N \}$ : unlabeled samples (正常データとごく少量の異常データ)</li>
@@ -531,7 +531,7 @@ $$
 </ul>
 </li>
 </ol>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>様々なAD datasetでSoTA
 <ul>
@@ -543,7 +543,7 @@ $$
 </ul>
 </li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>$F$が標準正規分布なら，$\mu_R=0$，$\sigma=0$となってデータに全く依存しないReference Scoreになってるけどいいのか？
 <ul>
@@ -552,7 +552,7 @@ $$
 </li>
 <li>結局ミニバッチのサンプリングを$\mathcal{U}$から半分，$\mathcal{K}$から半分とってきてるのが大きそう</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ol>
 <li>Pang, G., Shen, C., Jin, H., &amp; Hengel, A. van den. (2019). Deep Weakly-supervised Anomaly Detection. Retrieved from <a href="https://arxiv.org/abs/1910.13601">https://arxiv.org/abs/1910.13601</a></li>
 </ol>

@@ -6,7 +6,7 @@
     <description>Recent content in Semi-supervised Learning on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jan 2020 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/semi-supervised-learning/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence</title>
       <link>https://salty-vanilla.github.io/portfolio/post/fixmatch/</link>
-      <pubDate>Tue, 28 Jan 2020 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/fixmatch/</guid>
       <description>1. どんなもの？  Pseudo labelとConsistency regularizationを組み合わせたSemi-supervised learning (SSL) 非常に単純な枠組みだが，Cifar10を40labels だけでerror率：11.39を達成  2. 先行研究と比べてどこがすごい？  Pseudo labelとConsistency regularizationの組み合わせでSSLのSOTA  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  Pseudo labelとConsistency regularizationの組み合わせ 変数の定義  $x_b$ : labeled training exmaple $p_b$ : one-hot label $\mathbb{X} = { (x_b, p_b): b \in (1, \cdots, B) }$ : labelありデータの集合 $u_b$: unlabeled training exmaple $\mathbb{U} = {(u_b): b \in (1, \cdots, \mu B)}$ : labelなしデータの集合 $H(p, q)$ : $p$, $q$のcrossentropy    Consistency regularization  loss関数は確率的なaugmentation $\alpha$と$p_m$を用いて， $$ \sum_{b=1}^{\mu B}\left|p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)-p_{\mathrm{m}}\left(y | \alpha\left(u_{b}\right)\right)\right|_{2}^{2} $$ 確率的なので，↑は0にはならないことに注意  Pseudo label  $u_b$に対して，擬似的ラベル$q_b$を付与する $$ q_b = p_m(y|u_b) $$ unlabeld dataに対するloss関数は，指示関数 $\mathbb{I}$，しきい値 $\tau$を用いて $$ \frac{1}{\mu B} \sum_{b=1}^{\mu B} \mathbb{I}\left(\max \left(q_{b}\right) \geq \tau\right) \mathrm{H}\left(\hat{q}_{b}, q_{b}\right) $$ $$ \hat{q}_{b} = argmax(q_b) $$  FixMatch  labeled exmapleに対してはConsistency regularization (図の上側) $\alpha$は弱いaugmentation (e.</description>

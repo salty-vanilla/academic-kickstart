@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか  2. 先行研究と比べてどこがすごい？  SVMの距離算出を比ユークリッド空間で行う  階層構造を持つデータなどに対して精度良く識別ができる textとかgraphとか    3. 技術や手法の&quot;キモ&quot;はどこ？ 前提知識 Hyperbolid model  内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space $n$次元のhyperbolid model $\mathbb{L_n}$は$\mathbb{R} ^ {n&#43;1}$の単位球の上半平面上にある $$ \mathbb{L}^{n}=\left \{ x: x=\left(x_{0}, \ldots, x_{n}\right) \in \mathbb{R}^{n&#43;1}, x * x=1, x_{0}&gt;0\right \} $$   Poincare Ball  有名なポアンカレ円盤 $$ \mathbb{B}^{n}=\left \{ x: x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n},|x|^{2}&lt;1\right \} $$ hyperbolidの特殊な形と言える $$ \left(x_{0}, \ldots, x_{n}\right) \in \mathbb{L}^{n} \Leftrightarrow\left(\frac{x_{1}}{1&#43;x_{0}}, \ldots, \frac{x_{n}}{1&#43;x_{0}}\right) \in \mathbb{B}^{n} $$   https://qiita."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-03-02T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2020-03-02T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-03-02T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2020-03-02T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2020-03-02 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2020-03-02 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2020-03-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-03-02 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,12 +474,12 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る</li>
 <li>具体的にはPoincare disk上とか</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>SVMの距離算出を比ユークリッド空間で行う
 <ul>
@@ -488,8 +488,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
-<h3 id="heading">前提知識</h3>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h3 id="前提知識">前提知識</h3>
 <h4 id="hyperbolid-model">Hyperbolid model</h4>
 <ul>
 <li>内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space</li>
@@ -542,7 +542,7 @@ $$
 \text{subject to } w * w&lt;0
 $$</li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>GMM（混合数4）から発生させたデータに対して実験
 <img src="img/res1.png" alt=""></li>
@@ -554,11 +554,11 @@ $$</li>
 </ul>
 </li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>精度云々は置いておいて，距離を非ユークリッド空間でとるアイデア</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ul>
 <li><a href="https://tech-blog.abeja.asia/entry/poincare-embeddings">https://tech-blog.abeja.asia/entry/poincare-embeddings</a></li>
 <li><a href="https://tech-blog.abeja.asia/entry/hyperbolic_ml_2019">https://tech-blog.abeja.asia/entry/hyperbolic_ml_2019</a></li>

@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -145,9 +145,9 @@
   <meta property="og:description" content="工業部品や食品の外観検査をニューラルネットワークによって自動化"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/project/visual_inspection/featured.jpg">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-12-01T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-01T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-12-01T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2019-12-01T00:00:00&#43;00:00">
   
 
   
@@ -367,8 +367,8 @@
 
 
 
-<meta content="2019-12-01 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-01 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-12-01 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -479,8 +479,8 @@
 
 
 
-<meta content="2019-12-01 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-01 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-12-01 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -552,7 +552,7 @@
 
 
 </figure>
-<h2 id="heading">はじめに</h2>
+<h2 id="はじめに">はじめに</h2>
 <p>工業製品の製造工程において，出荷製品の品質安定化のために検査は必要不可欠である．
 とくに外観検査工程では人による目視検査が主であるが，検査員毎の判断基準のばらつきが長年の課題であった．
 近年では深層学習技術の進歩により，これまで困難とされてきた目視検査工程でも自動化が検討されている．
@@ -562,19 +562,19 @@
 このとき，異常な領域が占める割合が大きければ，検出は容易であるが，小さい場合は難しい．
 また，異常には様々な種類が存在し，それぞれを検出するのに適した解像度が存在するはずである．
 そのため，本稿ではComplementary GANに Multi-scale Patch の枠組みを加えたモデルに正常品のみを学習させ，正常分布とその補集合分布をモデリングし異常検知を行う手法を提案する．</p>
-<h2 id="nn">従来のNNを使った異常検知</h2>
-<h3 id="heading1">差分ベース</h3>
+<h2 id="従来のnnを使った異常検知">従来のNNを使った異常検知</h2>
+<h3 id="差分ベース">差分ベース</h3>
 <ul>
 <li>Autoencoder</li>
 <li>AnoGAN</li>
 <li>ADGAN</li>
 </ul>
-<h4 id="heading2">メリット</h4>
+<h4 id="メリット">メリット</h4>
 <ul>
 <li>差分ベースなので，欠陥箇所のLocalizationが可能</li>
 <li>学習が容易</li>
 </ul>
-<h4 id="heading3">デメリット</h4>
+<h4 id="デメリット">デメリット</h4>
 <ul>
 <li>外観検査においては差分の出づらい欠陥が存在する</li>
 <li>Blurが発生し，高周波成分が差分として現れてしまう</li>
@@ -588,17 +588,17 @@
 
 
 </figure>
-<h3 id="heading4">潜在変数ベース</h3>
+<h3 id="潜在変数ベース">潜在変数ベース</h3>
 <ul>
 <li>Flow-based Model</li>
 <li>Adversarial Autoencoder</li>
 </ul>
-<h4 id="heading5">メリット</h4>
+<h4 id="メリット-1">メリット</h4>
 <ul>
 <li>異常度を対数尤度としてダイレクトに算出できる</li>
 <li>潜在変数による低次元データの可視化が可能</li>
 </ul>
-<h4 id="heading6">デメリット</h4>
+<h4 id="デメリット-1">デメリット</h4>
 <ul>
 <li>欠陥情報が消失してしまう</li>
 <li>Out of distributionのデータでも尤度が高くなってしまうことがある．</li>
@@ -614,7 +614,7 @@
 </figure>
 <!-- raw HTML omitted -->
 <h2 id="complementary-gan">Complementary GAN</h2>
-<h3 id="gan">そもそもGANとは？</h3>
+<h3 id="そもそもganとは">そもそもGANとは？</h3>
 <ul>
 <li>GeneratorとDiscriminatorの2つのNetworkを持つ</li>
 <li>Generatorは，Discriminatorを騙すように本物に近いデータを生成する</li>
@@ -622,27 +622,27 @@
 <li>GeneratorとDiscriminatorが↑の学習をすることで，Generatorは本物に近いデータを生成できるようになる．</li>
 </ul>
 <p><img src="https://github.com/NVlabs/stylegan/raw/master/stylegan-teaser.png" alt="" title="style-ganによる生成"></p>
-<h3 id="gan1">結局GANは何を学習している？</h3>
+<h3 id="結局ganは何を学習している">結局GANは何を学習している？</h3>
 <ul>
 <li>Discriminatorは生成分布とデータ分布の”離れ度合い”を測るDivergence Estimator</li>
 <li>Generatorは算出された”離れ度合い”を最小化する</li>
 <li>その結果，生成分布とデータ分布が近づいていき，本物に近い画像が生成できる</li>
 </ul>
 <p><img src="img/gan.png" alt=""></p>
-<h3 id="discriminator">Discriminatorの出力って異常検知に使える？</h3>
+<h3 id="discriminatorの出力って異常検知に使える">Discriminatorの出力って異常検知に使える？</h3>
 <ul>
 <li>Discriminatorは，本物と偽物が見極められるので，本物を正常データとすれば，正常/異常が分別できるのでは！？という考え</li>
 <li>それは難しい</li>
 <li>Discriminatorが識別しているのは，本物のデータであるか偽物のデータであって，偽物データの中に異常分布の要素は全く含まれていない</li>
 </ul>
-<h3 id="gancomplementary-gan">GANとComplementary GANの違いは？</h3>
+<h3 id="ganとcomplementary-ganの違いは">GANとComplementary GANの違いは？</h3>
 <ul>
 <li>GANはデータ分布と生成分布を測り，近づける</li>
 <li>Complementary GANはデータ分布と生成分布を測り，データ分布の補集合分布と生成分布を近づける</li>
 <li>つまり，Complementary GANは<strong>正常データには存在しないデータを生成</strong>し，Discriminatorは<strong>正常と正常ではないの識別境界</strong>となる</li>
 </ul>
 <p><img src="img/cgan.png" alt=""></p>
-<h2 id="multiscale-patch-discriminator">Multi-scale Patch Discriminator</h2>
+<h2 id="multi-scale-patch-discriminator">Multi-scale Patch Discriminator</h2>
 <ul>
 <li>外観検査では，欠陥の大きさは様々</li>
 <li>CNNで，Conv + Poolingを積み重ねていくと小さい欠陥の情報は消えてしまう</li>
@@ -651,11 +651,11 @@
 <p><img src="img/def_scale.png" alt=""></p>
 <p>そこで，Discriminatorの出力を[0, 1]のスカラーではなく，正常度MAPとすることで↑の問題に対処する</p>
 <p><img src="img/mspcgan.png" alt=""></p>
-<h2 id="heading7">実験</h2>
-<h3 id="led">LEDチップ画像</h3>
-<h4 id="heading8">サンプル</h4>
+<h2 id="実験">実験</h2>
+<h3 id="ledチップ画像">LEDチップ画像</h3>
+<h4 id="サンプル">サンプル</h4>
 <p><img src="img/sample.png" alt=""></p>
-<h4 id="heading9">データ内訳</h4>
+<h4 id="データ内訳">データ内訳</h4>
 <table>
 <thead>
 <tr>
@@ -677,7 +677,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="heading10">生成された補集合画像</h4>
+<h4 id="生成された補集合画像">生成された補集合画像</h4>
 <ul>
 <li>不良品画像とは一致しないが，良品画像には近いが良品ではないものが生成できていることを確認</li>
 </ul>
@@ -690,7 +690,7 @@
 
 
 </figure>
-<h4 id="discriminatormap">Discriminatorによる異常度MAP</h4>
+<h4 id="discriminatorによる異常度map">Discriminatorによる異常度MAP</h4>
 <ul>
 <li>赤に近いほど異常度が大きく，青に近いほど異常度が低い</li>
 <li>各行左から，入力・8x8 MAP・4x4 MAP・2x2 MAP</li>
@@ -705,7 +705,7 @@
 
 
 </figure>
-<h4 id="heading11">精度</h4>
+<h4 id="精度">精度</h4>
 
 
 

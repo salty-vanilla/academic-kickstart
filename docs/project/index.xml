@@ -6,7 +6,7 @@
     <description>Recent content in Projects on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/project/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Visual Inspection</title>
       <link>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</link>
-      <pubDate>Sun, 01 Dec 2019 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/project/visual_inspection/</guid>
       <description>工業部品や食品の外観検査をニューラルネットワークによって自動化</description>
@@ -23,7 +23,7 @@
     <item>
       <title>Wild Life</title>
       <link>https://salty-vanilla.github.io/portfolio/project/wlid_life/</link>
-      <pubDate>Fri, 03 May 2019 00:00:00 +0900</pubDate>
+      <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/project/wlid_life/</guid>
       <description>大量のカメラトラップ画像から野生動物が何頭いるかを自動判定</description>

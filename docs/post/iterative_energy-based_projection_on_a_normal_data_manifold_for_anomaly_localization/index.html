@@ -94,7 +94,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -152,9 +152,9 @@
   再構成が大きい部位は更新量を大きく，小さい部位は小さくすればなお良し $$ x_{x&#43;1} = x_t - \alpha ( \nabla_xE(x_t) \odot | f_{VAE}(x_t) - x_t | ^2 ) $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-12-09T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-09T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-12-09T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2019-12-09T00:00:00&#43;00:00">
   
 
   
@@ -370,8 +370,8 @@
 
 
 
-<meta content="2019-12-09 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-09 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-09 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-12-09 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -480,15 +480,15 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <p>Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．</p>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>Autoencoderベースのモデルでは，異常画像が入力された際に異常部位以外も再構成が崩れてしまい上手くLocalizationできないという問題があった</li>
 <li>また，Blurが発生してしまう</li>
 <li>上記2点を繰り返し，$x$を更新していく方法で解決する</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <p><img src="img/arch.png" alt=""></p>
 <ul>
 <li>
@@ -516,7 +516,7 @@ $$</p>
 <p>つまるところ，学習済みのVAEを用意して，テストデータを繰り返し入力・更新して元のManifoldにより近づけるイメージ （近いモデルはAnoGAN）</p>
 </li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>
 <p>MVTECに対して，実験</p>
@@ -530,12 +530,12 @@ $$</p>
 <img src="img/seg.png" alt=""></p>
 </li>
 </ul>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>iterativeにすることで推論時間はどのくらいになる？</li>
 <li>AnoGANと似たようなmethodだが，比較は？</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ul>
 <li>Bin Dai and David P. Wipf. Diagnosing and enhancing VAE models. CoRR, abs/1903.05789, 2019. Ian</li>
 </ul>

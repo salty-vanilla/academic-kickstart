@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.293b82b2aaab66437e78347bec979f33.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -146,9 +146,9 @@
   <meta property="og:description" content="1. どんなもの？  音の生波形から，eventのclassificationを行う raw waveformを1D CNNで周波数解析し，得られたTransformed Imageを2D CNNで識別 training dataが少ない場合でも有効なMix-trainingを提案  2. 先行研究と比べてどこがすごい？  Audio ClassificationはGoogleのBottleneck featureを使った識別，Handcrafted featureを使った識別がBaselineだった Bottleneckは情報のlostが，Handcraftedは抽出の困難さが問題 end-to-endな周波数特徴の抽出，識別を可能に  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，周波数特徴を抽出する1D CNNとその特徴を識別する2D CNN  Raw-waveforms-based network 1D CNN  1D CNNで時間方向にdownsamplingをかけることで，周波数特徴を抽出 FFTをNNに任せてるイメージで，識別に適した周波数特徴を抽出してくれることを期待 最終的には，$C \times 1 \times T$ (channel, 1, time)のfeature mapをtransposeして，$1 \times C \times T$ (1, channel, time)の画像に  2D CNN  得られた周波数特徴画像を2D Convolution 勾配消失を防ぐため，multi-resolutionalなfeature mapからpredictionを出力 attentionつき（attentionは多分，以下の構造）   Avg Poolは多分GAP．．．？  Mix-training strategy  training dataが少ない場合に有効なMix-training．pretraining的な扱い 2つの入力を$\alpha \in (0, 1)$でblend  $$ \tilde{x}_k = \alpha x_i &#43; (1-\alpha) x_j $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-12-23T00:00:00&#43;09:00">
+  <meta property="article:published_time" content="2019-12-23T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-12-23T00:00:00&#43;09:00">
+  <meta property="article:modified_time" content="2019-12-23T00:00:00&#43;00:00">
   
 
   
@@ -364,8 +364,8 @@
 
 
 
-<meta content="2019-12-23 00:00:00 &#43;0900 JST" itemprop="datePublished">
-<meta content="2019-12-23 00:00:00 &#43;0900 JST" itemprop="dateModified">
+<meta content="2019-12-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-12-23 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -474,23 +474,23 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="1-">1. どんなもの？</h2>
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
 <ul>
 <li>音の生波形から，eventのclassificationを行う</li>
 <li>raw waveformを1D CNNで周波数解析し，得られたTransformed Imageを2D CNNで識別</li>
 <li>training dataが少ない場合でも有効なMix-trainingを提案</li>
 </ul>
-<h2 id="2-">2. 先行研究と比べてどこがすごい？</h2>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
 <ul>
 <li>Audio ClassificationはGoogleのBottleneck featureを使った識別，Handcrafted featureを使った識別がBaselineだった</li>
 <li>Bottleneckは情報のlostが，Handcraftedは抽出の困難さが問題</li>
 <li>end-to-endな周波数特徴の抽出，識別を可能に</li>
 </ul>
-<h2 id="3-">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
 <ul>
 <li>キモは，<strong>周波数特徴を抽出する1D CNNとその特徴を識別する2D CNN</strong></li>
 </ul>
-<h3 id="rawwaveformsbased-network">Raw-waveforms-based network</h3>
+<h3 id="raw-waveforms-based-network">Raw-waveforms-based network</h3>
 <p><img src="img/arch.png" alt=""></p>
 <h4 id="1d-cnn">1D CNN</h4>
 <ul>
@@ -508,7 +508,7 @@
 <ul>
 <li>Avg Poolは多分GAP．．．？</li>
 </ul>
-<h3 id="mixtraining-strategy">Mix-training strategy</h3>
+<h3 id="mix-training-strategy">Mix-training strategy</h3>
 <p><img src="img/mts.png" alt=""></p>
 <ul>
 <li>training dataが少ない場合に有効なMix-training．pretraining的な扱い</li>
@@ -535,7 +535,7 @@ $$</p>
 <ul>
 <li>Mix-trainingが終わった後にはmixしないデータでfine-tuning</li>
 </ul>
-<h2 id="4-">4. どうやって有効だと検証した？</h2>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
 <ul>
 <li>Audio SetでBaselineとの精度比較</li>
 <li>精度的には負けてるが，pretrainingなしなのはgoodかも</li>
@@ -546,13 +546,13 @@ $$</p>
 <li>mix-upよりも高精度</li>
 </ul>
 <p><img src="img/res2.png" alt=""></p>
-<h2 id="5-">5. 議論はあるか？</h2>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
 <ul>
 <li>周波数特徴画像にFFTのような説明性はあるか？</li>
 <li>mix-trainingの教師データの総和が1にならないが良いのか．．．</li>
 <li>stemのConv 1x7は妥当か？</li>
 </ul>
-<h2 id="6-">6. 次に読むべき論文はある？</h2>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
 <ul>
 <li>Yu, C., Barsim, K. S., Kong, Q., &amp; Yang, B. (2018). Multi-level Attention Model for Weakly Supervised Audio Classification. Retrieved from <a href="http://arxiv.org/abs/1803.02353">http://arxiv.org/abs/1803.02353</a></li>
 <li>Zhang, H., Cisse, M., Dauphin, Y. N., &amp; Lopez-Paz, D. (2017). mixup: Beyond Empirical Risk Minimization. Retrieved from <a href="https://arxiv.org/abs/1710.09412">https://arxiv.org/abs/1710.09412</a></li>
