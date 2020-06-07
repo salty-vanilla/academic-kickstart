@@ -151,7 +151,7 @@
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2020-02-27T00:00:00&#43;00:00">
+  <meta property="og:updated_time" content="2020-06-07T00:00:00&#43;00:00">
   
 
   
@@ -390,6 +390,15 @@
   
 
   
+  
+  <div>
+    <h2><a href="/portfolio/post/student_teacher_ad/">Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画像で学習したTeacherと工業製品で学習する複数のStudentモデル  2. 先行研究と比べてどこがすごい？  Unsupervised な Anomaly DetectionのSegmentaionにはAutoencoder系があったが再構成誤差によるもので，不正確だった transfer learningの枠組みは今まで工業製品のAnomaly Detectionでは使いづらかった  Domainの違い 解像度の違い    3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $ \mathcal{D} = \{ I_1, I_2, \cdots, I_N \} $ : データセット $I_n \in \R^{h \times w \times ch}$ : 入力画像 $S_i(I_n) \in \R^{h \times w \times d}$ : $i$番目のstudent networkに入力すると，入力と同じサイズのfeature mapが生成される $T(I_n) \in \R^{h \times w \times d}$ : teacher networkも同様 $y_{r, c} \in \R^d$ : $S_i(I)$のMapのposition $r, c$における特徴ベクトル． $p_{r, c} \in \R^{p \times p \times ch}$ : position $r, c$における$I$のパッチ    Learning Local Patch Descriptors  まずTeacher $T$ を学習するために，$\hat{T}$を学習する  $\hat{T}(I_n) \notin \R^{h \times w \times d}$ である（Poolingなどによって空間解像度が落ちる） FDFEを適用することで，空間解像度を落とさないようにすることで$T$ を求める   $\hat{T}$はImagenetなどの自然画像で事前学習された$P$というNetworkを蒸留（Distillation）することで学習する  3つのLossを最小化することで蒸留  ↓の$p$はImagenet任意のデータセットの画像からCropしたもの $$ \mathcal{L}(\hat{T})=\lambda_{k} \mathcal{L} _ {k}(\hat{T})+\lambda_{m} \mathcal{L} _ {m}(\hat{T})+\lambda_{c} \mathcal{L}_{c}(\hat{T}) $$    Knowledge Distillation.
+      
+    </div>
+  </div>
   
   <div>
     <h2><a href="/portfolio/post/deep_sad/">Deep Semi-Supervised Anomaly Detection</a></h2>
