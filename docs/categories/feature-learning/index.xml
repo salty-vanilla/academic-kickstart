@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Learning on Nakatsuka Shunsuke</title>
+    <link>https://salty-vanilla.github.io/portfolio/categories/feature-learning/</link>
+    <description>Recent content in Feature Learning on Nakatsuka Shunsuke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/feature-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fast Dense Feature Extraction for CNNs</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/fdfe/</link>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/fdfe/</guid>
+      <description>1. どんなもの？  Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計算時間が長い Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK  2. 先行研究と比べてどこがすごい？  大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い  sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる  e.g.) VGGの場合は，224x224 -&amp;gt; 7x7で1/32のサイズになる     Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK   3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像 $P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ $O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル $O \in \R^{I_h \times I_w \times I_c}$ :    sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい</description>
+    </item>
+    
+  </channel>
+</rss>

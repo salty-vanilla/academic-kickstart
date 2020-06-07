@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.2.5">
+  <meta name="google-site-verification" content="Cc3qNeWjzkkGUiml6I-IY_Zs9QqvMsQIUFS07CCjlts" />
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nakatsuka Shunsuke ">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="1. どんなもの？  Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計算時間が長い Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK  2. 先行研究と比べてどこがすごい？  大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い  sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる  e.g.) VGGの場合は，224x224 -&gt; 7x7で1/32のサイズになる     Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK   3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像 $P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ $O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル $O \in \R^{I_h \times I_w \times I_c}$ :    sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/fdfe/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#ef8354">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/portfolio/css/academic.d3afa0f553c7cc00bac3afdaa697922d.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-158935517-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/portfolio/site.webmanifest">
+  <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
+
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/fdfe/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/fdfe/">
+  <meta property="og:title" content="Fast Dense Feature Extraction for CNNs | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？  Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計算時間が長い Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK  2. 先行研究と比べてどこがすごい？  大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い  sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる  e.g.) VGGの場合は，224x224 -&gt; 7x7で1/32のサイズになる     Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK   3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像 $P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ $O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル $O \in \R^{I_h \times I_w \times I_c}$ :    sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/fdfe/featured.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-06-06T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-06-06T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>Fast Dense Feature Extraction for CNNs | Nakatsuka Shunsuke</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#projects">
+            
+            <span>Researches</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#tutorial">
+            
+            <span>Tutorials</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/portfolio/post/fdfe/featured_hu51b04dded728cecc62544ad54c329b52_213768_800x0_resize_lanczos_2.png');"></div>
+  
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">Fast Dense Feature Extraction for CNNs</h1>
+
+        
+
+        
+
+
+
+<meta content="2020-06-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-06-06 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 6, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/fdfe/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/feature-learning/">Feature Learning</a></span>
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1805.03096" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Fast%20Dense%20Feature%20Extraction%20for%20CNNs&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2ffdfe%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2ffdfe%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2ffdfe%2f&amp;title=Fast%20Dense%20Feature%20Extraction%20for%20CNNs"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2ffdfe%2f&amp;title=Fast%20Dense%20Feature%20Extraction%20for%20CNNs"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Fast%20Dense%20Feature%20Extraction%20for%20CNNs&amp;body=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2ffdfe%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/portfolio/post/fdfe/featured_hu51b04dded728cecc62544ad54c329b52_213768_680x500_fill_q90_lanczos_smart1_2.png" itemprop="image" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">Fast Dense Feature Extraction for CNNs</h1>
+
+  
+
+  
+
+
+
+<meta content="2020-06-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-06-06 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 6, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/fdfe/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/feature-learning/">Feature Learning</a></span>
+  
+
+  
+    
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1805.03096" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
+<ul>
+<li>Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善</li>
+<li>↑は計算が冗長で計算時間が長い</li>
+<li>Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK</li>
+</ul>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
+<ul>
+<li>大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い
+<ul>
+<li>sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる
+<ul>
+<li>e.g.) VGGの場合は，224x224 -&gt; 7x7で1/32のサイズになる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK
+<img src="img/arch.png" alt=""></li>
+</ul>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<ul>
+<li>変数の定義
+<ul>
+<li>$I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像</li>
+<li>$P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ</li>
+<li>$O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル</li>
+<li>$O \in \R^{I_h \times I_w \times I_c}$ :</li>
+</ul>
+</li>
+</ul>
+<p>sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい</p>
+<h3 id="layers-without-pooling">Layers without pooling</h3>
+<ul>
+<li>poolingやstride convでないlayerは，Patchで学習したCNNを転用する</li>
+</ul>
+<h3 id="multipool-to-consider-all-locations">Multipool to consider all locations</h3>
+<ul>
+<li>Pooling LayerをMultipoolに置き換え</li>
+<li>2x2のPoolingでは↓のように4つのPooling Patternが考えられる
+<img src="https://github.com/erezposner/Fast_Dense_Feature_Extraction/raw/master/Paper/fast_dense.gif" alt=""></li>
+</ul>
+<p>$$
+\operatorname{Pool}_{s \times s}^{x, y}(I)=\operatorname{Pool} _ {s \times s}\left(\operatorname{SHIF} T _ {y, x}(I)\right)
+$$</p>
+<p>Layerの出力は4つのPooling Patternの出力の集合．<br>
+通常Poolingすると，解像度が落ちるがこの方法では落ちていない．</p>
+<p>$$
+L _ {I}^{\text {multipool}}=\{\text {Pool} _ {s \times s}^{0,0}, \text {Pool} _ {s \times s}^{0,1}, \ldots, \text {Pool} _ {s \times s}^{0, s-1}, \ldots, \text {Pool} _ {s \times s}^{s-1,0}, \ldots, \operatorname{Pool} _ {s \times s}^{s-1, s-1}\}
+$$</p>
+<h3 id="unwarping">Unwarping</h3>
+<ul>
+<li>
+<p>1個のMultipoolを持つCNNの出力は，Leftであり，それを並べ替えてRightにする
+<img src="img/unwrap.png" alt=""></p>
+</li>
+<li>
+<p>演算的には，(Leftのshape:$(s=2, s=2, \frac{I_h=4}{s=2}, \frac{I_w=6}{s=2}, k=1)$)</p>
+<ul>
+<li>transpose dim=(1, 2) -&gt; (2, 2, 2, 3, 1)</li>
+<li>reshape (2x2, 2x3, 1) -&gt; (4, 6, 1)</li>
+</ul>
+</li>
+<li>
+<p>$n$個のMultipoolを持つ場合は，出力のshapeは$(s^n, s^n, \frac{I_h}{s^n}, \frac{I_w}{s^n}, k)$</p>
+<ul>
+<li>
+<p>loop <code>for i in range(0, n)</code></p>
+<ul>
+<li>reshape  -&gt; $(s^{n-i},  s^{n-i}, \frac{I_h}{s^{n-i}}, \frac{I_w}{s^{n-i}}, k)$</li>
+<li>transpose dim=(1, 2) -&gt; $(s^{n-i},  \frac{I_w}{s^{n-i}}, s^{n-i}, \frac{I_h}{s^{n-i}}, k)$</li>
+</ul>
+</li>
+<li>
+<p>reshape -&gt; $(I_h, I_h, k)$</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>※ 論文内の記述を理解できなかったので，プログラムの方から解釈してます↑</p>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
+<p>GTX TITAN Xを使って，sliding windowと速度比較
+<img src="img/res.png" alt=""></p>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
+<ul>
+<li>Unwarpingの式の記述の仕方が理解できなかった</li>
+<li>Githubのプログラムはこれであってるのか？
+<ul>
+<li>reshapeとtranspose周り</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
+
+    </div>
+
+    
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/portfolio/author/admin/avatar_hued5d70cfe56e48dc137dc1e3bdf77641_127119_250x250_fill_lanczos_center_2.png" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h6 class="card-subtitle">R&amp;D Engineer</h6>
+    <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/portfolio/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/_Shu_Nak" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/salty-vanilla" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.slideshare.net/ShunsukeNAKATSUKA1" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "saltyvanilla" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", dispaly: false},
+          ]
+        });
+      });
+    </script>
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//saltyvanilla.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/portfolio/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/portfolio/js/academic.min.ee93f50e7bcdd181a29c10939fba4467.js"></script>
+
+  </body>
+</html>
+

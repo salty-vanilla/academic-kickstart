@@ -6,10 +6,29 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fast Dense Feature Extraction for CNNs</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/fdfe/</link>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/fdfe/</guid>
+      <description>1. どんなもの？  Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計算時間が長い Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK  2. 先行研究と比べてどこがすごい？  大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い  sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる  e.g.) VGGの場合は，224x224 -&amp;gt; 7x7で1/32のサイズになる     Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK   3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像 $P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ $O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル $O \in \R^{I_h \times I_w \times I_c}$ :    sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい</description>
+    </item>
+    
+    <item>
+      <title>Deep Q Network</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/dqn/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/dqn/</guid>
+      <description>強化学習の目的 変数の定義  $\mathcal{S}$ : 状態の集合 $\mathcal{A}$ : 行動の集合 $P_T(s _ {t+1} | s_t, a_t)$ : 状態$s_t$で行動$a_t$をしたときにに，状態$s_{t+1}$に遷移する確率を出力する関数（状態遷移確率関数） $\pi(a_t | s_t)$ :　状態$s_t$時の行動$a_t$を選択する確率を出力する関数（政策関数） $R(s_t, a_t, s_{t+1})$ :　報酬関数 $\gamma$ : 割引率  目的関数 $$ \mathbb{E}[ \Sigma^{\infty}_{t=0} \gamma^{t} R(s_t, a_t, s _ {t+1}) ], \forall s_0 \in \mathcal{S}, \forall a_0 \in \mathcal{A} $$
+$$ a_t \stackrel{iid}{\sim} \pi(a_t | s_t) $$ $$ s _ {t+1} \stackrel{iid}{\sim} P_T(s _ {t+1} | s_t,a_t) $$ $$ s_t \in \mathcal{S}, a_t \in \mathcal{A} $$ $$ \gamma \in (0, 1] $$</description>
+    </item>
     
     <item>
       <title>Large-Margin Classification in Hyperbolic Space Hyunghoon</title>

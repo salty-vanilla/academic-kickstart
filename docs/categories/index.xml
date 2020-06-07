@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Feature Learning</title>
+      <link>https://salty-vanilla.github.io/portfolio/categories/feature-learning/</link>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/categories/feature-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reinforcement Learning</title>
+      <link>https://salty-vanilla.github.io/portfolio/categories/reinforcement-learning/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/categories/reinforcement-learning/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>SVM</title>
