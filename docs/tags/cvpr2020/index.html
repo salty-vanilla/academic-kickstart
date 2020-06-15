@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/tags/">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/tags/cvpr2020/">
 
   
 
@@ -126,15 +126,15 @@
   
 
   
-  <link rel="alternate" href="/portfolio/tags/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
-  <link rel="feed" href="/portfolio/tags/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="alternate" href="/portfolio/tags/cvpr2020/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/tags/cvpr2020/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
   
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/tags/">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/tags/cvpr2020/">
 
   
   
@@ -146,8 +146,8 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/tags/">
-  <meta property="og:title" content="Tags | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/tags/cvpr2020/">
+  <meta property="og:title" content="CVPR2020 | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
@@ -158,7 +158,7 @@
 
   
 
-  <title>Tags | Nakatsuka Shunsuke</title>
+  <title>CVPR2020 | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -377,7 +377,7 @@
     
   
 <div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Tags</h1>
+  <h1 itemprop="name">CVPR2020</h1>
 
   
 
@@ -392,15 +392,10 @@
   
   
   <div>
-    <h2><a href="/portfolio/tags/cvpr2020/">CVPR2020</a></h2>
+    <h2><a href="/portfolio/post/student_teacher_anodetct/">Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings</a></h2>
     <div class="article-style">
       
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/tags/tutorial/">tutorial</a></h2>
-    <div class="article-style">
+      1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画像で学習したTeacherと工業製品で学習する複数のStudentモデル  2. 先行研究と比べてどこがすごい？  Unsupervised な Anomaly DetectionのSegmentaionにはAutoencoder系があったが再構成誤差によるもので，不正確だった transfer learningの枠組みは今まで工業製品のAnomaly Detectionでは使いづらかった  Domainの違い 解像度の違い    3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $ \mathcal{D} = \{ I_1, I_2, \cdots, I_N \} $ : データセット $I_n \in \R^{h \times w \times ch}$ : 入力画像 $S_i(I_n) \in \R^{h \times w \times d}$ : $i$番目のstudent networkに入力すると，入力と同じサイズのfeature mapが生成される $T(I_n) \in \R^{h \times w \times d}$ : teacher networkも同様 $y_{r, c} \in \R^d$ : $S_i(I)$のMapのposition $r, c$における特徴ベクトル． $p_{r, c} \in \R^{p \times p \times ch}$ : position $r, c$における$I$のパッチ    Learning Local Patch Descriptors  まずTeacher $T$ を学習するために，$\hat{T}$を学習する  $\hat{T}(I_n) \notin \R^{h \times w \times d}$ である（Poolingなどによって空間解像度が落ちる） FDFEを適用することで，空間解像度を落とさないようにすることで$T$ を求める   $\hat{T}$はImagenetなどの自然画像で事前学習された$P$というNetworkを蒸留（Distillation）することで学習する  3つのLossを最小化することで蒸留  ↓の$p$はImagenet任意のデータセットの画像からCropしたもの $$ \mathcal{L}(\hat{T})=\lambda_{k} \mathcal{L} _ {k}(\hat{T})+\lambda_{m} \mathcal{L} _ {m}(\hat{T})+\lambda_{c} \mathcal{L}_{c}(\hat{T}) $$    Knowledge Distillation.
       
     </div>
   </div>

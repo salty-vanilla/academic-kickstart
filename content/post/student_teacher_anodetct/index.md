@@ -5,6 +5,7 @@ title = "Uninformed Students: Student-Teacher Anomaly Detection with Discriminat
 summary = ""
 external_link = "https://arxiv.org/abs/1911.02357"
 categories = ["Anomaly Detection"]
+tags = ["CVPR2020"]
 rate = 5
 math = true
 markup = "goldmark"
