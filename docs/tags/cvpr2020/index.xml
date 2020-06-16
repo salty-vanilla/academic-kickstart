@@ -6,10 +6,19 @@
     <description>Recent content in CVPR2020 on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/tags/cvpr2020/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Learning Memory-guided Normality for Anomaly Detection</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/</guid>
+      <description>1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採用 Autoencoderの汎化問題と正常パターンの多様性という問題にアタック 再構成のlossベース，フレーム予測のlossベースどちらにも展開可能  2. 先行研究と比べてどこがすごい？  Autoencoder系のADは，Autoencoderの表現力がありすぎて，異常も異常として復元してしまい再構成誤差が出ない問題があった またAutoencoder系のADは，正常分布のdiversityをカバーしきれないことがあった（表現力とのトレードオフ？）  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $I_t$: $t$ frame目の入力画像 $\hat{I}_t$: $t$ frame目のAutoencodeされた画像 $q_t \in \R^{H \times W \times C}$: $t$ frame目のquery map $q^k_t \in \R^{C} (k=1, \cdots, K)$: $t$ frame目，position $k$ のquery vector（$K=H \times W$） $p_m \in \R^{C} (m=1,\cdots,M)$: $m$番目のmemory vector    Memory Read  query vectorのmemory vectorの内積をsoftmaxして，matching probability $w^{k,m}_t$を求める $$ w _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum _ {m^{\prime}=1}^{M} \exp \left(\left(\mathbf{p} _ {m^{\prime}}\right)^{T} \mathbf{q} _ {t}^{k}\right)} $$ 各クエリ$q^k_t$に対して，memory vectorを使った重み付き平均を求めることで，新しい特徴とする $$ \hat{\mathbf{p}} _ {t}^{k}=\sum _ {m^{\prime}=1}^{M} w _ {t}^{k, m^{\prime}} \mathbf{p} _ {m^{\prime}} $$ $q_t$と$\hat{p}_t$を結合して，Decoderに入力する   Update   相関MAPを求める．↑の$w _ {t}^{k, m}$の式と似ているけど，softmaxのaxisが$k$方向 $$ v _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum_{k^{\prime}=1}^{K} \exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k^{\prime}}\right)} $$</description>
+    </item>
     
     <item>
       <title>Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings</title>
