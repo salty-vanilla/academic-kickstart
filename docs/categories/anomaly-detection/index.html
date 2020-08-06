@@ -151,7 +151,7 @@
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2020-06-16T00:00:00&#43;00:00">
+  <meta property="og:updated_time" content="2020-08-05T00:00:00&#43;00:00">
   
 
   
@@ -392,6 +392,15 @@
   
   
   <div>
+    <h2><a href="/portfolio/post/old_is_gold/">Old Is Gold: Redefining the Adversarially Learned One-Class Classifier Training Paradigm</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  2stage のtrainingのAnomaly Detection 完ぺきではないGenerator $\mathcal{G}_{old}$が1st stage，そこからgood/bad 判定のDiscriminatorの学習を行う GAN系のADモデル特有の精度不安定が解消  2. 先行研究と比べてどこがすごい？  Generatorのみを使うADモデル（Autoencoder含む）は訓練データに稀に異常が入っていると失敗する Generator + DiscriminatorのADモデルは精度が不安定 $\mathcal{G}_{old}$は↑2つを改善したモデル  3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $X \sim p_t$ : 正常データ $\tilde{X} \sim p_t +\mathcal{N}_\sigma$ : 正常データ + ノイズ $\mathcal{G}$ : Generator (Autoencoder) $\mathcal{D}$ : Discriminator    1st phase  GAN + DAE (Reconstruction) lossで$G$と$D$を訓練  $$ \min _ {\mathcal{G}} \max _ {\mathcal{D}}\left(\mathbb{E} _ {X \sim p_{t}}[\log (1-\mathcal{D}(X))] + \mathbb{E} _ {\tilde{X} \sim p _ {t}+\mathcal{N} _ {\sigma}}[\log (\mathcal{D}(\mathcal{G}(\tilde{X})))]\right) $$
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/portfolio/post/memory_guided_anodetect/">Learning Memory-guided Normality for Anomaly Detection</a></h2>
     <div class="article-style">
       
@@ -477,20 +486,17 @@ Memory   それぞれ変数を定義する
     </div>
   </div>
   
-  <div>
-    <h2><a href="/portfolio/post/iterative_energy-based_projection_on_a_normal_data_manifold_for_anomaly_localization/">Iterative energy-based projection on a normal data manifold for anomaly localization</a></h2>
-    <div class="article-style">
-      
-      1. どんなもの？ Autoencoderベースの異常検知手法．Autoencoderの問題である画像内の一部の異常が画像全体の復元に影響を与えてしまい上手く異常部位をLocalicationできないという問題にタックル．
-2. 先行研究と比べてどこがすごい？  Autoencoderベースのモデルでは，異常画像が入力された際に異常部位以外も再構成が崩れてしまい上手くLocalizationできないという問題があった また，Blurが発生してしまう 上記2点を繰り返し，$x$を更新していく方法で解決する  3. 技術や手法の&quot;キモ&quot;はどこ？   エネルギー関数は，再構成誤差($L_r$)と正則化項（更新しても原画像から離れすぎないようにする正則化） $$ E(x_t) = L_r(x_t) + \lambda|| x_t - x_0 || $$ $$ L_r(x_t) = \mathbb{E} [ | f_{VAE}(x_t) - x_t | ^r ] $$
-  エネルギー関数を最小化するように，入力画像$x_0$を更新していく $$ x_{t+1} = x_t - \alpha \nabla_x E(x_t) $$
-  再構成が大きい部位は更新量を大きく，小さい部位は小さくすればなお良し $$ x_{x+1} = x_t - \alpha ( \nabla_xE(x_t) \odot | f_{VAE}(x_t) - x_t | ^2 ) $$
-      
-    </div>
-  </div>
-  
 
   
+<nav>
+  <ul class="pagination justify-content-center">
+    
+    
+    <li class="page-item"><a class="page-link" href="/portfolio/categories/anomaly-detection/page/2/">&raquo;</a></li>
+    
+  </ul>
+</nav>
+
 
 </div>
 <div class="container">

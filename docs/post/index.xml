@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Old Is Gold: Redefining the Adversarially Learned One-Class Classifier Training Paradigm</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/old_is_gold/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/old_is_gold/</guid>
+      <description>1. どんなもの？  2stage のtrainingのAnomaly Detection 完ぺきではないGenerator $\mathcal{G}_{old}$が1st stage，そこからgood/bad 判定のDiscriminatorの学習を行う GAN系のADモデル特有の精度不安定が解消  2. 先行研究と比べてどこがすごい？  Generatorのみを使うADモデル（Autoencoder含む）は訓練データに稀に異常が入っていると失敗する Generator + DiscriminatorのADモデルは精度が不安定 $\mathcal{G}_{old}$は↑2つを改善したモデル  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $X \sim p_t$ : 正常データ $\tilde{X} \sim p_t +\mathcal{N}_\sigma$ : 正常データ + ノイズ $\mathcal{G}$ : Generator (Autoencoder) $\mathcal{D}$ : Discriminator    1st phase  GAN + DAE (Reconstruction) lossで$G$と$D$を訓練  $$ \min _ {\mathcal{G}} \max _ {\mathcal{D}}\left(\mathbb{E} _ {X \sim p_{t}}[\log (1-\mathcal{D}(X))] + \mathbb{E} _ {\tilde{X} \sim p _ {t}+\mathcal{N} _ {\sigma}}[\log (\mathcal{D}(\mathcal{G}(\tilde{X})))]\right) $$</description>
+    </item>
     
     <item>
       <title>Learning Memory-guided Normality for Anomaly Detection</title>
