@@ -6,10 +6,15 @@
     <description>Recent content in Tags on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://salty-vanilla.github.io/portfolio/tags/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ICLR2020</title>
+      <link>https://salty-vanilla.github.io/portfolio/tags/iclr2020/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/tags/iclr2020/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>CVPR2020</title>

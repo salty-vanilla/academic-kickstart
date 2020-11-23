@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.2.5">
+  <meta name="google-site-verification" content="Cc3qNeWjzkkGUiml6I-IY_Zs9QqvMsQIUFS07CCjlts" />
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nakatsuka Shunsuke ">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="1. どんなもの？  One Class Learningの枠組み side-informationを必要とせず，representation collapseに対してrobust negative examples を用いたDROCC-LN(Limeted Negatives)も提案  2. 先行研究と比べてどこがすごい？  GEOM系は画像などのtransformに対して事前知識が必要（汎用性もない） DeepSVDDは全てが同じ特徴に落ちてしまうrepresentation collapseが問題  3. 技術や手法の&quot;キモ&quot;はどこ？ 仮定：
+ The set of typical points $S$ lies on a low dimensional locally linear manifold that is well-sampled. In other words, outside a small radius around a training (typical) point, most points are anomalous.
+  正常 $S$ は低次元な局所的線形多様体上に存在し，よくsamplingされている．言い換えるとtrainingデータの周りの小さな半径の外側が異常である．
+ DROCC  入力データをNNで次元を落として正常ベクトル$f_\theta(x)$とその外側ベクトル$f_\theta(\tilde{x})$を生成 $f_\theta(\tilde{x})$を生成するのに敵対的枠組みを利用 $l$はcrossentropyとして正常1・外側0として分類タスクに持っていく  $$ \ell^{\mathrm{dr}}(\theta)=\lambda|\theta|^{2}&#43;\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), 1\right)&#43;\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right] $$">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/drocc/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#ef8354">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/portfolio/css/academic.min.babd20e80d1f9da15fbc6256231260bd.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/portfolio/css/academic.d3afa0f553c7cc00bac3afdaa697922d.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-158935517-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/portfolio/site.webmanifest">
+  <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
+
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/drocc/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/drocc/">
+  <meta property="og:title" content="DROCC: Deep Robust One-Class Classification | Nakatsuka Shunsuke">
+  <meta property="og:description" content="1. どんなもの？  One Class Learningの枠組み side-informationを必要とせず，representation collapseに対してrobust negative examples を用いたDROCC-LN(Limeted Negatives)も提案  2. 先行研究と比べてどこがすごい？  GEOM系は画像などのtransformに対して事前知識が必要（汎用性もない） DeepSVDDは全てが同じ特徴に落ちてしまうrepresentation collapseが問題  3. 技術や手法の&quot;キモ&quot;はどこ？ 仮定：
+ The set of typical points $S$ lies on a low dimensional locally linear manifold that is well-sampled. In other words, outside a small radius around a training (typical) point, most points are anomalous.
+  正常 $S$ は低次元な局所的線形多様体上に存在し，よくsamplingされている．言い換えるとtrainingデータの周りの小さな半径の外側が異常である．
+ DROCC  入力データをNNで次元を落として正常ベクトル$f_\theta(x)$とその外側ベクトル$f_\theta(\tilde{x})$を生成 $f_\theta(\tilde{x})$を生成するのに敵対的枠組みを利用 $l$はcrossentropyとして正常1・外側0として分類タスクに持っていく  $$ \ell^{\mathrm{dr}}(\theta)=\lambda|\theta|^{2}&#43;\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), 1\right)&#43;\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right] $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/drocc/featured.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-11-23T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-11-23T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>DROCC: Deep Robust One-Class Classification | Nakatsuka Shunsuke</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#projects">
+            
+            <span>Researches</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#tutorial">
+            
+            <span>Tutorials</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/portfolio/post/drocc/featured_hu8b9500bf6e269a6790073d59d34fb899_336109_800x0_resize_lanczos_2.png');"></div>
+  
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">DROCC: Deep Robust One-Class Classification</h1>
+
+        
+
+        
+
+
+
+<meta content="2020-11-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-11-23 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Nov 23, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/drocc/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://www.microsoft.com/en-us/research/publication/drocc-deep-robust-one-class-classification/" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=DROCC%3a%20Deep%20Robust%20One-Class%20Classification&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fdrocc%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fdrocc%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fdrocc%2f&amp;title=DROCC%3a%20Deep%20Robust%20One-Class%20Classification"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fdrocc%2f&amp;title=DROCC%3a%20Deep%20Robust%20One-Class%20Classification"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=DROCC%3a%20Deep%20Robust%20One-Class%20Classification&amp;body=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fdrocc%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/portfolio/post/drocc/featured_hu8b9500bf6e269a6790073d59d34fb899_336109_680x500_fill_q90_lanczos_smart1_2.png" itemprop="image" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">DROCC: Deep Robust One-Class Classification</h1>
+
+  
+
+  
+
+
+
+<meta content="2020-11-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-11-23 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Nov 23, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/drocc/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
+  
+
+  
+    
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://www.microsoft.com/en-us/research/publication/drocc-deep-robust-one-class-classification/" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
+<ul>
+<li>One Class Learningの枠組み</li>
+<li>side-informationを必要とせず，representation collapseに対してrobust</li>
+<li>negative examples を用いたDROCC-LN(Limeted Negatives)も提案</li>
+</ul>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
+<ul>
+<li>GEOM系は画像などのtransformに対して事前知識が必要（汎用性もない）</li>
+<li>DeepSVDDは全てが同じ特徴に落ちてしまうrepresentation collapseが問題</li>
+</ul>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<p>仮定：</p>
+<blockquote>
+<p>The set of typical points $S$ lies on a low dimensional locally linear manifold that is well-sampled. In other words, outside a small radius around a training (typical) point, most points are anomalous.</p>
+</blockquote>
+<blockquote>
+<p>正常 $S$ は低次元な局所的線形多様体上に存在し，よくsamplingされている．言い換えるとtrainingデータの周りの小さな半径の外側が異常である．</p>
+</blockquote>
+<p><img src="img/concept.png" alt=""></p>
+<h3 id="drocc">DROCC</h3>
+<ul>
+<li>入力データをNNで次元を落として正常ベクトル$f_\theta(x)$とその外側ベクトル$f_\theta(\tilde{x})$を生成</li>
+<li>$f_\theta(\tilde{x})$を生成するのに敵対的枠組みを利用</li>
+<li>$l$はcrossentropyとして正常1・外側0として分類タスクに持っていく</li>
+</ul>
+<p>$$
+\ell^{\mathrm{dr}}(\theta)=\lambda|\theta|^{2}+\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), 1\right)+\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right]
+$$</p>
+<p>$$
+N_{i}(r) \stackrel{\text { def }}{=}  \{ | \tilde{x_i} - x_i |_2  \leq \gamma \cdot r; r \leq | \tilde{x_i} - x_i |, \forall j=1,2, \ldots n\}
+$$
+<img src="img/alg.png" alt=""></p>
+<h3 id="drocc-ln">DROCC-LN</h3>
+<ul>
+<li>DROCCにラベルを付与（Outlier Exposureの枠組み）</li>
+<li>距離を測るときに↑のようにユークリッドではなくマハラノビスで $| \tilde{x_i} - x_i | _ \Sigma$</li>
+</ul>
+<p>$$
+\ell^{\mathrm{lf}}(\theta)=\lambda|\theta|^{2}+\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), y_i\right)+\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right]
+$$</p>
+<p>$$
+N_{i}(r) \coloneqq \{ \tilde{x_i}, r \leq | \tilde{x_i} - x_i | _ \Sigma \leq \gamma \ldots r \}
+$$</p>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
+<ul>
+<li>
+<p>Cifar10で実験
+<img src="img/res1.png" alt=""></p>
+</li>
+<li>
+<p>Imagenetで実験
+<img src="img/res2.png" alt=""></p>
+</li>
+<li>
+<p>音声データを使ってDeepSADと比較
+<img src="img/res3.png" alt=""></p>
+</li>
+</ul>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
+<ul>
+<li>正常の外側をselfで作るself-supervisedの枠組みといっていい？</li>
+<li>MVTec ADでの実験が欲しかった</li>
+<li>公式実装あり <a href="https://github.com/Microsoft/EdgeML">github</a></li>
+</ul>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/portfolio/tags/iclr2020/">ICLR2020</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/portfolio/author/admin/avatar_hued5d70cfe56e48dc137dc1e3bdf77641_127119_250x250_fill_lanczos_center_2.png" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h6 class="card-subtitle">R&amp;D Engineer</h6>
+    <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/portfolio/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/_Shu_Nak" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/salty-vanilla" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.slideshare.net/ShunsukeNAKATSUKA1" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "saltyvanilla" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", dispaly: false},
+          ]
+        });
+      });
+    </script>
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//saltyvanilla.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/portfolio/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/portfolio/js/academic.min.ee93f50e7bcdd181a29c10939fba4467.js"></script>
+
+  </body>
+</html>
+
