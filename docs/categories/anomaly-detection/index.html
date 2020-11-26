@@ -151,7 +151,7 @@
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2020-11-23T00:00:00&#43;00:00">
+  <meta property="og:updated_time" content="2020-11-26T00:00:00&#43;00:00">
   
 
   
@@ -392,6 +392,18 @@
   
   
   <div>
+    <h2><a href="/portfolio/post/ss_ood_brain_ct/">Self-Supervised Out-of-Distribution Detection in Brain CT Scans</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた  2. 先行研究と比べてどこがすごい？  AE系とGEOM系を組み合わせた ↑以外に新規性はないが調査までに  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture  構造はVAE系   Objective  再構成誤差  $$ \mathcal{L} _ {c r}=\left|\left(x_{i}-f\left(\hat{x} _ {i}\right)\right)\right|_{2} $$
+ GEOM誤差．VAEの平均に対して分類を行う  $$ \mathcal{L} _ {geo}=- \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$
+ 全体のloss  $$ \mathcal{L} _ {multitask} = \mathcal{L}_{geo} + \epsilon \mathcal{L} _ {cr} $$
+Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$ $$ s_r = \alpha \times | x_i-f(x_i) |_2 $$ 4.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/portfolio/post/drocc/">DROCC: Deep Robust One-Class Classification</a></h2>
     <div class="article-style">
       
@@ -473,18 +485,6 @@
     <div class="article-style">
       
       1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|{\mathcal{F}{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/post/classification-based_anomaly_detection_for_general_data/">Classification-Based Anomaly Detection for General Data</a></h2>
-    <div class="article-style">
-      
-      1. どんなもの？  Classification-BasedなSelf-supervised learningモデルを使った異常検知手法 幾何変換モデルを発展させた  2. 先行研究と比べてどこがすごい？  ベースはGeometric-transformation classification(GEOM) ↓2点の解決  GEOMでは，Anomalyに対しても正常度が高くなってしまうことがあった GEOMでは，画像しか対応できず1次元データに対しては適用不可だった    3. 技術や手法の&quot;キモ&quot;はどこ？  GEOMのSoftmax + Categorical Cross Entoropyをcenter vectorをanchorとしたtripletに 幾何変換ではなく，アフィン変換（幾何ではなく，$Wx+b$）に  GEOM   GEOMでは画像$x \in X$を幾何変換$m \in M$で変換することで$T(x, m)$を生成
-  $T(x, m)$を入力，$m$を教師ラベルとすることで幾何変換判別モデルを学習していた (Self-supervised)
-  正常データならこの変換の判別がうまくできるし，正常データでないなら判別がうまくできないという仮定を利用して異常検知
-  尤度としては $$ P\left(m^{\prime} | T(x, m)\right)=\frac{P\left(T(x, m) \in X_{m^{\prime}}\right) P\left(m^{\prime}\right)}{\sum_{\tilde{m}} P\left(T(x, m) \in X_{\tilde{m}}\right) P(\tilde{m})}=\frac{P\left(T(x, m) \in X_{m^{\prime}}\right)}{\sum_{\tilde{m}} P\left(T(x, m) \in X_{\tilde{m}}\right)} $$
       
     </div>
   </div>
