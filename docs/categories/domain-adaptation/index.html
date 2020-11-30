@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -30,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/domain-adaptation/">
 
   
 
@@ -124,12 +126,15 @@
   
 
   
+  <link rel="alternate" href="/portfolio/categories/domain-adaptation/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  <link rel="feed" href="/portfolio/categories/domain-adaptation/index.xml" type="application/rss+xml" title="Nakatsuka Shunsuke">
+  
 
   <link rel="manifest" href="/portfolio/site.webmanifest">
   <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
 
-  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/404.html">
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/categories/domain-adaptation/">
 
   
   
@@ -141,19 +146,19 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
-  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/404.html">
-  <meta property="og:title" content="404 Page not found | Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/domain-adaptation/">
+  <meta property="og:title" content="Domain Adaptation | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  
-  
-
+  <meta property="og:updated_time" content="2020-11-30T00:00:00&#43;00:00">
   
 
   
 
-  <title>404 Page not found | Nakatsuka Shunsuke</title>
+  
+
+  <title>Domain Adaptation | Nakatsuka Shunsuke</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -350,56 +355,53 @@
   </div>
 </nav>
 
-<div class="container">
 
-  <h1>Page not found</h1>
-  <p>Perhaps you were looking for one of these?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   
   
   
-    <h2>Latest</h2>
     
-    <ul>
-      <li><a href="/portfolio/post/irad/">Anomaly Detection with Domain Adaptation</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/cbigan/">Combining GANs and AutoEncoders for Efficient Anomaly Detection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/ss_ood_brain_ct/">Self-Supervised Out-of-Distribution Detection in Brain CT Scans</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/drocc/">DROCC: Deep Robust One-Class Classification</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/explaining_vae/">Towards Visually Explaining Variational Autoencoders</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/old_is_gold/">Old Is Gold: Redefining the Adversarially Learned One-Class Classifier Training Paradigm</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/memory_guided_anodetect/">Learning Memory-guided Normality for Anomaly Detection</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/student_teacher_anodetct/">Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/fdfe/">Fast Dense Feature Extraction for CNNs</a></li>
-    </ul>
-    
-    <ul>
-      <li><a href="/portfolio/post/dqn/">Deep Q Network</a></li>
-    </ul>
-    
+  
+<div class="universal-wrapper pt-3">
+  <h1 itemprop="name">Domain Adaptation</h1>
+
+  
+
+  
+</div>
+
+
+
+<div class="universal-wrapper">
+  
+
+  
+  
+  <div>
+    <h2><a href="/portfolio/post/irad/">Anomaly Detection with Domain Adaptation</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  Anomaly Detection + Domain Adaptationの枠組み 大量のドメインAのデータと少量のドメインBのデータからAD  2. 先行研究と比べてどこがすごい？  従来研究では↓のどちらかだった  ドメインAのラベルが必要 ドメインBにも大量のデータが必要    3. 技術や手法の&quot;キモ&quot;はどこ？ Obejctive   domain invarianceの特徴を抽出することが目標
+ 共通の特徴を抽出する$E_{sh}$ ドメインAのprivate encoder$E_{pv}$ sourceの復元データ $$x^{\prime} _{src} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {src}))$$ 共通の特徴とsource固有のデータからsourceを生成したデータ $$x^{\prime} _{tgt} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {tgt}))$$ ランダムにサンプリングされた潜在変数と共通の特徴から生成したデータ $$x _ {rnd} = G(z + E _ {sh}(x _ {src}))$$ この3つをfakeで$x_{src}$をtrueとしてGANを学習 $$ \min _ {{E_{s h}, E_{p v}, G_{s r c}}} \max _ {D _ {s r c}} V_{s r c}(D_{s r c}, G_{s r c}, E_{p v}, E_{s h})= \newline \mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log D_{s r c}(\boldsymbol{x} _ {s r c})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{s r c}^{\prime})]+ +\mathbb{E} _ {\boldsymbol{x} _ {s r c}, \boldsymbol{x} _ {t g t}}[\log (1-D_{s r c}(\boldsymbol{x} _ {t g t}^{\prime})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{r n d})] $$ cycle consistensy $$ l_1 = | x_{src} - x^{\prime}_{src} |_2 $$ $$ l_2 = | x_{src} - x^{\prime}_{tgt} |_2 $$ $x_{src}$に対して，$E_{sh}$と$E_{pv}$で得られる特徴量が遠くなるように内積を最小化 $$ l _ {dis} = | E _ {sh}(x _ {src})^T E _ {pv}(x _ {src}) | $$ 逆に共通の特徴が取れるようにするため内積の負を最大化 $$ l _ {sim} = - | E _ {sh}(x _ {src})^T E _ {pv}(x _ {tgt}) | $$  全てのLossを重み付き（$\alpha=1.
+      
+    </div>
+  </div>
+  
+
   
 
 </div>
@@ -554,4 +556,6 @@
 
   </body>
 </html>
+
+
 

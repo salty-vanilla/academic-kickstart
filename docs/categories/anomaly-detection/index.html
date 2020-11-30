@@ -392,6 +392,16 @@
   
   
   <div>
+    <h2><a href="/portfolio/post/irad/">Anomaly Detection with Domain Adaptation</a></h2>
+    <div class="article-style">
+      
+      1. どんなもの？  Anomaly Detection + Domain Adaptationの枠組み 大量のドメインAのデータと少量のドメインBのデータからAD  2. 先行研究と比べてどこがすごい？  従来研究では↓のどちらかだった  ドメインAのラベルが必要 ドメインBにも大量のデータが必要    3. 技術や手法の&quot;キモ&quot;はどこ？ Obejctive   domain invarianceの特徴を抽出することが目標
+ 共通の特徴を抽出する$E_{sh}$ ドメインAのprivate encoder$E_{pv}$ sourceの復元データ $$x^{\prime} _{src} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {src}))$$ 共通の特徴とsource固有のデータからsourceを生成したデータ $$x^{\prime} _{tgt} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {tgt}))$$ ランダムにサンプリングされた潜在変数と共通の特徴から生成したデータ $$x _ {rnd} = G(z + E _ {sh}(x _ {src}))$$ この3つをfakeで$x_{src}$をtrueとしてGANを学習 $$ \min _ {{E_{s h}, E_{p v}, G_{s r c}}} \max _ {D _ {s r c}} V_{s r c}(D_{s r c}, G_{s r c}, E_{p v}, E_{s h})= \newline \mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log D_{s r c}(\boldsymbol{x} _ {s r c})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{s r c}^{\prime})]+ +\mathbb{E} _ {\boldsymbol{x} _ {s r c}, \boldsymbol{x} _ {t g t}}[\log (1-D_{s r c}(\boldsymbol{x} _ {t g t}^{\prime})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{r n d})] $$ cycle consistensy $$ l_1 = | x_{src} - x^{\prime}_{src} |_2 $$ $$ l_2 = | x_{src} - x^{\prime}_{tgt} |_2 $$ $x_{src}$に対して，$E_{sh}$と$E_{pv}$で得られる特徴量が遠くなるように内積を最小化 $$ l _ {dis} = | E _ {sh}(x _ {src})^T E _ {pv}(x _ {src}) | $$ 逆に共通の特徴が取れるようにするため内積の負を最大化 $$ l _ {sim} = - | E _ {sh}(x _ {src})^T E _ {pv}(x _ {tgt}) | $$  全てのLossを重み付き（$\alpha=1.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/portfolio/post/cbigan/">Combining GANs and AutoEncoders for Efficient Anomaly Detection</a></h2>
     <div class="article-style">
       
@@ -478,15 +488,6 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <div class="article-style">
       
       1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 入力は2入力でWeight SharingされたNNから得られた特徴ベクトル同士を結合して異常度回帰  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる DevNetの異常度のreference scoreがデータに一切依存していないことを改善？  3. 技術や手法の&quot;キモ&quot;はどこ？  Pairwise Relation を学習 大量の正常データと少量の異常データからAnomaly Detectionを行う テスト時には正常データと異常データと比較することで異常度算出  変数の定義  $\mathcal{U} = \{ u_1, u_2, \cdots, u_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{A} = \{ a_1, a_2, \cdots, a_K \}$ : labeled samples (少量の異常データ) その他の変数は下を参照   Loss関数 $$ \underset{\Theta}{\arg \min } \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} _ {i}, \mathbf{x} _ {j}, y_{i j} \in \mathcal{B}}\left|y_{i j}-\phi\left(\left(\mathbf{x} _ {i}, \mathbf{x}_{j}\right) ; \Theta\right)\right|+\lambda R(\Theta) $$
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/portfolio/post/devnet/">Deep Anomaly Detection with Deviation Networks</a></h2>
-    <div class="article-style">
-      
-      1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 枠組みとしてはDeep SVDDに近い  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる end2end  AnoGANなどはnot end2end    3. 技術や手法の&quot;キモ&quot;はどこ？  大量の正常データと少量の異常データからAnomaly Detectionを行う  変数の定義  $ \mathcal{X} = \{ x_1, x_2, \cdots, x_N, x_{N+1}, \cdots, x_{N+K} \} $ : training samples $\mathcal{U} = \{ x_1, x_2, \cdots, x_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{K} = \{ x_{N+1}, x_{N+2}, \cdots, x_{N+K} \}$ : labeled samples (少量の異常データ) $K &laquo; N$ : 異常データは少量 $\phi(x, \theta)$ : Scoring Network  Framework   Scoring NetworkからScoreを算出
       
     </div>
   </div>

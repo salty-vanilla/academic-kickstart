@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Domain Adaptation on Nakatsuka Shunsuke</title>
+    <link>https://salty-vanilla.github.io/portfolio/categories/domain-adaptation/</link>
+    <description>Recent content in Domain Adaptation on Nakatsuka Shunsuke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/categories/domain-adaptation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Anomaly Detection with Domain Adaptation</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/irad/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/irad/</guid>
+      <description>1. どんなもの？  Anomaly Detection + Domain Adaptationの枠組み 大量のドメインAのデータと少量のドメインBのデータからAD  2. 先行研究と比べてどこがすごい？  従来研究では↓のどちらかだった  ドメインAのラベルが必要 ドメインBにも大量のデータが必要    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Obejctive   domain invarianceの特徴を抽出することが目標
+ 共通の特徴を抽出する$E_{sh}$ ドメインAのprivate encoder$E_{pv}$ sourceの復元データ $$x^{\prime} _{src} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {src}))$$ 共通の特徴とsource固有のデータからsourceを生成したデータ $$x^{\prime} _{tgt} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {tgt}))$$ ランダムにサンプリングされた潜在変数と共通の特徴から生成したデータ $$x _ {rnd} = G(z + E _ {sh}(x _ {src}))$$ この3つをfakeで$x_{src}$をtrueとしてGANを学習 $$ \min _ {{E_{s h}, E_{p v}, G_{s r c}}} \max _ {D _ {s r c}} V_{s r c}(D_{s r c}, G_{s r c}, E_{p v}, E_{s h})= \newline \mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log D_{s r c}(\boldsymbol{x} _ {s r c})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{s r c}^{\prime})]+ +\mathbb{E} _ {\boldsymbol{x} _ {s r c}, \boldsymbol{x} _ {t g t}}[\log (1-D_{s r c}(\boldsymbol{x} _ {t g t}^{\prime})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{r n d})] $$ cycle consistensy $$ l_1 = | x_{src} - x^{\prime}_{src} |_2 $$ $$ l_2 = | x_{src} - x^{\prime}_{tgt} |_2 $$ $x_{src}$に対して，$E_{sh}$と$E_{pv}$で得られる特徴量が遠くなるように内積を最小化 $$ l _ {dis} = | E _ {sh}(x _ {src})^T E _ {pv}(x _ {src}) | $$ 逆に共通の特徴が取れるようにするため内積の負を最大化 $$ l _ {sim} = - | E _ {sh}(x _ {src})^T E _ {pv}(x _ {tgt}) | $$  全てのLossを重み付き（$\alpha=1.</description>
+    </item>
+    
+  </channel>
+</rss>
