@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Combining GANs and AutoEncoders for Efficient Anomaly Detection</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/cbigan/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/cbigan/</guid>
+      <description>1. どんなもの？  Anomaly Detectionの枠組み EGBAD(Efficient GAN Based Anomaly Detection)の改良版  2. 先行研究と比べてどこがすごい？  EGBADでは$x$と$G(E(x))$に一貫性がなく，入出力の誤差が大きくなることがあった   3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Loss  BiGANの$x$と$G(E(x))$に一貫性を強制するLossを導入 $$ \mathcal{L} _ {R}(\mathbf{x})=|\mathbf{x}-G(E(\mathbf{x}))|_{1} $$  $$ \mathcal{L} _ {R^{\prime}}(\mathbf{z})=|\mathbf{z}-E(G(\mathbf{z}))|_{1} $$
+$$ \mathcal{L} _ {C} (\mathbf{x}, \mathbf{z}) = \mathcal{L} _ {R}(\mathbf{x}) + \mathcal{L} _ {R^{\prime}}(\mathbf{z}) $$
+ GANのmetricにはWasserstein Distanceを使用  $$ \min _ {G, E} \max _ {D} \mathbb{E} _ {\mathbf{x} \sim p_{\text {data }}(\mathbf{x})}[D(\mathbf{x}, E(\mathbf{x}))]-\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[D(G(\mathbf{z}), \mathbf{z}] $$</description>
+    </item>
+    
     <item>
       <title>Self-Supervised Out-of-Distribution Detection in Brain CT Scans</title>
       <link>https://salty-vanilla.github.io/portfolio/post/ss_ood_brain_ct/</link>
