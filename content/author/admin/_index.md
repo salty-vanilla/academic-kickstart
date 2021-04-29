@@ -1,6 +1,7 @@
 +++
 # Display name
-name = "Nakatsuka Shunsuke "
+name = "中塚 俊介"
+eng_name = "Nakatsuka Shunsuke"
 
 # Username (this should match the folder name)
 authors = ["admin"]
