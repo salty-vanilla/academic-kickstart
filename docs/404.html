@@ -163,7 +163,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1></h1>
+          <h1>Search</h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -172,7 +172,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -196,7 +196,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -352,13 +352,13 @@
 
 <div class="container">
 
-  <h1>ページが見つかりませんでした</h1>
-  <p>あなたが探しているものはこれらの中にあるかもしれません</p>
+  <h1>Page not found</h1>
+  <p>Perhaps you were looking for one of these?</p>
 
   
   
   
-    <h2></h2>
+    <h2>Latest</h2>
     
     <ul>
       <li><a href="/portfolio/post/irad/">Anomaly Detection with Domain Adaptation</a></li>
@@ -433,7 +433,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">引用</h5>
+        <h5 class="modal-title">Cite</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -443,10 +443,10 @@
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> コピー
+          <i class="fas fa-copy"></i> Copy
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> ダウンロード
+          <i class="fas fa-download"></i> Download
         </a>
         <div id="modal-error"></div>
       </div>
@@ -496,15 +496,15 @@
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "検索...",
-        'results': "",
-        'no_results': "結果が見つかりませんでした"
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
       };
       const content_type = {
-        'post': "投稿",
-        'project': "プロジェクト",
-        'publication' : "発表文献",
-        'talk' : "登壇"
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
         };
     </script>
     
