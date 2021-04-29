@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計算時間が長い Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK  2. 先行研究と比べてどこがすごい？  大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い  sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる  e.g.) VGGの場合は，224x224 -&gt; 7x7で1/32のサイズになる     Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK   3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像 $P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ $O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル $O \in \R^{I_h \times I_w \times I_c}$ :    sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい">
+  <meta name="description" content="1. どんなもの？ Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/fdfe/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/fdfe/">
 
   
 
@@ -142,8 +142,8 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/fdfe/">
   <meta property="og:title" content="Fast Dense Feature Extraction for CNNs | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計算時間が長い Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK  2. 先行研究と比べてどこがすごい？  大きい画像に対して，sliding windowして特徴抽出する方法は計算が冗長で計算時間が長い  sliding window使わない方法では，poolingやstride などで特徴抽出された画像は元画像よりかなり小さくなる  e.g.) VGGの場合は，224x224 -&gt; 7x7で1/32のサイズになる     Patchで学習したCNNを再学習することなく，pooling layerを置き換えるだけでOK   3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I \in \R^{I_h \times I_w \times I_c}$ : Originalの入力画像 $P_{x, y} \in \R^{P_h \times P_w \times I_c}$ : 位置$(x,y)$のパッチ $O_{x, y} = C_p(P_{x, y}) \in \R^{k}$ : 位置$(x,y)$のパッチを通常のCNN $C_p$でfeature extractして得られたベクトル $O \in \R^{I_h \times I_w \times I_c}$ :    sliding windowせず，$O \in \R^{I_h \times I_w \times I_c}$ が得られるモデル$C_L$を求めたい"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/fdfe/featured.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ Patchで学習したCNNをOriginalに対して，sliding windowして特徴抽出する枠組みの改善 ↑は計算が冗長で計"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/fdfe/featured.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-06-06T00:00:00&#43;00:00">
   
@@ -164,7 +164,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -173,7 +173,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -197,7 +197,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -409,7 +409,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    3 分で読める
   </span>
   
 
@@ -452,7 +452,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1805.03096" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1805.03096" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -571,7 +571,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    3 分で読める
   </span>
   
 
@@ -616,7 +616,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1805.03096" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1805.03096" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -924,7 +924,7 @@ $$</p>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -934,10 +934,10 @@ $$</p>
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -1006,15 +1006,15 @@ $$</p>
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

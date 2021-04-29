@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/time-series/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/categories/time-series/">
 
   
 
@@ -149,7 +149,7 @@
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/time-series/">
   <meta property="og:title" content="Time Series | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="ja">
   
   <meta property="og:updated_time" content="2019-12-23T00:00:00&#43;00:00">
   
@@ -168,7 +168,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -177,7 +177,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -201,7 +201,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -395,7 +395,7 @@
     <h2><a href="/portfolio/post/an_end-to-end_audio_classification_system_based_on_raw_waveforms_and_mix-training_strategy/">An End-to-End Audio Classification System based on Raw Waveforms and Mix-Training Strategy</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  音の生波形から，eventのclassificationを行う raw waveformを1D CNNで周波数解析し，得られたTransformed Imageを2D CNNで識別 training dataが少ない場合でも有効なMix-trainingを提案  2. 先行研究と比べてどこがすごい？  Audio ClassificationはGoogleのBottleneck featureを使った識別，Handcrafted featureを使った識別がBaselineだった Bottleneckは情報のlostが，Handcraftedは抽出の困難さが問題 end-to-endな周波数特徴の抽出，識別を可能に  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，周波数特徴を抽出する1D CNNとその特徴を識別する2D CNN  Raw-waveforms-based network 1D CNN  1D CNNで時間方向にdownsamplingをかけることで，周波数特徴を抽出 FFTをNNに任せてるイメージで，識別に適した周波数特徴を抽出してくれることを期待 最終的には，$C \times 1 \times T$ (channel, 1, time)のfeature mapをtransposeして，$1 \times C \times T$ (1, channel, time)の画像に  2D CNN  得られた周波数特徴画像を2D Convolution 勾配消失を防ぐため，multi-resolutionalなfeature mapからpredictionを出力 attentionつき（attentionは多分，以下の構造）   Avg Poolは多分GAP．．．？  Mix-training strategy  training dataが少ない場合に有効なMix-training．pretraining的な扱い 2つの入力を$\alpha \in (0, 1)$でblend  $$ \tilde{x}_k = \alpha x_i + (1-\alpha) x_j $$
+      1. どんなもの？ 音の生波形から，eventのclassificationを行う raw waveformを1D CNNで周波数解析し，得られたTrans
       
     </div>
   </div>
@@ -434,7 +434,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -444,10 +444,10 @@
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -497,15 +497,15 @@
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

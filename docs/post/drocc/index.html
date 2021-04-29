@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,13 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  One Class Learningの枠組み side-informationを必要とせず，representation collapseに対してrobust negative examples を用いたDROCC-LN(Limeted Negatives)も提案  2. 先行研究と比べてどこがすごい？  GEOM系は画像などのtransformに対して事前知識が必要（汎用性もない） DeepSVDDは全てが同じ特徴に落ちてしまうrepresentation collapseが問題  3. 技術や手法の&quot;キモ&quot;はどこ？ 仮定：
- The set of typical points $S$ lies on a low dimensional locally linear manifold that is well-sampled. In other words, outside a small radius around a training (typical) point, most points are anomalous.
-  正常 $S$ は低次元な局所的線形多様体上に存在し，よくsamplingされている．言い換えるとtrainingデータの周りの小さな半径の外側が異常である．
- DROCC  入力データをNNで次元を落として正常ベクトル$f_\theta(x)$とその外側ベクトル$f_\theta(\tilde{x})$を生成 $f_\theta(\tilde{x})$を生成するのに敵対的枠組みを利用 $l$はcrossentropyとして正常1・外側0として分類タスクに持っていく  $$ \ell^{\mathrm{dr}}(\theta)=\lambda|\theta|^{2}&#43;\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), 1\right)&#43;\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right] $$">
+  <meta name="description" content="1. どんなもの？ One Class Learningの枠組み side-informationを必要とせず，representation collapseに対して">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/drocc/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/drocc/">
 
   
 
@@ -145,11 +142,8 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/drocc/">
   <meta property="og:title" content="DROCC: Deep Robust One-Class Classification | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  One Class Learningの枠組み side-informationを必要とせず，representation collapseに対してrobust negative examples を用いたDROCC-LN(Limeted Negatives)も提案  2. 先行研究と比べてどこがすごい？  GEOM系は画像などのtransformに対して事前知識が必要（汎用性もない） DeepSVDDは全てが同じ特徴に落ちてしまうrepresentation collapseが問題  3. 技術や手法の&quot;キモ&quot;はどこ？ 仮定：
- The set of typical points $S$ lies on a low dimensional locally linear manifold that is well-sampled. In other words, outside a small radius around a training (typical) point, most points are anomalous.
-  正常 $S$ は低次元な局所的線形多様体上に存在し，よくsamplingされている．言い換えるとtrainingデータの周りの小さな半径の外側が異常である．
- DROCC  入力データをNNで次元を落として正常ベクトル$f_\theta(x)$とその外側ベクトル$f_\theta(\tilde{x})$を生成 $f_\theta(\tilde{x})$を生成するのに敵対的枠組みを利用 $l$はcrossentropyとして正常1・外側0として分類タスクに持っていく  $$ \ell^{\mathrm{dr}}(\theta)=\lambda|\theta|^{2}&#43;\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), 1\right)&#43;\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right] $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/drocc/featured.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ One Class Learningの枠組み side-informationを必要とせず，representation collapseに対して"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/drocc/featured.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-11-23T00:00:00&#43;00:00">
   
@@ -170,7 +164,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -179,7 +173,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -203,7 +197,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -415,7 +409,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -458,7 +452,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://www.microsoft.com/en-us/research/publication/drocc-deep-robust-one-class-classification/" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://www.microsoft.com/en-us/research/publication/drocc-deep-robust-one-class-classification/" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -577,7 +571,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -622,7 +616,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://www.microsoft.com/en-us/research/publication/drocc-deep-robust-one-class-classification/" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://www.microsoft.com/en-us/research/publication/drocc-deep-robust-one-class-classification/" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -909,7 +903,7 @@ $$</p>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -919,10 +913,10 @@ $$</p>
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -991,15 +985,15 @@ $$</p>
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

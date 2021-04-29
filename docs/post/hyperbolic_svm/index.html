@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか  2. 先行研究と比べてどこがすごい？  SVMの距離算出を比ユークリッド空間で行う  階層構造を持つデータなどに対して精度良く識別ができる textとかgraphとか    3. 技術や手法の&quot;キモ&quot;はどこ？ 前提知識 Hyperbolid model  内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space $n$次元のhyperbolid model $\mathbb{L_n}$は$\mathbb{R} ^ {n&#43;1}$の単位球の上半平面上にある $$ \mathbb{L}^{n}=\left \{ x: x=\left(x_{0}, \ldots, x_{n}\right) \in \mathbb{R}^{n&#43;1}, x * x=1, x_{0}&gt;0\right \} $$   Poincare Ball  有名なポアンカレ円盤 $$ \mathbb{B}^{n}=\left \{ x: x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n},|x|^{2}&lt;1\right \} $$ hyperbolidの特殊な形と言える $$ \left(x_{0}, \ldots, x_{n}\right) \in \mathbb{L}^{n} \Leftrightarrow\left(\frac{x_{1}}{1&#43;x_{0}}, \ldots, \frac{x_{n}}{1&#43;x_{0}}\right) \in \mathbb{B}^{n} $$   https://qiita.">
+  <meta name="description" content="1. どんなもの？ SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか 2. 先行研究と比べてどこ">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/">
 
   
 
@@ -143,8 +143,8 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/hyperbolic_svm/">
   <meta property="og:title" content="Large-Margin Classification in Hyperbolic Space Hyunghoon | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか  2. 先行研究と比べてどこがすごい？  SVMの距離算出を比ユークリッド空間で行う  階層構造を持つデータなどに対して精度良く識別ができる textとかgraphとか    3. 技術や手法の&quot;キモ&quot;はどこ？ 前提知識 Hyperbolid model  内積が$x*y = x_0y_0 - x_1y_2 - \cdots x_ny_n$で定義されるMinkowski space $n$次元のhyperbolid model $\mathbb{L_n}$は$\mathbb{R} ^ {n&#43;1}$の単位球の上半平面上にある $$ \mathbb{L}^{n}=\left \{ x: x=\left(x_{0}, \ldots, x_{n}\right) \in \mathbb{R}^{n&#43;1}, x * x=1, x_{0}&gt;0\right \} $$   Poincare Ball  有名なポアンカレ円盤 $$ \mathbb{B}^{n}=\left \{ x: x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n},|x|^{2}&lt;1\right \} $$ hyperbolidの特殊な形と言える $$ \left(x_{0}, \ldots, x_{n}\right) \in \mathbb{L}^{n} \Leftrightarrow\left(\frac{x_{1}}{1&#43;x_{0}}, \ldots, \frac{x_{n}}{1&#43;x_{0}}\right) \in \mathbb{B}^{n} $$   https://qiita."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ SVMの距離をユークリッド空間ではなく，非ユークリッド空間で取る 具体的にはPoincare disk上とか 2. 先行研究と比べてどこ"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-03-02T00:00:00&#43;00:00">
   
@@ -165,7 +165,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -174,7 +174,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -198,7 +198,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -406,7 +406,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -451,7 +451,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1806.00437" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1806.00437" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -757,7 +757,7 @@ $$</li>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -767,10 +767,10 @@ $$</li>
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -839,15 +839,15 @@ $$</li>
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

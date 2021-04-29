@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,12 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ  2. 先行研究と比べてどこがすごい？  Autoencoderを使った異常検知では，モデルが汎化してしまい異常データまでも復元できてしまう問題があった 潜在変数にMemory構造を追加することで，正常データの分布内のデータしか復元できないようにした  3. 技術や手法の&quot;キモ&quot;はどこ？  Memory構造がキモ  全体の流れ  Encoderからまず$z$を得る $$ z = f_e(x; \theta_e) $$ メモリ構造を用いて$\hat{z}$を得る（後述） Decoderで$\hat{z}$から復元する  $$ \hat{x} = f_d(\hat{z}; \theta_d) $$
-Memory   それぞれ変数を定義する
- $M \in \mathbb{R}^{N \times C}$: Memory行列 $m_i$: $M$の$i$行目Vector $N$: メモリ数 $C$: $\hat{z}$の次元数（論文内では$z$の次元数と一致） $w \in \mathbb{R}^{1 \times N} $: Attention Weight Vector    Encoderから得られた$z$と$m_i$の距離（内積）を算出して，softmaxすることで$w$を求める $$ w_i = \frac{\exp(d(z, m_i))}{\Sigma^N_{j=1}\exp(d(z, m_j))} $$">
+  <meta name="description" content="1. どんなもの？ Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">
 
   
 
@@ -145,10 +143,8 @@ Memory   それぞれ変数を定義する
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/memorizing_normality_to_detect_anomaly_memory-augmented_deep_autoencoder_for_unsupervised_anomaly_detection/">
   <meta property="og:title" content="Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう”汎化”を防ぐ  2. 先行研究と比べてどこがすごい？  Autoencoderを使った異常検知では，モデルが汎化してしまい異常データまでも復元できてしまう問題があった 潜在変数にMemory構造を追加することで，正常データの分布内のデータしか復元できないようにした  3. 技術や手法の&quot;キモ&quot;はどこ？  Memory構造がキモ  全体の流れ  Encoderからまず$z$を得る $$ z = f_e(x; \theta_e) $$ メモリ構造を用いて$\hat{z}$を得る（後述） Decoderで$\hat{z}$から復元する  $$ \hat{x} = f_d(\hat{z}; \theta_d) $$
-Memory   それぞれ変数を定義する
- $M \in \mathbb{R}^{N \times C}$: Memory行列 $m_i$: $M$の$i$行目Vector $N$: メモリ数 $C$: $\hat{z}$の次元数（論文内では$z$の次元数と一致） $w \in \mathbb{R}^{1 \times N} $: Attention Weight Vector    Encoderから得られた$z$と$m_i$の距離（内積）を算出して，softmaxすることで$w$を求める $$ w_i = \frac{\exp(d(z, m_i))}{\Sigma^N_{j=1}\exp(d(z, m_j))} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ Autoencoder（差分ベース）の異常検知モデル 潜在変数にMemory構造を導入することで正常データ以外も復元できてしまう"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2019-12-10T00:00:00&#43;00:00">
   
@@ -169,7 +165,7 @@ Memory   それぞれ変数を定義する
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -178,7 +174,7 @@ Memory   それぞれ変数を定義する
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -202,7 +198,7 @@ Memory   それぞれ変数を定義する
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -410,7 +406,7 @@ Memory   それぞれ変数を定義する
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -455,7 +451,7 @@ Memory   それぞれ変数を定義する
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1904.02639" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1904.02639" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -760,7 +756,7 @@ $$</p>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -770,10 +766,10 @@ $$</p>
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -842,15 +838,15 @@ $$</p>
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

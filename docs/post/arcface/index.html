@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,22 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
-2. 先行研究と比べてどこがすごい？  クラス分類モデルのSoftmaxを少し改良するだけで適用できる ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture 全体的な流れとしては， Base Block（VGGとかResNetとか）から特徴ベクトルを出力
-\[ x&#39; = f(x) \]
-出力された特徴ベクトルをL2正則化
-\[ x&#39;&#39; = \frac{x&#39;}{|x&#39;|^2} \]
-全結合層の重みをL2正則化
-\[ w&#39; = \frac{w}{|w|^2} \]
-正則化された特徴ベクトルと重みを内積（これがcosの値）
-\[ cos\theta = x&#39;&#39; \cdot w&#39; \]
-これにAdditive Angular Margin Penaltyを適用する．
-Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う． イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．
-正解クラス\(j\)の出力に対して，Marginを加算する
-\[ \theta_j&#39; = \{ \begin{array}{ll} arccos(cos\theta_i) &#43; m & i=j \\ arccos(cos\theta_i) & otherwise \end{array} \]">
+  <meta name="description" content="1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/arcface/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/arcface/">
 
   
 
@@ -155,20 +143,8 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/arcface/">
   <meta property="og:title" content="ArcFace: Additive Angular Margin Loss for Deep Face Recognition | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．
-2. 先行研究と比べてどこがすごい？  クラス分類モデルのSoftmaxを少し改良するだけで適用できる ArcFaceと先行研究のSpehereFace・CosFaseのLoss関数は似ていて，それを一般化している  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture 全体的な流れとしては， Base Block（VGGとかResNetとか）から特徴ベクトルを出力
-\[ x&#39; = f(x) \]
-出力された特徴ベクトルをL2正則化
-\[ x&#39;&#39; = \frac{x&#39;}{|x&#39;|^2} \]
-全結合層の重みをL2正則化
-\[ w&#39; = \frac{w}{|w|^2} \]
-正則化された特徴ベクトルと重みを内積（これがcosの値）
-\[ cos\theta = x&#39;&#39; \cdot w&#39; \]
-これにAdditive Angular Margin Penaltyを適用する．
-Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベルに対応する出力の値に対して，Marginを加えることで，クラス内分散を小さくするような学習を行う． イメージとしては，正解ラベルにのみ厳しい罰則を与えてよりDiscriminativeにする感じ．
-正解クラス\(j\)の出力に対して，Marginを加算する
-\[ \theta_j&#39; = \{ \begin{array}{ll} arccos(cos\theta_i) &#43; m & i=j \\ arccos(cos\theta_i) & otherwise \end{array} \]"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ Metric Learningの論文．分類をして，各クラス内の分散を小さく，クラス間の分散を大きくする系のMetric Learining．"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2019-11-17T00:00:00&#43;00:00">
   
@@ -189,7 +165,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -198,7 +174,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -222,7 +198,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -430,7 +406,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -470,7 +446,7 @@ Additive Angular Margin Penalty Additive Angular Margin Penaltyは正解ラベ�
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1801.07698" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1801.07698" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -793,7 +769,7 @@ L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -803,10 +779,10 @@ L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -875,15 +851,15 @@ L_{4}=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{e^{s\left(\cos \left(m_{1} \theta_{
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

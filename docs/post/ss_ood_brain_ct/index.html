@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,13 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた  2. 先行研究と比べてどこがすごい？  AE系とGEOM系を組み合わせた ↑以外に新規性はないが調査までに  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture  構造はVAE系   Objective  再構成誤差  $$ \mathcal{L} _ {c r}=\left|\left(x_{i}-f\left(\hat{x} _ {i}\right)\right)\right|_{2} $$
- GEOM誤差．VAEの平均に対して分類を行う  $$ \mathcal{L} _ {geo}=- \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$
- 全体のloss  $$ \mathcal{L} _ {multitask} = \mathcal{L}_{geo} &#43; \epsilon \mathcal{L} _ {cr} $$
-Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$ $$ s_r = \alpha \times | x_i-f(x_i) |_2 $$ 4.">
+  <meta name="description" content="1. どんなもの？ Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた 2. 先行研究と比べてどこがすごい？ AE系とGEOM系を組み合わせた ↑">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/ss_ood_brain_ct/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/ss_ood_brain_ct/">
 
   
 
@@ -145,11 +142,8 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/ss_ood_brain_ct/">
   <meta property="og:title" content="Self-Supervised Out-of-Distribution Detection in Brain CT Scans | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた  2. 先行研究と比べてどこがすごい？  AE系とGEOM系を組み合わせた ↑以外に新規性はないが調査までに  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture  構造はVAE系   Objective  再構成誤差  $$ \mathcal{L} _ {c r}=\left|\left(x_{i}-f\left(\hat{x} _ {i}\right)\right)\right|_{2} $$
- GEOM誤差．VAEの平均に対して分類を行う  $$ \mathcal{L} _ {geo}=- \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$
- 全体のloss  $$ \mathcal{L} _ {multitask} = \mathcal{L}_{geo} &#43; \epsilon \mathcal{L} _ {cr} $$
-Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$ $$ s_r = \alpha \times | x_i-f(x_i) |_2 $$ 4."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/ss_ood_brain_ct/featured.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた 2. 先行研究と比べてどこがすごい？ AE系とGEOM系を組み合わせた ↑"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/ss_ood_brain_ct/featured.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-11-26T00:00:00&#43;00:00">
   
@@ -170,7 +164,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -179,7 +173,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -203,7 +197,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -415,7 +409,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    1 分で読める
   </span>
   
 
@@ -458,7 +452,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2011.05428" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2011.05428" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -577,7 +571,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    1 分で読める
   </span>
   
 
@@ -622,7 +616,7 @@ Anomaly score $$ score = (1-\lambda)s_g &#43; \lambda s_r $$ $$ s_g = - \sum^N_i
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2011.05428" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2011.05428" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -893,7 +887,7 @@ $$
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -903,10 +897,10 @@ $$
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -975,15 +969,15 @@ $$
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

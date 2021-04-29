@@ -5,7 +5,7 @@
     <link>https://salty-vanilla.github.io/portfolio/categories/reinforcement-learning/</link>
     <description>Recent content in Reinforcement Learning on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
@@ -17,8 +17,7 @@
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/dqn/</guid>
-      <description>強化学習の目的 変数の定義  $\mathcal{S}$ : 状態の集合 $\mathcal{A}$ : 行動の集合 $P_T(s _ {t+1} | s_t, a_t)$ : 状態$s_t$で行動$a_t$をしたときにに，状態$s_{t+1}$に遷移する確率を出力する関数（状態遷移確率関数） $\pi(a_t | s_t)$ :　状態$s_t$時の行動$a_t$を選択する確率を出力する関数（政策関数） $R(s_t, a_t, s_{t+1})$ :　報酬関数 $\gamma$ : 割引率  目的関数 $$ \mathbb{E}[ \Sigma^{\infty}_{t=0} \gamma^{t} R(s_t, a_t, s _ {t+1}) ], \forall s_0 \in \mathcal{S}, \forall a_0 \in \mathcal{A} $$
-$$ a_t \stackrel{iid}{\sim} \pi(a_t | s_t) $$ $$ s _ {t+1} \stackrel{iid}{\sim} P_T(s _ {t+1} | s_t,a_t) $$ $$ s_t \in \mathcal{S}, a_t \in \mathcal{A} $$ $$ \gamma \in (0, 1] $$</description>
+      <description>強化学習の目的 変数の定義 $\mathcal{S}$ : 状態の集合 $\mathcal{A}$ : 行動の集合 $P_T(s _ {t+1} | s_t, a_t)$ : 状態$s_t$で行動$a_t$をしたときにに，状態$s_{t+1}$に遷移</description>
     </item>
     
   </channel>

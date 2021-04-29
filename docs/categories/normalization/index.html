@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/normalization/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/categories/normalization/">
 
   
 
@@ -149,7 +149,7 @@
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/normalization/">
   <meta property="og:title" content="Normalization | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="ja">
   
   <meta property="og:updated_time" content="2019-12-17T00:00:00&#43;00:00">
   
@@ -168,7 +168,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -177,7 +177,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -201,7 +201,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -395,9 +395,7 @@
     <h2><a href="/portfolio/post/pono/">POSITIONAL NORMALIZATION</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transferなど）に適用すると良い生成  2. 先行研究と比べてどこがすごい？  BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる もちろん収束は早くなるし，安定もする  3. 技術や手法の&quot;キモ&quot;はどこ？ Positional Normalization  feature mapの各Pixel（position)ごとにチャネル方向にstaticsを求める つまり，staticsのshapeは（b, h, w)  $$ \mu_{b, h, w}=\frac{1}{C} \sum_{c=1}^{C} X_{b, c, h, w}, \quad \sigma_{b, h, w}=\sqrt{\frac{1}{C} \sum_{c=1}^{C}\left(X_{b, c, h, w}^{2}-\mu_{b, h, w}\right)+\epsilon} $$
-$$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+\beta $$
- VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&rsquo; = \gamma x + \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.
+      1. どんなもの？ pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transf
       
     </div>
   </div>
@@ -436,7 +434,7 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -446,10 +444,10 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -499,15 +497,15 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

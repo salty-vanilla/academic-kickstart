@@ -5,7 +5,7 @@
     <link>https://salty-vanilla.github.io/portfolio/categories/flow-based/</link>
     <description>Recent content in Flow Based on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Mon, 20 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/flow-based/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +17,7 @@
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/ova-inn/</guid>
-      <description>1. どんなもの？  継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応  2. 先行研究と比べてどこがすごい？  1クラスごとに学習するので，学習済みのデータは消しても良い クラス数の追加は好きなだけできる catastrophic forgetting を回避  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  クラスごとにNICEを学習することで，OoD問題に持っていく  NICE  invertibleな生成モデル 潜在変数を仮定し，尤度最大化  OvA-INN では標準正規分布を仮定 最大化する対数尤度は下式 $$ l_{i}(x)=\sum_{d} \log \left( p_{d} \left(f_{i, d}(x)\right)\right)=-\sum_{d} \frac{1}{2} f_{i, d}(x)^{2}+\sum_{d} \log \left(\frac{1}{\sqrt{2 \pi}}\right)=-\frac{1}{2}\left|f_{i}(x)\right|_{2}^{2}+\beta $$    OvA-INN (One vs All - Invertible Neural Networks)  任意のクラス数分のNICEを用意して，それぞれ最適化 クラスそれぞれにNICEがあるので，forgetするわけはない クラス数が増えてもincremental に学習ができる $i$番目のクラスのNICE $f_i$のNLL $$ \mathcal{L}(\mathcal{X} _ i)= \frac{1}{| \mathcal{X} _ i |} \sum_{x \in \mathcal{X} _ i} |f_{i}(x)|_{2}^{2} $$ OvA-INN の最終的な推論のラベルは $$ y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2} $$  4.</description>
+      <description>1. どんなもの？ 継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応 2. 先行研究と比べてどこがすごい？ 1クラスごとに学習する</description>
     </item>
     
   </channel>

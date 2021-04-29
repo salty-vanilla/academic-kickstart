@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,15 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上  2. 先行研究と比べてどこがすごい？  StyleGANの問題であった水滴状のノイズ，潜在変数を走査しても顔のパーツが自然に変化しないなどの問題を改善 Instance Normの見直し，Progressive Growingの見直し，PPLの導入  3. 技術や手法の&quot;キモ&quot;はどこ？ Revisit Instance Norm  StyleGANでは雨粒状のノイズ (artifact)が現れていた 原因はAdaINの演算    NVIDIAの動画がわかりやすい     この原因は Instance Norm にあり
- INは各feature mapの平均と分散で正規化 絶対値が小さくてもスパイク状の分布のfeature mapがあるとartifactが出てしまう INを無くせば，artifactが出ないらしい    a. StyleGAN
-b. StyleGANの詳細
-c. INのartifactを考慮した形
- A(mapping networkの出力$f(z)$)，conv後のstdのみを使うように変更 B(noise image)のaddはBlockの外に出した  d. (c)のoperationをweight demodulationで簡易化
- AのAdaINではAのstdで割り算していた これをfeature mapに対して割り算するのではなく，convのweightに対して割り算することで等価の演算に $s$はAをaffineして得られたスケールベクトル，$w \in \mathbb{R} ^{{ch_{in}} \times {ch_{out}} \times {hw}}$はconvのweight $$ w_{ijk}^{\prime} = s_i \cdot w_{ijk} $$ $$ w_{ijk}^{\prime\prime} = \frac{w_{ijk}^{\prime}}{\sqrt{\Sigma_{i,k}{{w_{ijk}^{\prime}}^2 &#43; \epsilon}}} $$ 入力が標準偏差1のrandom variableであることを仮定している．これは$\sigma$割っていることと同義 $$ \sigma_j = \sqrt{\Sigma_{i,k}{{w_{ijk}^{\prime}}^2}} $$  Image quality and generator smoothness While Perceptual Path Length  潜在空間のPerceptual Path Length: PPLが小さい ⇔ 生成のQuality高い PPLを正則化項として追加する $$ \mathbb{E}_{w,y \sim N(0,\mathbf{I})} ( ||\mathbf{J_w^T y}|| - a)^2 $$ $$ \mathbf{J_w^T y} = \nabla_w(g(w) \cdot y) $$   Lazy Reguralization  loss関数は，logistic lossと$R_1$[1] $R_1$は毎ミニバッチごとに算出しなくても，16ミニバッチごとくらいでいいよということ それがlazy  Revisiting Progressive Growing   StyleGANでは，顔のパーツが潜在変数の変化に追従しないという問題あり">
+  <meta name="description" content="1. どんなもの？ StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上 2. 先行研究と比">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/stylegan2/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/stylegan2/">
 
   
 
@@ -148,13 +143,8 @@ c. INのartifactを考慮した形
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/stylegan2/">
   <meta property="og:title" content="Analyzing and Improving the Image Quality of StyleGAN | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上  2. 先行研究と比べてどこがすごい？  StyleGANの問題であった水滴状のノイズ，潜在変数を走査しても顔のパーツが自然に変化しないなどの問題を改善 Instance Normの見直し，Progressive Growingの見直し，PPLの導入  3. 技術や手法の&quot;キモ&quot;はどこ？ Revisit Instance Norm  StyleGANでは雨粒状のノイズ (artifact)が現れていた 原因はAdaINの演算    NVIDIAの動画がわかりやすい     この原因は Instance Norm にあり
- INは各feature mapの平均と分散で正規化 絶対値が小さくてもスパイク状の分布のfeature mapがあるとartifactが出てしまう INを無くせば，artifactが出ないらしい    a. StyleGAN
-b. StyleGANの詳細
-c. INのartifactを考慮した形
- A(mapping networkの出力$f(z)$)，conv後のstdのみを使うように変更 B(noise image)のaddはBlockの外に出した  d. (c)のoperationをweight demodulationで簡易化
- AのAdaINではAのstdで割り算していた これをfeature mapに対して割り算するのではなく，convのweightに対して割り算することで等価の演算に $s$はAをaffineして得られたスケールベクトル，$w \in \mathbb{R} ^{{ch_{in}} \times {ch_{out}} \times {hw}}$はconvのweight $$ w_{ijk}^{\prime} = s_i \cdot w_{ijk} $$ $$ w_{ijk}^{\prime\prime} = \frac{w_{ijk}^{\prime}}{\sqrt{\Sigma_{i,k}{{w_{ijk}^{\prime}}^2 &#43; \epsilon}}} $$ 入力が標準偏差1のrandom variableであることを仮定している．これは$\sigma$割っていることと同義 $$ \sigma_j = \sqrt{\Sigma_{i,k}{{w_{ijk}^{\prime}}^2}} $$  Image quality and generator smoothness While Perceptual Path Length  潜在空間のPerceptual Path Length: PPLが小さい ⇔ 生成のQuality高い PPLを正則化項として追加する $$ \mathbb{E}_{w,y \sim N(0,\mathbf{I})} ( ||\mathbf{J_w^T y}|| - a)^2 $$ $$ \mathbf{J_w^T y} = \nabla_w(g(w) \cdot y) $$   Lazy Reguralization  loss関数は，logistic lossと$R_1$[1] $R_1$は毎ミニバッチごとに算出しなくても，16ミニバッチごとくらいでいいよということ それがlazy  Revisiting Progressive Growing   StyleGANでは，顔のパーツが潜在変数の変化に追従しないという問題あり"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ StyleGANのver2 StyleGANの問題の問題を改善 FIDの向上に加えて，PPL: Perceptual Path Lengthも向上 2. 先行研究と比"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2019-12-30T00:00:00&#43;00:00">
   
@@ -175,7 +165,7 @@ c. INのartifactを考慮した形
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -184,7 +174,7 @@ c. INのartifactを考慮した形
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -208,7 +198,7 @@ c. INのartifactを考慮した形
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -416,7 +406,7 @@ c. INのartifactを考慮した形
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    3 分で読める
   </span>
   
 
@@ -461,7 +451,7 @@ c. INのartifactを考慮した形
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1912.04958" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/1912.04958" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -825,7 +815,7 @@ $$
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -835,10 +825,10 @@ $$
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -907,15 +897,15 @@ $$
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

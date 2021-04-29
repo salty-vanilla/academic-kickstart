@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/representation-learning/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/categories/representation-learning/">
 
   
 
@@ -149,7 +149,7 @@
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/representation-learning/">
   <meta property="og:title" content="Representation Learning | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="ja">
   
   <meta property="og:updated_time" content="2020-01-18T00:00:00&#43;00:00">
   
@@ -168,7 +168,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -177,7 +177,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -201,7 +201,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -395,7 +395,7 @@
     <h2><a href="/portfolio/post/lapdae/">Laplacian Denoising Autoencoder</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  表現学習の枠組み Denoising Autoencoderをベースにより良い特徴表現を獲得 具体的には，入力データにノイズを付加するのではなくLaplacian Pyramidのrandom level目でノイズを付加する   2. 先行研究と比べてどこがすごい？  通常のDAEより優れた特徴表現の獲得 他の表現学習とは異なり，domain assumptionやpseudo labelを必要としない  3. 技術や手法の&quot;キモ&quot;はどこ？  入力データにノイズを付加するのではなく，Laplacian Pyramidのlevel $l$層目でノイズを付加する $l$層目のLaplacian Pyramid $x_l^L$ は，$l$層目のGaussian Pyramid $x_l^G$ を用いて下式 $$ x_l^L = x_l^G - upsample(x_{l+1}^G) $$ $x_0^G$ は元画像に等しい．上式の $l$ を 0 に向かって繰り返し計算すると元画像が求められる $$ x_l^G = x_l^L + upsample(x_{l+1}^G) $$ この繰り返しの途中でノイズを付加する   algorithmは以下  $c \in C$ はどんなノイズを付加するかのセットと要素 objectiveは通常のMSE     4. どうやって有効だと検証した？ MNIST  通常のDAEと比較して，input space, laplacian spaceどちらのnoiseに対しても正確に復元できていることがわかる 再構成Lossも低い   CIFAR10  再構成，画像検索共に通常のDAEより高精度   Imagenet  Supervised learningと同じようなconv filterが学習できている  conv層後の特徴を線形分類したときの精度比較．  LapDAEとAET-project[1]を組み合わせた LapDAE + Transが最高精度    Pascal VOCに転移学習しても最高精度   5.
+      1. どんなもの？ 表現学習の枠組み Denoising Autoencoderをベースにより良い特徴表現を獲得 具体的には，入力データにノイズを付加するのではなくLa
       
     </div>
   </div>
@@ -434,7 +434,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -444,10 +444,10 @@
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -497,15 +497,15 @@
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

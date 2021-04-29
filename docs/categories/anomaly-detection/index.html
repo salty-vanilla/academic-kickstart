@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -32,7 +32,7 @@
   <meta name="description" content="R&amp;D Engineer">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/">
 
   
 
@@ -149,7 +149,7 @@
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/categories/anomaly-detection/">
   <meta property="og:title" content="Anomaly Detection | Nakatsuka Shunsuke">
   <meta property="og:description" content="R&amp;D Engineer"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="ja">
   
   <meta property="og:updated_time" content="2020-11-30T00:00:00&#43;00:00">
   
@@ -168,7 +168,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -177,7 +177,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -201,7 +201,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -395,8 +395,7 @@
     <h2><a href="/portfolio/post/irad/">Anomaly Detection with Domain Adaptation</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  Anomaly Detection + Domain Adaptationの枠組み 大量のドメインAのデータと少量のドメインBのデータからAD  2. 先行研究と比べてどこがすごい？  従来研究では↓のどちらかだった  ドメインAのラベルが必要 ドメインBにも大量のデータが必要    3. 技術や手法の&quot;キモ&quot;はどこ？ Obejctive   domain invarianceの特徴を抽出することが目標
- 共通の特徴を抽出する$E_{sh}$ ドメインAのprivate encoder$E_{pv}$ sourceの復元データ $$x^{\prime} _{src} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {src}))$$ 共通の特徴とsource固有のデータからsourceを生成したデータ $$x^{\prime} _{tgt} = G(E _ {pv}(x _ {src}) + E _ {sh}(x _ {tgt}))$$ ランダムにサンプリングされた潜在変数と共通の特徴から生成したデータ $$x _ {rnd} = G(z + E _ {sh}(x _ {src}))$$ この3つをfakeで$x_{src}$をtrueとしてGANを学習 $$ \min _ {{E_{s h}, E_{p v}, G_{s r c}}} \max _ {D _ {s r c}} V_{s r c}(D_{s r c}, G_{s r c}, E_{p v}, E_{s h})= \newline \mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log D_{s r c}(\boldsymbol{x} _ {s r c})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{s r c}^{\prime})]+ +\mathbb{E} _ {\boldsymbol{x} _ {s r c}, \boldsymbol{x} _ {t g t}}[\log (1-D_{s r c}(\boldsymbol{x} _ {t g t}^{\prime})]+\mathbb{E} _ {\boldsymbol{x} _ {s r c}}[\log (1-D_{s r c}(\boldsymbol{x}_{r n d})] $$ cycle consistensy $$ l_1 = | x_{src} - x^{\prime}_{src} |_2 $$ $$ l_2 = | x_{src} - x^{\prime}_{tgt} |_2 $$ $x_{src}$に対して，$E_{sh}$と$E_{pv}$で得られる特徴量が遠くなるように内積を最小化 $$ l _ {dis} = | E _ {sh}(x _ {src})^T E _ {pv}(x _ {src}) | $$ 逆に共通の特徴が取れるようにするため内積の負を最大化 $$ l _ {sim} = - | E _ {sh}(x _ {src})^T E _ {pv}(x _ {tgt}) | $$  全てのLossを重み付き（$\alpha=1.
+      1. どんなもの？ Anomaly Detection + Domain Adaptationの枠組み 大量のドメインAのデータと少量のドメインBのデータからAD 2. 先行研究と比べてどこがすごい？
       
     </div>
   </div>
@@ -405,9 +404,7 @@
     <h2><a href="/portfolio/post/cbigan/">Combining GANs and AutoEncoders for Efficient Anomaly Detection</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  Anomaly Detectionの枠組み EGBAD(Efficient GAN Based Anomaly Detection)の改良版  2. 先行研究と比べてどこがすごい？  EGBADでは$x$と$G(E(x))$に一貫性がなく，入出力の誤差が大きくなることがあった   3. 技術や手法の&quot;キモ&quot;はどこ？ Loss  BiGANの$x$と$G(E(x))$に一貫性を強制するLossを導入 $$ \mathcal{L} _ {R}(\mathbf{x})=|\mathbf{x}-G(E(\mathbf{x}))|_{1} $$  $$ \mathcal{L} _ {R^{\prime}}(\mathbf{z})=|\mathbf{z}-E(G(\mathbf{z}))|_{1} $$
-$$ \mathcal{L} _ {C} (\mathbf{x}, \mathbf{z}) = \mathcal{L} _ {R}(\mathbf{x}) + \mathcal{L} _ {R^{\prime}}(\mathbf{z}) $$
- GANのmetricにはWasserstein Distanceを使用  $$ \min _ {G, E} \max _ {D} \mathbb{E} _ {\mathbf{x} \sim p_{\text {data }}(\mathbf{x})}[D(\mathbf{x}, E(\mathbf{x}))]-\mathbb{E}_{\mathbf{z} \sim p(\mathbf{z})}[D(G(\mathbf{z}), \mathbf{z}] $$
+      1. どんなもの？ Anomaly Detectionの枠組み EGBAD(Efficient GAN Based Anomaly Detection)の改良版 2. 先行研究と比べてどこがすごい？ EGBADでは$x$と$G(E
       
     </div>
   </div>
@@ -416,10 +413,7 @@ $$ \mathcal{L} _ {C} (\mathbf{x}, \mathbf{z}) = \mathcal{L} _ {R}(\mathbf{x}) + 
     <h2><a href="/portfolio/post/ss_ood_brain_ct/">Self-Supervised Out-of-Distribution Detection in Brain CT Scans</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた  2. 先行研究と比べてどこがすごい？  AE系とGEOM系を組み合わせた ↑以外に新規性はないが調査までに  3. 技術や手法の&quot;キモ&quot;はどこ？ Architecture  構造はVAE系   Objective  再構成誤差  $$ \mathcal{L} _ {c r}=\left|\left(x_{i}-f\left(\hat{x} _ {i}\right)\right)\right|_{2} $$
- GEOM誤差．VAEの平均に対して分類を行う  $$ \mathcal{L} _ {geo}=- \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$
- 全体のloss  $$ \mathcal{L} _ {multitask} = \mathcal{L}_{geo} + \epsilon \mathcal{L} _ {cr} $$
-Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i \log g (\tilde{x_{q_i}}) $$ $$ s_r = \alpha \times | x_i-f(x_i) |_2 $$ 4.
+      1. どんなもの？ Anomaly Detectionの枠組み AE系とGEOM系を組み合わせた 2. 先行研究と比べてどこがすごい？ AE系とGEOM系を組み合わせた ↑
       
     </div>
   </div>
@@ -428,10 +422,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/drocc/">DROCC: Deep Robust One-Class Classification</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  One Class Learningの枠組み side-informationを必要とせず，representation collapseに対してrobust negative examples を用いたDROCC-LN(Limeted Negatives)も提案  2. 先行研究と比べてどこがすごい？  GEOM系は画像などのtransformに対して事前知識が必要（汎用性もない） DeepSVDDは全てが同じ特徴に落ちてしまうrepresentation collapseが問題  3. 技術や手法の&quot;キモ&quot;はどこ？ 仮定：
- The set of typical points $S$ lies on a low dimensional locally linear manifold that is well-sampled. In other words, outside a small radius around a training (typical) point, most points are anomalous.
-  正常 $S$ は低次元な局所的線形多様体上に存在し，よくsamplingされている．言い換えるとtrainingデータの周りの小さな半径の外側が異常である．
- DROCC  入力データをNNで次元を落として正常ベクトル$f_\theta(x)$とその外側ベクトル$f_\theta(\tilde{x})$を生成 $f_\theta(\tilde{x})$を生成するのに敵対的枠組みを利用 $l$はcrossentropyとして正常1・外側0として分類タスクに持っていく  $$ \ell^{\mathrm{dr}}(\theta)=\lambda|\theta|^{2}+\sum_{i=1}^{n}\left[\ell\left(f_{\theta}\left(x_{i}\right), 1\right)+\mu \max _ {\tilde{x} _ {i} \in} \ell\left(f_{\theta}\left(\tilde{x}_{i}\right),-1\right)\right] $$
+      1. どんなもの？ One Class Learningの枠組み side-informationを必要とせず，representation collapseに対して
       
     </div>
   </div>
@@ -440,9 +431,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/explaining_vae/">Towards Visually Explaining Variational Autoencoders</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  生成モデルVAEに根拠性を追加したモデル その根拠を利用することで異常検知可能 Disentangleな生成を可能にするLossも同時に提案  2. 先行研究と比べてどこがすごい？  VAEのような生成モデルでLatent Vectorに根拠性を持たせることはできなかった VAEのADモデルでは再構成誤差ベースだったが，本手法のAttention Mapのほうが高精度にADできる  3. 技術や手法の&quot;キモ&quot;はどこ？ Generating VAE Attention  EncoderのFeature Map $A \in \R^{n \times h \times w}$でlatent vector $z \in \R^d$を微分+GAPすることでvector $\alpha \in \R^n$を求める  $$ \alpha_k = \frac{1}{T} \sum^h_{p=1}\sum^w_{q=1} \frac{\partial z_i}{\partial A^{pq}_k} $$
- $\alpha$と$A$をチャネル毎にinner productしてReLUして，Attention Map $M$を算出($d$ channel分のMapを生成)  $$ M^i = ReLU(\sum^n _ {k=1}\alpha _ k A _ k) $$
- channel方向に平均とって，最終的なAttention Mapとする $$ M = \frac{1}{D} \sum^D_i M^i $$  Generating Anomaly Attention Explanations  訓練データ（正常データ）$x$全てから全体の平均ベクトル$\mu_x$と分散ベクトル$\sigma_y$を算出 テストデータ$y$から，Encoder使って$\mu_y$と$\sigma_y$を算出 $x$と$y$のnormal difference distributionを定義  $$ P_{q\left(z_{i} \mid x\right)-q\left(z_{i} \mid y\right)}(u)=\frac{e^{-\left[u-\left(\mu_{i}^{x}-\mu_{i}^{y}\right)\right]^{2} /\left[2\left(\left(\sigma_{i}^{x}\right)^{2}+\left(\sigma_{i}^{y}\right)^{2}\right)\right]}}{\sqrt{2 \pi\left(\left(\sigma_{i}^{x}\right)^{2}+\left(\sigma_{i}^{y}\right)^{2}\right)}} $$
+      1. どんなもの？ 生成モデルVAEに根拠性を追加したモデル その根拠を利用することで異常検知可能 Disentangleな生成を可能にするLossも
       
     </div>
   </div>
@@ -451,7 +440,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/old_is_gold/">Old Is Gold: Redefining the Adversarially Learned One-Class Classifier Training Paradigm</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  2stage のtrainingのAnomaly Detection 完ぺきではないGenerator $\mathcal{G}_{old}$が1st stage，そこからgood/bad 判定のDiscriminatorの学習を行う GAN系のADモデル特有の精度不安定が解消  2. 先行研究と比べてどこがすごい？  Generatorのみを使うADモデル（Autoencoder含む）は訓練データに稀に異常が入っていると失敗する Generator + DiscriminatorのADモデルは精度が不安定 $\mathcal{G}_{old}$は↑2つを改善したモデル  3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $X \sim p_t$ : 正常データ $\tilde{X} \sim p_t +\mathcal{N}_\sigma$ : 正常データ + ノイズ $\mathcal{G}$ : Generator (Autoencoder) $\mathcal{D}$ : Discriminator    1st phase  GAN + DAE (Reconstruction) lossで$G$と$D$を訓練  $$ \min _ {\mathcal{G}} \max _ {\mathcal{D}}\left(\mathbb{E} _ {X \sim p_{t}}[\log (1-\mathcal{D}(X))] + \mathbb{E} _ {\tilde{X} \sim p _ {t}+\mathcal{N} _ {\sigma}}[\log (\mathcal{D}(\mathcal{G}(\tilde{X})))]\right) $$
+      1. どんなもの？ 2stage のtrainingのAnomaly Detection 完ぺきではないGenerator $\mathcal{G}_{old}$が1st stage
       
     </div>
   </div>
@@ -460,7 +449,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/memory_guided_anodetect/">Learning Memory-guided Normality for Anomaly Detection</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採用 Autoencoderの汎化問題と正常パターンの多様性という問題にアタック 再構成のlossベース，フレーム予測のlossベースどちらにも展開可能  2. 先行研究と比べてどこがすごい？  Autoencoder系のADは，Autoencoderの表現力がありすぎて，異常も異常として復元してしまい再構成誤差が出ない問題があった またAutoencoder系のADは，正常分布のdiversityをカバーしきれないことがあった（表現力とのトレードオフ？）  3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I_t$: $t$ frame目の入力画像 $\hat{I}_t$: $t$ frame目のAutoencodeされた画像 $q_t \in \R^{H \times W \times C}$: $t$ frame目のquery map $q^k_t \in \R^{C} (k=1, \cdots, K)$: $t$ frame目，position $k$ のquery vector（$K=H \times W$） $p_m \in \R^{C} (m=1,\cdots,M)$: $m$番目のmemory vector    Memory Read  query vectorのmemory vectorの内積をsoftmaxして，matching probability $w^{k,m}_t$を求める $$ w _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum _ {m^{\prime}=1}^{M} \exp \left(\left(\mathbf{p} _ {m^{\prime}}\right)^{T} \mathbf{q} _ {t}^{k}\right)} $$ 各クエリ$q^k_t$に対して，memory vectorを使った重み付き平均を求めることで，新しい特徴とする $$ \hat{\mathbf{p}} _ {t}^{k}=\sum _ {m^{\prime}=1}^{M} w _ {t}^{k, m^{\prime}} \mathbf{p} _ {m^{\prime}} $$ $q_t$と$\hat{p}_t$を結合して，Decoderに入力する   Update   相関MAPを求める．↑の$w _ {t}^{k, m}$の式と似ているけど，softmaxのaxisが$k$方向 $$ v _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum_{k^{\prime}=1}^{K} \exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k^{\prime}}\right)} $$
+      1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採
       
     </div>
   </div>
@@ -469,7 +458,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/student_teacher_anodetct/">Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画像で学習したTeacherと工業製品で学習する複数のStudentモデル  2. 先行研究と比べてどこがすごい？  Unsupervised な Anomaly DetectionのSegmentaionにはAutoencoder系があったが再構成誤差によるもので，不正確だった transfer learningの枠組みは今まで工業製品のAnomaly Detectionでは使いづらかった  Domainの違い 解像度の違い    3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $ \mathcal{D} = \{ I_1, I_2, \cdots, I_N \} $ : データセット $I_n \in \R^{h \times w \times ch}$ : 入力画像 $S_i(I_n) \in \R^{h \times w \times d}$ : $i$番目のstudent networkに入力すると，入力と同じサイズのfeature mapが生成される $T(I_n) \in \R^{h \times w \times d}$ : teacher networkも同様 $y_{r, c} \in \R^d$ : $S_i(I)$のMapのposition $r, c$における特徴ベクトル． $p_{r, c} \in \R^{p \times p \times ch}$ : position $r, c$における$I$のパッチ    Learning Local Patch Descriptors  まずTeacher $T$ を学習するために，$\hat{T}$を学習する  $\hat{T}(I_n) \notin \R^{h \times w \times d}$ である（Poolingなどによって空間解像度が落ちる） FDFEを適用することで，空間解像度を落とさないようにすることで$T$ を求める   $\hat{T}$はImagenetなどの自然画像で事前学習された$P$というNetworkを蒸留（Distillation）することで学習する  3つのLossを最小化することで蒸留  ↓の$p$はImagenet任意のデータセットの画像からCropしたもの $$ \mathcal{L}(\hat{T})=\lambda_{k} \mathcal{L} _ {k}(\hat{T})+\lambda_{m} \mathcal{L} _ {m}(\hat{T})+\lambda_{c} \mathcal{L}_{c}(\hat{T}) $$    Knowledge Distillation.
+      1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画
       
     </div>
   </div>
@@ -478,7 +467,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/deep_sad/">Deep Semi-Supervised Anomaly Detection</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う Deep SVDDベースのDeep SADを提案  Deep SVDD + 少量の教師つきデータ + mutual info    2. 先行研究と比べてどこがすごい？  Deep SVDD (Unsupervised: 正常データのみ)にSemi-Supervised: 正常データ + 少量の教師つきデータ の枠組みを追加 最近この問題設定流行り？  より実利用に近い感じがしてgood   classification と one-class learning のいいとこどり   3. 技術や手法の&quot;キモ&quot;はどこ？  Deep SVDD + 少量の教師つきデータ + mutual info  Mutual Information  Information Bottleneck (classification)では，入力$x$と潜在変数$z$，ラベル$y$それぞれのmutual info $\mathbb{I}$を最大化 $$ min_{p(z|x)} {\mathbb{I}(X; Z) - \alpha\mathbb{I}(Z; Y)} $$ Unsupervisedなら，正則化項$R$を使って $$ max_{p(z|x)} {\mathbb{I}(X; Z) + \beta R(Z)} $$ autoencoderはInfomaxの枠組みとも考えられる  Deep SVDD  以前まとめた https://salty-vanilla.
+      1. どんなもの？ 大量の正常データと少量の異常データからAnomaly Detectionを行う Deep SVDDベースのDeep SADを提案 Deep SVDD + 少量の
       
     </div>
   </div>
@@ -487,7 +476,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <h2><a href="/portfolio/post/prenet/">Deep Weakly-supervised Anomaly Detection</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  大量の正常データと少量の異常データからAnomaly Detectionを行う 入力は2入力でWeight SharingされたNNから得られた特徴ベクトル同士を結合して異常度回帰  2. 先行研究と比べてどこがすごい？  正常データからAnomaly Detectionモデルを作れるのは当たり前 実利用においては，少量の異常データを如何にうまく使うかが求められる DevNetの異常度のreference scoreがデータに一切依存していないことを改善？  3. 技術や手法の&quot;キモ&quot;はどこ？  Pairwise Relation を学習 大量の正常データと少量の異常データからAnomaly Detectionを行う テスト時には正常データと異常データと比較することで異常度算出  変数の定義  $\mathcal{U} = \{ u_1, u_2, \cdots, u_N \}$ : unlabeled samples (正常データとごく少量の異常データ) $\mathcal{A} = \{ a_1, a_2, \cdots, a_K \}$ : labeled samples (少量の異常データ) その他の変数は下を参照   Loss関数 $$ \underset{\Theta}{\arg \min } \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} _ {i}, \mathbf{x} _ {j}, y_{i j} \in \mathcal{B}}\left|y_{i j}-\phi\left(\left(\mathbf{x} _ {i}, \mathbf{x}_{j}\right) ; \Theta\right)\right|+\lambda R(\Theta) $$
+      1. どんなもの？ 大量の正常データと少量の異常データからAnomaly Detectionを行う 入力は2入力でWeight SharingされたNN
       
     </div>
   </div>
@@ -535,7 +524,7 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -545,10 +534,10 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -598,15 +587,15 @@ Anomaly score $$ score = (1-\lambda)s_g + \lambda s_r $$ $$ s_g = - \sum^N_i q_i
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

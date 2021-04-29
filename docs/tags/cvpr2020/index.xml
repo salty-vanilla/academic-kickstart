@@ -5,7 +5,7 @@
     <link>https://salty-vanilla.github.io/portfolio/tags/cvpr2020/</link>
     <description>Recent content in CVPR2020 on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Mon, 10 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/tags/cvpr2020/index.xml" rel="self" type="application/rss+xml" />
@@ -17,9 +17,7 @@
       <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/explaining_vae/</guid>
-      <description>1. どんなもの？  生成モデルVAEに根拠性を追加したモデル その根拠を利用することで異常検知可能 Disentangleな生成を可能にするLossも同時に提案  2. 先行研究と比べてどこがすごい？  VAEのような生成モデルでLatent Vectorに根拠性を持たせることはできなかった VAEのADモデルでは再構成誤差ベースだったが，本手法のAttention Mapのほうが高精度にADできる  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Generating VAE Attention  EncoderのFeature Map $A \in \R^{n \times h \times w}$でlatent vector $z \in \R^d$を微分+GAPすることでvector $\alpha \in \R^n$を求める  $$ \alpha_k = \frac{1}{T} \sum^h_{p=1}\sum^w_{q=1} \frac{\partial z_i}{\partial A^{pq}_k} $$
- $\alpha$と$A$をチャネル毎にinner productしてReLUして，Attention Map $M$を算出($d$ channel分のMapを生成)  $$ M^i = ReLU(\sum^n _ {k=1}\alpha _ k A _ k) $$
- channel方向に平均とって，最終的なAttention Mapとする $$ M = \frac{1}{D} \sum^D_i M^i $$  Generating Anomaly Attention Explanations  訓練データ（正常データ）$x$全てから全体の平均ベクトル$\mu_x$と分散ベクトル$\sigma_y$を算出 テストデータ$y$から，Encoder使って$\mu_y$と$\sigma_y$を算出 $x$と$y$のnormal difference distributionを定義  $$ P_{q\left(z_{i} \mid x\right)-q\left(z_{i} \mid y\right)}(u)=\frac{e^{-\left[u-\left(\mu_{i}^{x}-\mu_{i}^{y}\right)\right]^{2} /\left[2\left(\left(\sigma_{i}^{x}\right)^{2}+\left(\sigma_{i}^{y}\right)^{2}\right)\right]}}{\sqrt{2 \pi\left(\left(\sigma_{i}^{x}\right)^{2}+\left(\sigma_{i}^{y}\right)^{2}\right)}} $$</description>
+      <description>1. どんなもの？ 生成モデルVAEに根拠性を追加したモデル その根拠を利用することで異常検知可能 Disentangleな生成を可能にするLossも</description>
     </item>
     
     <item>
@@ -28,7 +26,7 @@
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/old_is_gold/</guid>
-      <description>1. どんなもの？  2stage のtrainingのAnomaly Detection 完ぺきではないGenerator $\mathcal{G}_{old}$が1st stage，そこからgood/bad 判定のDiscriminatorの学習を行う GAN系のADモデル特有の精度不安定が解消  2. 先行研究と比べてどこがすごい？  Generatorのみを使うADモデル（Autoencoder含む）は訓練データに稀に異常が入っていると失敗する Generator + DiscriminatorのADモデルは精度が不安定 $\mathcal{G}_{old}$は↑2つを改善したモデル  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $X \sim p_t$ : 正常データ $\tilde{X} \sim p_t +\mathcal{N}_\sigma$ : 正常データ + ノイズ $\mathcal{G}$ : Generator (Autoencoder) $\mathcal{D}$ : Discriminator    1st phase  GAN + DAE (Reconstruction) lossで$G$と$D$を訓練  $$ \min _ {\mathcal{G}} \max _ {\mathcal{D}}\left(\mathbb{E} _ {X \sim p_{t}}[\log (1-\mathcal{D}(X))] + \mathbb{E} _ {\tilde{X} \sim p _ {t}+\mathcal{N} _ {\sigma}}[\log (\mathcal{D}(\mathcal{G}(\tilde{X})))]\right) $$</description>
+      <description>1. どんなもの？ 2stage のtrainingのAnomaly Detection 完ぺきではないGenerator $\mathcal{G}_{old}$が1st stage</description>
     </item>
     
     <item>
@@ -37,7 +35,7 @@
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/</guid>
-      <description>1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採用 Autoencoderの汎化問題と正常パターンの多様性という問題にアタック 再構成のlossベース，フレーム予測のlossベースどちらにも展開可能  2. 先行研究と比べてどこがすごい？  Autoencoder系のADは，Autoencoderの表現力がありすぎて，異常も異常として復元してしまい再構成誤差が出ない問題があった またAutoencoder系のADは，正常分布のdiversityをカバーしきれないことがあった（表現力とのトレードオフ？）  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $I_t$: $t$ frame目の入力画像 $\hat{I}_t$: $t$ frame目のAutoencodeされた画像 $q_t \in \R^{H \times W \times C}$: $t$ frame目のquery map $q^k_t \in \R^{C} (k=1, \cdots, K)$: $t$ frame目，position $k$ のquery vector（$K=H \times W$） $p_m \in \R^{C} (m=1,\cdots,M)$: $m$番目のmemory vector    Memory Read  query vectorのmemory vectorの内積をsoftmaxして，matching probability $w^{k,m}_t$を求める $$ w _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum _ {m^{\prime}=1}^{M} \exp \left(\left(\mathbf{p} _ {m^{\prime}}\right)^{T} \mathbf{q} _ {t}^{k}\right)} $$ 各クエリ$q^k_t$に対して，memory vectorを使った重み付き平均を求めることで，新しい特徴とする $$ \hat{\mathbf{p}} _ {t}^{k}=\sum _ {m^{\prime}=1}^{M} w _ {t}^{k, m^{\prime}} \mathbf{p} _ {m^{\prime}} $$ $q_t$と$\hat{p}_t$を結合して，Decoderに入力する   Update   相関MAPを求める．↑の$w _ {t}^{k, m}$の式と似ているけど，softmaxのaxisが$k$方向 $$ v _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum_{k^{\prime}=1}^{K} \exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k^{\prime}}\right)} $$</description>
+      <description>1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採</description>
     </item>
     
     <item>
@@ -46,7 +44,7 @@
       <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/student_teacher_anodetct/</guid>
-      <description>1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画像で学習したTeacherと工業製品で学習する複数のStudentモデル  2. 先行研究と比べてどこがすごい？  Unsupervised な Anomaly DetectionのSegmentaionにはAutoencoder系があったが再構成誤差によるもので，不正確だった transfer learningの枠組みは今まで工業製品のAnomaly Detectionでは使いづらかった  Domainの違い 解像度の違い    3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  変数の定義  $ \mathcal{D} = \{ I_1, I_2, \cdots, I_N \} $ : データセット $I_n \in \R^{h \times w \times ch}$ : 入力画像 $S_i(I_n) \in \R^{h \times w \times d}$ : $i$番目のstudent networkに入力すると，入力と同じサイズのfeature mapが生成される $T(I_n) \in \R^{h \times w \times d}$ : teacher networkも同様 $y_{r, c} \in \R^d$ : $S_i(I)$のMapのposition $r, c$における特徴ベクトル． $p_{r, c} \in \R^{p \times p \times ch}$ : position $r, c$における$I$のパッチ    Learning Local Patch Descriptors  まずTeacher $T$ を学習するために，$\hat{T}$を学習する  $\hat{T}(I_n) \notin \R^{h \times w \times d}$ である（Poolingなどによって空間解像度が落ちる） FDFEを適用することで，空間解像度を落とさないようにすることで$T$ を求める   $\hat{T}$はImagenetなどの自然画像で事前学習された$P$というNetworkを蒸留（Distillation）することで学習する  3つのLossを最小化することで蒸留  ↓の$p$はImagenet任意のデータセットの画像からCropしたもの $$ \mathcal{L}(\hat{T})=\lambda_{k} \mathcal{L} _ {k}(\hat{T})+\lambda_{m} \mathcal{L} _ {m}(\hat{T})+\lambda_{c} \mathcal{L}_{c}(\hat{T}) $$    Knowledge Distillation.</description>
+      <description>1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画</description>
     </item>
     
   </channel>

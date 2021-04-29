@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採用 Autoencoderの汎化問題と正常パターンの多様性という問題にアタック 再構成のlossベース，フレーム予測のlossベースどちらにも展開可能  2. 先行研究と比べてどこがすごい？  Autoencoder系のADは，Autoencoderの表現力がありすぎて，異常も異常として復元してしまい再構成誤差が出ない問題があった またAutoencoder系のADは，正常分布のdiversityをカバーしきれないことがあった（表現力とのトレードオフ？）  3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I_t$: $t$ frame目の入力画像 $\hat{I}_t$: $t$ frame目のAutoencodeされた画像 $q_t \in \R^{H \times W \times C}$: $t$ frame目のquery map $q^k_t \in \R^{C} (k=1, \cdots, K)$: $t$ frame目，position $k$ のquery vector（$K=H \times W$） $p_m \in \R^{C} (m=1,\cdots,M)$: $m$番目のmemory vector    Memory Read  query vectorのmemory vectorの内積をsoftmaxして，matching probability $w^{k,m}_t$を求める $$ w _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum _ {m^{\prime}=1}^{M} \exp \left(\left(\mathbf{p} _ {m^{\prime}}\right)^{T} \mathbf{q} _ {t}^{k}\right)} $$ 各クエリ$q^k_t$に対して，memory vectorを使った重み付き平均を求めることで，新しい特徴とする $$ \hat{\mathbf{p}} _ {t}^{k}=\sum _ {m^{\prime}=1}^{M} w _ {t}^{k, m^{\prime}} \mathbf{p} _ {m^{\prime}} $$ $q_t$と$\hat{p}_t$を結合して，Decoderに入力する   Update   相関MAPを求める．↑の$w _ {t}^{k, m}$の式と似ているけど，softmaxのaxisが$k$方向 $$ v _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum_{k^{\prime}=1}^{K} \exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k^{\prime}}\right)} $$">
+  <meta name="description" content="1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/">
 
   
 
@@ -142,8 +142,8 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/">
   <meta property="og:title" content="Learning Memory-guided Normality for Anomaly Detection | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採用 Autoencoderの汎化問題と正常パターンの多様性という問題にアタック 再構成のlossベース，フレーム予測のlossベースどちらにも展開可能  2. 先行研究と比べてどこがすごい？  Autoencoder系のADは，Autoencoderの表現力がありすぎて，異常も異常として復元してしまい再構成誤差が出ない問題があった またAutoencoder系のADは，正常分布のdiversityをカバーしきれないことがあった（表現力とのトレードオフ？）  3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $I_t$: $t$ frame目の入力画像 $\hat{I}_t$: $t$ frame目のAutoencodeされた画像 $q_t \in \R^{H \times W \times C}$: $t$ frame目のquery map $q^k_t \in \R^{C} (k=1, \cdots, K)$: $t$ frame目，position $k$ のquery vector（$K=H \times W$） $p_m \in \R^{C} (m=1,\cdots,M)$: $m$番目のmemory vector    Memory Read  query vectorのmemory vectorの内積をsoftmaxして，matching probability $w^{k,m}_t$を求める $$ w _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum _ {m^{\prime}=1}^{M} \exp \left(\left(\mathbf{p} _ {m^{\prime}}\right)^{T} \mathbf{q} _ {t}^{k}\right)} $$ 各クエリ$q^k_t$に対して，memory vectorを使った重み付き平均を求めることで，新しい特徴とする $$ \hat{\mathbf{p}} _ {t}^{k}=\sum _ {m^{\prime}=1}^{M} w _ {t}^{k, m^{\prime}} \mathbf{p} _ {m^{\prime}} $$ $q_t$と$\hat{p}_t$を結合して，Decoderに入力する   Update   相関MAPを求める．↑の$w _ {t}^{k, m}$の式と似ているけど，softmaxのaxisが$k$方向 $$ v _ {t}^{k, m}=\frac{\exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k}\right)}{\sum_{k^{\prime}=1}^{K} \exp \left(\left(\mathbf{p} _ {m}\right)^{T} \mathbf{q} _ {t}^{k^{\prime}}\right)} $$"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/featured.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Autoencoder系のADで，Autoencoderの潜在特徴MAPにMemory構造を採"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/memory_guided_anodetect/featured.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-06-16T00:00:00&#43;00:00">
   
@@ -164,7 +164,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -173,7 +173,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -197,7 +197,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -409,7 +409,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    4 分で読める
   </span>
   
 
@@ -452,7 +452,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2003.13228" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2003.13228" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -571,7 +571,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    4 分で読める
   </span>
   
 
@@ -616,7 +616,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2003.13228" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="http://arxiv.org/abs/2003.13228" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -923,7 +923,7 @@ $$</p>
       
       <div class="article-widget">
         <div class="hr-light"></div>
-        <h3>Related</h3>
+        <h3>関連項目</h3>
         <ul>
           
           <li><a href="/portfolio/post/student_teacher_anodetct/">Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings</a></li>
@@ -994,7 +994,7 @@ $$</p>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1004,10 +1004,10 @@ $$</p>
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -1076,15 +1076,15 @@ $$</p>
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

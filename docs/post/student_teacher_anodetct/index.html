@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画像で学習したTeacherと工業製品で学習する複数のStudentモデル  2. 先行研究と比べてどこがすごい？  Unsupervised な Anomaly DetectionのSegmentaionにはAutoencoder系があったが再構成誤差によるもので，不正確だった transfer learningの枠組みは今まで工業製品のAnomaly Detectionでは使いづらかった  Domainの違い 解像度の違い    3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $ \mathcal{D} = \{ I_1, I_2, \cdots, I_N \} $ : データセット $I_n \in \R^{h \times w \times ch}$ : 入力画像 $S_i(I_n) \in \R^{h \times w \times d}$ : $i$番目のstudent networkに入力すると，入力と同じサイズのfeature mapが生成される $T(I_n) \in \R^{h \times w \times d}$ : teacher networkも同様 $y_{r, c} \in \R^d$ : $S_i(I)$のMapのposition $r, c$における特徴ベクトル． $p_{r, c} \in \R^{p \times p \times ch}$ : position $r, c$における$I$のパッチ    Learning Local Patch Descriptors  まずTeacher $T$ を学習するために，$\hat{T}$を学習する  $\hat{T}(I_n) \notin \R^{h \times w \times d}$ である（Poolingなどによって空間解像度が落ちる） FDFEを適用することで，空間解像度を落とさないようにすることで$T$ を求める   $\hat{T}$はImagenetなどの自然画像で事前学習された$P$というNetworkを蒸留（Distillation）することで学習する  3つのLossを最小化することで蒸留  ↓の$p$はImagenet任意のデータセットの画像からCropしたもの $$ \mathcal{L}(\hat{T})=\lambda_{k} \mathcal{L} _ {k}(\hat{T})&#43;\lambda_{m} \mathcal{L} _ {m}(\hat{T})&#43;\lambda_{c} \mathcal{L}_{c}(\hat{T}) $$    Knowledge Distillation.">
+  <meta name="description" content="1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/student_teacher_anodetct/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/student_teacher_anodetct/">
 
   
 
@@ -142,8 +142,8 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/student_teacher_anodetct/">
   <meta property="og:title" content="Uninformed Students: Student-Teacher Anomaly Detection with Discriminative Latent Embeddings | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画像で学習したTeacherと工業製品で学習する複数のStudentモデル  2. 先行研究と比べてどこがすごい？  Unsupervised な Anomaly DetectionのSegmentaionにはAutoencoder系があったが再構成誤差によるもので，不正確だった transfer learningの枠組みは今まで工業製品のAnomaly Detectionでは使いづらかった  Domainの違い 解像度の違い    3. 技術や手法の&quot;キモ&quot;はどこ？  変数の定義  $ \mathcal{D} = \{ I_1, I_2, \cdots, I_N \} $ : データセット $I_n \in \R^{h \times w \times ch}$ : 入力画像 $S_i(I_n) \in \R^{h \times w \times d}$ : $i$番目のstudent networkに入力すると，入力と同じサイズのfeature mapが生成される $T(I_n) \in \R^{h \times w \times d}$ : teacher networkも同様 $y_{r, c} \in \R^d$ : $S_i(I)$のMapのposition $r, c$における特徴ベクトル． $p_{r, c} \in \R^{p \times p \times ch}$ : position $r, c$における$I$のパッチ    Learning Local Patch Descriptors  まずTeacher $T$ を学習するために，$\hat{T}$を学習する  $\hat{T}(I_n) \notin \R^{h \times w \times d}$ である（Poolingなどによって空間解像度が落ちる） FDFEを適用することで，空間解像度を落とさないようにすることで$T$ を求める   $\hat{T}$はImagenetなどの自然画像で事前学習された$P$というNetworkを蒸留（Distillation）することで学習する  3つのLossを最小化することで蒸留  ↓の$p$はImagenet任意のデータセットの画像からCropしたもの $$ \mathcal{L}(\hat{T})=\lambda_{k} \mathcal{L} _ {k}(\hat{T})&#43;\lambda_{m} \mathcal{L} _ {m}(\hat{T})&#43;\lambda_{c} \mathcal{L}_{c}(\hat{T}) $$    Knowledge Distillation."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/student_teacher_anodetct/featured.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ Unsupervised な Anomaly Detectionの枠組み Large Imageに対して，Patchで学習してAnomalyのSegmentationが可能 自然画"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/student_teacher_anodetct/featured.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-06-07T00:00:00&#43;00:00">
   
@@ -164,7 +164,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -173,7 +173,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -197,7 +197,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -409,7 +409,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    3 分で読める
   </span>
   
 
@@ -452,7 +452,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1911.02357" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1911.02357" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -571,7 +571,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    3 分で読める
   </span>
   
 
@@ -616,7 +616,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1911.02357" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://arxiv.org/abs/1911.02357" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -976,7 +976,7 @@ $P$の出力をPCAして累積寄与率95%になるように次元数削減し�
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -986,10 +986,10 @@ $P$の出力をPCAして累積寄与率95%になるように次元数削減し�
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -1058,15 +1058,15 @@ $P$の出力をPCAして累積寄与率95%になるように次元数削減し�
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

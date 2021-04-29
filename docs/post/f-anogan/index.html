@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,20 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
-f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&quot;キモ&quot;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
-ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
-$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
-izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
-izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．
-5. 議論はあるか？ 追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood． 構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？">
+  <meta name="description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み． 2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$か">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
 
   
 
@@ -153,18 +143,8 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/f-anogan/">
   <meta property="og:title" content="f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み．
-2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$から$x$へのmappingを行うために学習済みGANのDiscriminatorの結果と再構成誤差からLossを算出し，勾配降下法によって$z$を探索していた． つまり，推論時にも”学習”のフェーズが存在し処理時間が長かった．
-f-AnoGANでは，推論時の勾配降下による探索を無くし，推論の高速化を行った．
-3. 技術や手法の&quot;キモ&quot;はどこ？ $z$ から$x$を推論する枠組みを3つ提案．
-ziz encoder 学習済みのGANのGeneratorを用いて，$z$をGeneratorに入力し，その出力をziz encoderに入力し得られた潜在ベクトルとの再構成誤差を最小化する．
-$n$は総画素数． $$ L(z) = \frac{1}{n}|z - E(G(z))|^2 $$
-izi encoder 学習済みのGANのGeneratorを用いて，$x$をEncoderに入力し，その出力をizi encoderに入力し得られた画像との再構成誤差を最小化する． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 $$
-izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構成誤差と，Discriminatorに$x$と$G(E(x))$を入力した際の中間層の出力の再構成誤差の和を最小化する． $f(\cdot)$はDiscriminatorの中間層の出力で，$n_d$は$f(\cdot)$の次元数で$k$は重みパラメータ．． $$ L(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-異常度の算出 $$ A(x) = \frac{1}{n}|x - G(E(x))|^2 &#43; \frac{k}{n_d}|f(x)-f(G(E(x)))|^2 $$
-4. どうやって有効だと検証した？ AnoGANと同様にretinal spectral-domain optical coherence tomography (SD-OCT)をデータセットとして実験． Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較して精度も上回った．
-5. 議論はあるか？ 追加のEncoderをつけるという簡単な手法で高速化＆高精度化を果たした点がGood． 構成的にはGANomalyに近い感じがするが，精度比較のほどは果たして？"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ 推論時に時間がかかってしまうAnoGANを高速化する枠組み． 2. 先行研究と比べてどこがすごい？ AnoGANでは，推論時に$z$か"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2019-10-14T00:00:00&#43;00:00">
   
@@ -185,7 +165,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -194,7 +174,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -218,7 +198,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -426,7 +406,7 @@ izif encoder izi encoderの派生形で，izi encoderのLossと同様の再構�
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -691,7 +671,7 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -701,10 +681,10 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -773,15 +753,15 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     

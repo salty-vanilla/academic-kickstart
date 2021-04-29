@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="1. どんなもの？  継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応  2. 先行研究と比べてどこがすごい？  1クラスごとに学習するので，学習済みのデータは消しても良い クラス数の追加は好きなだけできる catastrophic forgetting を回避  3. 技術や手法の&quot;キモ&quot;はどこ？  クラスごとにNICEを学習することで，OoD問題に持っていく  NICE  invertibleな生成モデル 潜在変数を仮定し，尤度最大化  OvA-INN では標準正規分布を仮定 最大化する対数尤度は下式 $$ l_{i}(x)=\sum_{d} \log \left( p_{d} \left(f_{i, d}(x)\right)\right)=-\sum_{d} \frac{1}{2} f_{i, d}(x)^{2}&#43;\sum_{d} \log \left(\frac{1}{\sqrt{2 \pi}}\right)=-\frac{1}{2}\left|f_{i}(x)\right|_{2}^{2}&#43;\beta $$    OvA-INN (One vs All - Invertible Neural Networks)  任意のクラス数分のNICEを用意して，それぞれ最適化 クラスそれぞれにNICEがあるので，forgetするわけはない クラス数が増えてもincremental に学習ができる $i$番目のクラスのNICE $f_i$のNLL $$ \mathcal{L}(\mathcal{X} _ i)= \frac{1}{| \mathcal{X} _ i |} \sum_{x \in \mathcal{X} _ i} |f_{i}(x)|_{2}^{2} $$ OvA-INN の最終的な推論のラベルは $$ y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2} $$  4.">
+  <meta name="description" content="1. どんなもの？ 継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応 2. 先行研究と比べてどこがすごい？ 1クラスごとに学習する">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/ova-inn/">
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/ova-inn/">
 
   
 
@@ -143,8 +143,8 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/ova-inn/">
   <meta property="og:title" content="OvA-INN: Continual Learning with Invertible Neural Networks | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応  2. 先行研究と比べてどこがすごい？  1クラスごとに学習するので，学習済みのデータは消しても良い クラス数の追加は好きなだけできる catastrophic forgetting を回避  3. 技術や手法の&quot;キモ&quot;はどこ？  クラスごとにNICEを学習することで，OoD問題に持っていく  NICE  invertibleな生成モデル 潜在変数を仮定し，尤度最大化  OvA-INN では標準正規分布を仮定 最大化する対数尤度は下式 $$ l_{i}(x)=\sum_{d} \log \left( p_{d} \left(f_{i, d}(x)\right)\right)=-\sum_{d} \frac{1}{2} f_{i, d}(x)^{2}&#43;\sum_{d} \log \left(\frac{1}{\sqrt{2 \pi}}\right)=-\frac{1}{2}\left|f_{i}(x)\right|_{2}^{2}&#43;\beta $$    OvA-INN (One vs All - Invertible Neural Networks)  任意のクラス数分のNICEを用意して，それぞれ最適化 クラスそれぞれにNICEがあるので，forgetするわけはない クラス数が増えてもincremental に学習ができる $i$番目のクラスのNICE $f_i$のNLL $$ \mathcal{L}(\mathcal{X} _ i)= \frac{1}{| \mathcal{X} _ i |} \sum_{x \in \mathcal{X} _ i} |f_{i}(x)|_{2}^{2} $$ OvA-INN の最終的な推論のラベルは $$ y^{*}=\underset{y=1, \ldots, t}{\arg \min }\left|f_{y}(x)\right|_{2}^{2} $$  4."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:description" content="1. どんなもの？ 継続学習の枠組み 1クラスごとに，NICEを学習することで追加クラスに対応 2. 先行研究と比べてどこがすごい？ 1クラスごとに学習する"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:locale" content="ja">
   
   <meta property="article:published_time" content="2020-01-20T00:00:00&#43;00:00">
   
@@ -165,7 +165,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>Search</h1>
+          <h1></h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -174,7 +174,7 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="検索..." autocapitalize="off"
         autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
         
       </div>
@@ -198,7 +198,7 @@
       <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切り替え">
         <span><i class="fas fa-bars"></i></span>
       </button>
       
@@ -406,7 +406,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 分で読める
   </span>
   
 
@@ -451,7 +451,7 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://openreview.net/forum?id=rJxcBpNKPr" target="_blank" rel="noopener">Go to Project Site</a>
+  <a class="btn btn-outline-primary my-1" href="https://openreview.net/forum?id=rJxcBpNKPr" target="_blank" rel="noopener">プロジェクトのサイトへ</a>
   
   
 
@@ -731,7 +731,7 @@ $$</li>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Cite</h5>
+        <h5 class="modal-title">引用</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -741,10 +741,10 @@ $$</li>
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> Copy
+          <i class="fas fa-copy"></i> コピー
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> Download
+          <i class="fas fa-download"></i> ダウンロード
         </a>
         <div id="modal-error"></div>
       </div>
@@ -813,15 +813,15 @@ $$</li>
     <script>
       const search_index_filename = "/portfolio/index.json";
       const i18n = {
-        'placeholder': "Search...",
-        'results': "results found",
-        'no_results': "No results found"
+        'placeholder': "検索...",
+        'results': "",
+        'no_results': "結果が見つかりませんでした"
       };
       const content_type = {
-        'post': "Posts",
-        'project': "Projects",
-        'publication' : "Publications",
-        'talk' : "Talks"
+        'post': "投稿",
+        'project': "プロジェクト",
+        'publication' : "発表文献",
+        'talk' : "登壇"
         };
     </script>
     
