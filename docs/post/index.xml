@@ -6,7 +6,11 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Anomaly Detection with Domain Adaptation</title>
       <link>https://salty-vanilla.github.io/portfolio/post/irad/</link>
@@ -151,7 +155,7 @@ $$ a_t \stackrel{iid}{\sim} \pi(a_t | s_t) $$ $$ s _ {t+1} \stackrel{iid}{\sim} 
       <pubDate>Sun, 16 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/deep_svdd/</guid>
-      <description>1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|{\mathcal{F}{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.</description>
+      <description>1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|_{\mathcal{F}_{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.</description>
     </item>
     
     <item>
@@ -233,7 +237,7 @@ c. INのartifactを考慮した形
       <guid>https://salty-vanilla.github.io/portfolio/post/pono/</guid>
       <description>1. どんなもの？  pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transferなど）に適用すると良い生成  2. 先行研究と比べてどこがすごい？  BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる もちろん収束は早くなるし，安定もする  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Positional Normalization  feature mapの各Pixel（position)ごとにチャネル方向にstaticsを求める つまり，staticsのshapeは（b, h, w)  $$ \mu_{b, h, w}=\frac{1}{C} \sum_{c=1}^{C} X_{b, c, h, w}, \quad \sigma_{b, h, w}=\sqrt{\frac{1}{C} \sum_{c=1}^{C}\left(X_{b, c, h, w}^{2}-\mu_{b, h, w}\right)+\epsilon} $$
 $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+\beta $$
- VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&#39; = \gamma x + \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.</description>
+ VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&amp;rsquo; = \gamma x + \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.</description>
     </item>
     
     <item>
@@ -242,8 +246,8 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+
       <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/logan/</guid>
-      <description>1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&#39; = z + \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
- ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F&#39; = g \cdot g^T + \beta I $$</description>
+      <description>1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&amp;rsquo; = z + \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
+ ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F&amp;rsquo; = g \cdot g^T + \beta I $$</description>
     </item>
     
     <item>

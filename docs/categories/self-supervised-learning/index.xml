@@ -6,7 +6,11 @@
     <description>Recent content in Self-supervised Learning on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/self-supervised-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Classification-Based Anomaly Detection for General Data</title>
       <link>https://salty-vanilla.github.io/portfolio/post/classification-based_anomaly_detection_for_general_data/</link>

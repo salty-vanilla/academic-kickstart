@@ -6,7 +6,11 @@
     <description>Recent content in tutorial on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Deep Q Network</title>
       <link>https://salty-vanilla.github.io/portfolio/post/dqn/</link>

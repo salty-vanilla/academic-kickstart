@@ -6,7 +6,11 @@
     <description>Recent content in Normalization on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://salty-vanilla.github.io/portfolio/categories/normalization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/categories/normalization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>POSITIONAL NORMALIZATION</title>
       <link>https://salty-vanilla.github.io/portfolio/post/pono/</link>
@@ -15,7 +19,7 @@
       <guid>https://salty-vanilla.github.io/portfolio/post/pono/</guid>
       <description>1. どんなもの？  pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transferなど）に適用すると良い生成  2. 先行研究と比べてどこがすごい？  BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる もちろん収束は早くなるし，安定もする  3. 技術や手法の&amp;quot;キモ&amp;quot;はどこ？ Positional Normalization  feature mapの各Pixel（position)ごとにチャネル方向にstaticsを求める つまり，staticsのshapeは（b, h, w)  $$ \mu_{b, h, w}=\frac{1}{C} \sum_{c=1}^{C} X_{b, c, h, w}, \quad \sigma_{b, h, w}=\sqrt{\frac{1}{C} \sum_{c=1}^{C}\left(X_{b, c, h, w}^{2}-\mu_{b, h, w}\right)+\epsilon} $$
 $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)+\beta $$
- VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&#39; = \gamma x + \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.</description>
+ VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&amp;rsquo; = \gamma x + \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.</description>
     </item>
     
   </channel>

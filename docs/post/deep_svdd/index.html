@@ -20,14 +20,14 @@
   
   
 
-  <meta name="author" content="Nakatsuka Shunsuke ">
+  <meta name="author" content="中塚 俊介">
 
   
   
   
     
   
-  <meta name="description" content="1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|{\mathcal{F}{k}}^{2}-\rho&#43;\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.">
+  <meta name="description" content="1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|_{\mathcal{F}_{k}}^{2}-\rho&#43;\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/deep_svdd/">
@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.babd20e80d1f9da15fbc6256231260bd.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -143,7 +143,7 @@
   <meta property="og:site_name" content="Nakatsuka Shunsuke">
   <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/deep_svdd/">
   <meta property="og:title" content="Deep One-Class Classification | Nakatsuka Shunsuke">
-  <meta property="og:description" content="1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|{\mathcal{F}{k}}^{2}-\rho&#43;\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+  <meta property="og:description" content="1. どんなもの？  One-Class SVM (OCSVM)の非線形カーネルをNNで置き換えたモデル anomaly detectionの枠組みとして，soft-boundary と one-class Deep SVDDを提案  2. 先行研究と比べてどこがすごい？  OCSVMの非線形カーネルをNNで置き換えた  OSCVMより優れた表現力を持つ   SVDD (Support Vector Data Description) OCSVMのobjective  $x$ : sample $w$ : weights $\phi$ : kernel function $\rho$ : distance from the origin to hyperplane $w$ $\xi$ : margin $$ \min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|_{\mathcal{F}_{k}}^{2}-\rho&#43;\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i} $$ $$ \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i $$    3."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2020-02-16T00:00:00&#43;00:00">
@@ -514,7 +514,7 @@
 <li>$\rho$ : distance from the origin to hyperplane $w$</li>
 <li>$\xi$ : margin
 $$
-\min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|<em>{\mathcal{F}</em>{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i}
+\min _ {\boldsymbol{w}, \rho, \boldsymbol{\xi}} \frac{1}{2}|\boldsymbol{w}|_{\mathcal{F}_{k}}^{2}-\rho+\frac{1}{\nu n} \sum_{i=1}^{n} \xi_{i}
 $$
 $$
 \text { s.t. } \quad\left\langle\boldsymbol{w}, \phi_{k}\left(\boldsymbol{x} _ {i}\right)\right\rangle_{\mathcal{F} _ {k}} \geq \rho-\xi_{i}, \quad \xi_{i} \geq 0, \quad \forall i
@@ -617,7 +617,7 @@ $$</p>
   
 
   <div class="media-body">
-    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">中塚 俊介</a></h5>
     <h6 class="card-subtitle">R&amp;D Engineer</h6>
     <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
     <ul class="network-icon" aria-hidden="true">

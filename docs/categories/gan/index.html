@@ -22,7 +22,7 @@
   
   
 
-  <meta name="author" content="Nakatsuka Shunsuke ">
+  <meta name="author" content="中塚 俊介">
 
   
   
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.babd20e80d1f9da15fbc6256231260bd.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -409,8 +409,8 @@ c. INのartifactを考慮した形
     <h2><a href="/portfolio/post/logan/">LOGAN: Latent Optimisation for Generative Adversarial Networks</a></h2>
     <div class="article-style">
       
-      1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z' = z + \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
- ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F' = g \cdot g^T + \beta I $$
+      1. どんなもの？  GANのIS，FIDを向上させる系の論文 BigGANベースに大きなアーキテクチャの変更なしに高精度な生成．  2. 先行研究と比べてどこがすごい？  ベースはBigGAN 潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新することでhigh qualityとdiversityを実現  3. 技術や手法の&quot;キモ&quot;はどこ？  キモは，潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新すること  Latent Optimisation  潜在変数をDiscriminatorが騙されやすいように更新した後，パラメータを更新する $$ \Delta z = \alpha \frac{\partial f(z)}{\partial z} $$ $$ z&rsquo; = z + \Delta z $$ ここで，f(z)は$z$をGeneratorに入力し得られたデータをDiscriminatorに与えることで得られる出力  Natural Gradient Descent  更新する$z$の空間はユークリッド空間でないことが多い． 通常の勾配法ではうまく更新できないことがある． 自然勾配法を用いて$z$を更新する．  $$ \Delta z = \alpha F^{-1} \frac{\partial f(z)}{\partial z} = \alpha F^{-1}g $$
+ ここで，$F$はフィッシャー情報行列 $F$の算出はcost大なので，近似すると($\beta$はハイパラの定数)  $$ F&rsquo; = g \cdot g^T + \beta I $$
       
     </div>
   </div>

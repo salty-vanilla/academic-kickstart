@@ -20,7 +20,7 @@
   
   
 
-  <meta name="author" content="Nakatsuka Shunsuke ">
+  <meta name="author" content="中塚 俊介">
 
   
   
@@ -29,7 +29,7 @@
   
   <meta name="description" content="1. どんなもの？  pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transferなど）に適用すると良い生成  2. 先行研究と比べてどこがすごい？  BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる もちろん収束は早くなるし，安定もする  3. 技術や手法の&quot;キモ&quot;はどこ？ Positional Normalization  feature mapの各Pixel（position)ごとにチャネル方向にstaticsを求める つまり，staticsのshapeは（b, h, w)  $$ \mu_{b, h, w}=\frac{1}{C} \sum_{c=1}^{C} X_{b, c, h, w}, \quad \sigma_{b, h, w}=\sqrt{\frac{1}{C} \sum_{c=1}^{C}\left(X_{b, c, h, w}^{2}-\mu_{b, h, w}\right)&#43;\epsilon} $$
 $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&#43;\beta $$
- VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&#39; = \gamma x &#43; \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.">
+ VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&rsquo; = \gamma x &#43; \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://salty-vanilla.github.io/portfolio/post/pono/">
@@ -93,7 +93,7 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&
   
   
   
-  <link rel="stylesheet" href="/portfolio/css/academic.min.babd20e80d1f9da15fbc6256231260bd.css">
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
 
   
     
@@ -147,7 +147,7 @@ $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&
   <meta property="og:title" content="POSITIONAL NORMALIZATION | Nakatsuka Shunsuke">
   <meta property="og:description" content="1. どんなもの？  pixelごとにチャネル方向に串刺しにして正規化する系の正規化手法 Encoder-Decoder構造（Domain transferなど）に適用すると良い生成  2. 先行研究と比べてどこがすごい？  BN，LN，INなどとは違って，空間解像度を保った正規化なのでstructuralな情報が残せる もちろん収束は早くなるし，安定もする  3. 技術や手法の&quot;キモ&quot;はどこ？ Positional Normalization  feature mapの各Pixel（position)ごとにチャネル方向にstaticsを求める つまり，staticsのshapeは（b, h, w)  $$ \mu_{b, h, w}=\frac{1}{C} \sum_{c=1}^{C} X_{b, c, h, w}, \quad \sigma_{b, h, w}=\sqrt{\frac{1}{C} \sum_{c=1}^{C}\left(X_{b, c, h, w}^{2}-\mu_{b, h, w}\right)&#43;\epsilon} $$
 $$ X_{b, c, h, w}^{\prime}=\gamma\left(\frac{X_{b, c, h, w}-\mu}{\sigma}\right)&#43;\beta $$
- VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&#39; = \gamma x &#43; \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
+ VGGにponoを差し込んでみると，画像の構造をstaticsが捉えているように見える  ただDenseNetでは，map端に望まない反応が見られる   Moment Shortcut  Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として $$ x&rsquo; = \gamma x &#43; \beta $$ CycleGANやPix2Pixで有効 $\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案  4."><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2019-12-17T00:00:00&#43;00:00">
@@ -531,7 +531,7 @@ $$</p>
 <ul>
 <li>Encoder-Decoder構造において，Encoderのponoで得られたstd $\sigma$を$\gamma$，mean $\mu$を$\beta$として
 $$
-x' = \gamma x + \beta
+x&rsquo; = \gamma x + \beta
 $$</li>
 <li>CycleGANやPix2Pixで有効</li>
 <li>$\mu$,$\sigma$に対して，convして，$\beta,\gamma \in \mathbb{R}^{B \times H \times W \times C}$にしてからAffineするDynamic Moment Shortcutも提案</li>
@@ -581,7 +581,7 @@ $$</li>
   
 
   <div class="media-body">
-    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">Nakatsuka Shunsuke </a></h5>
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">中塚 俊介</a></h5>
     <h6 class="card-subtitle">R&amp;D Engineer</h6>
     <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
     <ul class="network-icon" aria-hidden="true">
