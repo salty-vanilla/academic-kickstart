@@ -39,6 +39,7 @@ $$
 1. 全training dataに対して，NNの中間層の出力を得てその平均$\mu$と分散$\Sigma$を算出
 2. Gaussian Density Estimator (GDE)を用いて，確率密度を算出して異常度とする
 
+
 $$
 \log{p_{gde}(x)} \propto \{ -\frac{1}{2} (f^*(x) - \mu)^T \Sigma^{-1} (f^*(x) - \mu) \}
 $$
