@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CVPR2021 on Nakatsuka Shunsuke</title>
+    <link>https://salty-vanilla.github.io/portfolio/tags/cvpr2021/</link>
+    <description>Recent content in CVPR2021 on Nakatsuka Shunsuke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 01 May 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://salty-vanilla.github.io/portfolio/tags/cvpr2021/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CutPaste: Self-Supervised Learning for Anomaly Detection and Localization</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/cutpaste/</link>
+      <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/cutpaste/</guid>
+      <description>1. どんなもの？ SSL型の異常検知 Cutoutを異常検知・外観検査に適応させたような形 2. 先行研究と比べてどこがすごい？ SSL型のAD手法は，大</description>
+    </item>
+    
+  </channel>
+</rss>

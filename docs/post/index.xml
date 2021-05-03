@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>CutPaste: Self-Supervised Learning for Anomaly Detection and Localization</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/cutpaste/</link>
+      <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/cutpaste/</guid>
+      <description>1. どんなもの？ SSL型の異常検知 Cutoutを異常検知・外観検査に適応させたような形 2. 先行研究と比べてどこがすごい？ SSL型のAD手法は，大</description>
+    </item>
+    
+    <item>
       <title>PaDiM: a Patch Distribution Modeling Framework for Anomaly Detection and Localization</title>
       <link>https://salty-vanilla.github.io/portfolio/post/padim/</link>
       <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
