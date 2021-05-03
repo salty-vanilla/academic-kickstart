@@ -1,14 +1,14 @@
 +++
 # Date this page was created.
-date = 2021-05-01
+date = 2021-05-03
 title = "CutPaste: Self-Supervised Learning for Anomaly Detection and Localization"
-summary = ""
 external_link = "https://arxiv.org/abs/2104.04015"
 categories = ["Anomaly Detection"]
 tags = ["CVPR2021"]
 rate = 5
 math = true
 markup = "goldmark"
+summary = "Cutoutを異常検知に適応させたCutpasteを提案．SSL型のADで初めてMVTecで高精度．画像の一部を切り貼りして疑似不良を生成し，識別器を学習するのみという非常に単純な枠組みながらPaDiMに迫る精度．"
 +++
 
 ## 1. どんなもの？

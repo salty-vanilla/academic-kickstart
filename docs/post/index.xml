@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 01 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>CutPaste: Self-Supervised Learning for Anomaly Detection and Localization</title>
       <link>https://salty-vanilla.github.io/portfolio/post/cutpaste/</link>
-      <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://salty-vanilla.github.io/portfolio/post/cutpaste/</guid>
-      <description>1. どんなもの？ SSL型の異常検知 Cutoutを異常検知・外観検査に適応させたような形 2. 先行研究と比べてどこがすごい？ SSL型のAD手法は，大</description>
+      <description>Cutoutを異常検知に適応させたCutpasteを提案．SSL型のADで初めてMVTecで高精度．画像の一部を切り貼りして疑似不良を生成し，識別器を学習するのみという非常に単純な枠組みながらPaDiMに迫る精度．</description>
     </item>
     
     <item>
