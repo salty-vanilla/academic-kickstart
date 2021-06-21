@@ -778,6 +778,15 @@ METAL ANOMALYでは異常度が大きいPixelの上位10%のSumを全体の異�
           {left: "\\(", right: "\\)", dispaly: false},
           ]
         });
+        var tex = document.getElementsByClassName("tex");
+        console.log(tex);
+        Array.prototype.forEach.call(tex, function(el) {
+          try {
+            katex.render(el.getAttribute("data-expr"), el);
+          } catch (e) {
+            console.log(e);
+          }
+        });
       });
     </script>
 

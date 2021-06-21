@@ -712,6 +712,15 @@ Autoencoder，AAE，ALI，WGANのDiscriminator，iterative(AnoGAN)と比較し�
           {left: "\\(", right: "\\)", dispaly: false},
           ]
         });
+        var tex = document.getElementsByClassName("tex");
+        console.log(tex);
+        Array.prototype.forEach.call(tex, function(el) {
+          try {
+            katex.render(el.getAttribute("data-expr"), el);
+          } catch (e) {
+            console.log(e);
+          }
+        });
       });
     </script>
 

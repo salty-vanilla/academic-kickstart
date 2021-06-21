@@ -1017,6 +1017,15 @@ $P$の出力をPCAして累積寄与率95%になるように次元数削減し�
           {left: "\\(", right: "\\)", dispaly: false},
           ]
         });
+        var tex = document.getElementsByClassName("tex");
+        console.log(tex);
+        Array.prototype.forEach.call(tex, function(el) {
+          try {
+            katex.render(el.getAttribute("data-expr"), el);
+          } catch (e) {
+            console.log(e);
+          }
+        });
       });
     </script>
 

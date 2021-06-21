@@ -6,10 +6,19 @@
     <description>Recent content in CVPR2021 on Nakatsuka Shunsuke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://salty-vanilla.github.io/portfolio/tags/cvpr2021/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Glancing at the Patch: Anomaly Localization With Global and Local Feature Comparison</title>
+      <link>https://salty-vanilla.github.io/portfolio/post/iad_dad/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://salty-vanilla.github.io/portfolio/post/iad_dad/</guid>
+      <description>local featureとglobal featureをそれぞれ別のNNより抽出し，その一致度を測ることで異常度算出する教師無し異常検知の枠組み．local featureは画像内のPatchから抽出，global featureはそのPatchを使用しないようにpartial convolutionすることで抽出．</description>
+    </item>
     
     <item>
       <title>CutPaste: Self-Supervised Learning for Anomaly Detection and Localization</title>

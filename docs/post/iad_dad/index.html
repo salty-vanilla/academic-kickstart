@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.2.5">
+  <meta name="google-site-verification" content="Cc3qNeWjzkkGUiml6I-IY_Zs9QqvMsQIUFS07CCjlts" />
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="中塚 俊介">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="local featureとglobal featureをそれぞれ別のNNより抽出し，その一致度を測ることで異常度算出する教師無し異常検知の枠組み．local featureは画像内のPatchから抽出，global featureはそのPatchを使用しないようにpartial convolutionすることで抽出．">
+
+  
+  <link rel="alternate" hreflang="ja" href="https://salty-vanilla.github.io/portfolio/post/iad_dad/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#ef8354">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/portfolio/css/academic.min.f2ef9d6a193e47965eb11c42772a26e7.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/portfolio/css/academic.d3afa0f553c7cc00bac3afdaa697922d.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-158935517-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/portfolio/site.webmanifest">
+  <link rel="icon" type="image/png" href="/portfolio/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/portfolio/img/icon-192.png">
+
+  <link rel="canonical" href="https://salty-vanilla.github.io/portfolio/post/iad_dad/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Nakatsuka Shunsuke">
+  <meta property="og:url" content="https://salty-vanilla.github.io/portfolio/post/iad_dad/">
+  <meta property="og:title" content="Glancing at the Patch: Anomaly Localization With Global and Local Feature Comparison | Nakatsuka Shunsuke">
+  <meta property="og:description" content="local featureとglobal featureをそれぞれ別のNNより抽出し，その一致度を測ることで異常度算出する教師無し異常検知の枠組み．local featureは画像内のPatchから抽出，global featureはそのPatchを使用しないようにpartial convolutionすることで抽出．"><meta property="og:image" content="https://salty-vanilla.github.io/portfolio/post/iad_dad/featured.png">
+  <meta property="og:locale" content="ja">
+  
+  <meta property="article:published_time" content="2021-06-21T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2021-06-21T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>Glancing at the Patch: Anomaly Localization With Global and Local Feature Comparison | Nakatsuka Shunsuke</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/portfolio/">Nakatsuka Shunsuke</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#projects">
+            
+            <span>Researches</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#tutorial">
+            
+            <span>Tutorials</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/portfolio/post/iad_dad/featured_hu008bb33684b49cc3280af373ab30f518_1165734_800x0_resize_lanczos_2.png');"></div>
+  
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">Glancing at the Patch: Anomaly Localization With Global and Local Feature Comparison</h1>
+
+        
+
+        
+
+
+
+<meta content="2021-06-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2021-06-21 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 21, 2021</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/iad_dad/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://openaccess.thecvf.com/content/CVPR2021/html/Wang_Glancing_at_the_Patch_Anomaly_Localization_With_Global_and_Local_CVPR_2021_paper.html" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Glancing%20at%20the%20Patch%3a%20Anomaly%20Localization%20With%20Global%20and%20Local%20Feature%20Comparison&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fiad_dad%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fiad_dad%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fiad_dad%2f&amp;title=Glancing%20at%20the%20Patch%3a%20Anomaly%20Localization%20With%20Global%20and%20Local%20Feature%20Comparison"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fiad_dad%2f&amp;title=Glancing%20at%20the%20Patch%3a%20Anomaly%20Localization%20With%20Global%20and%20Local%20Feature%20Comparison"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Glancing%20at%20the%20Patch%3a%20Anomaly%20Localization%20With%20Global%20and%20Local%20Feature%20Comparison&amp;body=https%3a%2f%2fsalty-vanilla.github.io%2fportfolio%2fpost%2fiad_dad%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/portfolio/post/iad_dad/featured_hu008bb33684b49cc3280af373ab30f518_1165734_680x500_fill_q90_lanczos_smart1_2.png" itemprop="image" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">Glancing at the Patch: Anomaly Localization With Global and Local Feature Comparison</h1>
+
+  
+
+  
+
+
+
+<meta content="2021-06-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2021-06-21 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 21, 2021</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/portfolio/post/iad_dad/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/portfolio/categories/anomaly-detection/">Anomaly Detection</a></span>
+  
+
+  
+    
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  <a class="btn btn-outline-primary my-1" href="https://openaccess.thecvf.com/content/CVPR2021/html/Wang_Glancing_at_the_Patch_Anomaly_Localization_With_Global_and_Local_CVPR_2021_paper.html" target="_blank" rel="noopener">Go to Project Site</a>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h2 id="1-どんなもの">1. どんなもの？</h2>
+<ul>
+<li>pretrained modelをfine tuning，distillationするUnsupervised Anomaly Detection</li>
+<li>local featureとglobal featureをそれぞれ別のNNより抽出し，その一致度を測ることでscore算出</li>
+<li>local featureは画像内のPatchから抽出，global featureはそのPatchを使用しないようにpartial convolutionすることで抽出</li>
+</ul>
+<h2 id="2-先行研究と比べてどこがすごい">2. 先行研究と比べてどこがすごい？</h2>
+<ul>
+<li>従来のADでは，
+<ul>
+<li>画像全体を入力：global featureを獲得できるが，localizationができない</li>
+<li>Patchを入力：global featureを獲得できない</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-技術や手法のキモはどこ">3. 技術や手法の&quot;キモ&quot;はどこ？</h2>
+<p><img src="img/model1.png" alt=""></p>
+<h3 id="変数の定義">変数の定義</h3>
+<ul>
+<li>$\mathbf{I}$: 入力画像</li>
+<li>$\mathbf{p}$: Patch</li>
+<li>$\mathbf{M}$: mask</li>
+<li>$\mathcal{L}$: Local Network</li>
+<li>$\mathcal{R}$: pretrained model</li>
+<li>$\mathcal{D}$: $\mathcal{L}(\mathbb{p})$と$\mathcal{R}(\mathbb{p})$の次元数を合わせるDecoder</li>
+<li>$c_{ij}$: minibatch内の$\mathcal{L}(\mathbb{p})$の相関行列の$(i, j)$番目要素</li>
+<li>$\mathcal{G}$: Global Network</li>
+<li>$\mathcal{C}$: DADのhead</li>
+</ul>
+<h3 id="学習">学習</h3>
+<h4 id="local-feature">Local feature</h4>
+<ul>
+<li>pretrained modelからfine tuningと蒸留を同時に行うことで学習する</li>
+<li>knowledge distillation loss
+$$
+l_k = | \mathcal{D}(\mathcal{L}(\mathbb{p})) - \mathcal{R}(\mathbb{p}) |^2_2
+$$</li>
+<li>compactness loss
+$$
+l_c = \Sigma_{i \not= j}{c_{ij}}
+$$</li>
+<li>↑2つを重みつき和して，
+$$
+l_{local} = \lambda_k l_k + \lambda_c l_c
+$$</li>
+<li><span class="tex" data-expr="l_{local}"></span>を最小化するように<span class="tex" data-expr="\mathcal{L}"></span>を事前に学習する</li>
+<li>local featureは
+$$
+\mathbf{Z}_l = \mathcal{L}(\mathbb{p})
+$$</li>
+</ul>
+<h4 id="global-feature">Global feature</h4>
+<ul>
+<li>Loacal feature抽出のために使ったPatchをGlobal Networkでは使わないようにpartial convolution</li>
+</ul>
+<div class="tex displaystyle katex-display" data-expr="\displaystyle x^{\prime} = \left\{\begin{array}{ll}
+\mathbf{W}^{\mathbf{T}}(\mathbf{X} \odot \mathbf{M}) \frac{\operatorname{sum}(\mathbf{1})}{\operatorname{sum}(\mathbf{M})}&#43;b, &amp; \text { if } \operatorname{sum}(\mathbf{M})&gt;0 \\
+0, &amp; \text { otherwise. }
+\end{array}\right." align="center"></div>
+<ul>
+<li>
+<p>global featureは
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   \mathbf{Z}_g = \mathcal{G} \left( \mathbf{I}, \mathbf{M}_0 \right)" align="center"></div></p>
+</li>
+<li>
+<p>IAD lossとDAD lossを最小化するよう学習する
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   l = l_{IAD} &#43; \lambda_t l_{DAD}" align="center"></div></p>
+</li>
+</ul>
+<h5 id="inconsistency-anomaly-detection-head">Inconsistency Anomaly Detection Head</h5>
+<ul>
+<li>Inconsistency Anomaly Detection Head(IAD Head)をlocalとglobal featureの不整合を検出できるよう設計
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   l_{IAD} = \frac{1}{n}\| \mathbf{Z}_l - \mathbf{Z}_g \|^2_2" align="center"></div></li>
+</ul>
+<h5 id="distortion-anomaly-detection-head">Distortion Anomaly Detection Head</h5>
+<ul>
+<li>Distortion Anomaly Detection Head(DAD Head)を画像内の歪みを検出できるように設計
+<ul>
+<li><span class="tex" data-expr="\mathbf{Z}_l"></span>と疑似欠陥を付与したPatch<span class="tex" data-expr="\mathbf{Z}_l^-"></span>を分類できるようにする</li>
+<li><span class="tex" data-expr="\mathbf{Z}^*"></span>は<span class="tex" data-expr="\mathbf{Z}_l"></span>か<span class="tex" data-expr="\mathbf{Z}_l^-"></span>のいずれか</li>
+<li><span class="tex" data-expr="\mathbf{Z}_l"></span>のときは<span class="tex" data-expr="y=0"></span>，<span class="tex" data-expr="\mathbf{Z}_l^-"></span>のときは<span class="tex" data-expr="y=1"></span>
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   p = \mathcal{C} \left( \mathbf{Z}^*, \mathbf{Z}_g \right)" align="center"></div></li>
+</ul>
+</li>
+</ul>
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   l_{DAD} = -\left( y\log{p} &#43; (1-y)\log{(1-p)} \right)" align="center"></div>
+<h3 id="推論">推論</h3>
+<h4 id="score">score</h4>
+<ul>
+<li>inconsistency anomaly score
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   s_{IAD} = \frac{1}{n} \| \mathbf{Z}_l - \mathbf{Z}_g \|^2_2" align="center"></div></li>
+<li>distortion anomaly score
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   s_{DAD} = 1 - \mathcal{C} \left( \mathbf{Z}_l, \mathbf{Z}_g \right)" align="center"></div></li>
+<li>重み付きで足し合わせて，
+<div class="tex displaystyle katex-display" data-expr="\displaystyle   s = \lambda_s s_{IAD} &#43; (1-\lambda_s)s_{DAD}" align="center"></div></li>
+</ul>
+<h4 id="localization">localization</h4>
+<ul>
+<li>overlapを許して，slinding windowすることでpatchを作り，score算出をしていく</li>
+</ul>
+<p><img src="img/model2.png" alt=""></p>
+<h2 id="4-どうやって有効だと検証した">4. どうやって有効だと検証した？</h2>
+<ul>
+<li>MVTec で実験
+<ul>
+<li>PROにおいて，PaDiMを上回る
+<img src="img/res1.png" alt="">
+<img src="img/res2.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h2 id="5-議論はあるか">5. 議論はあるか？</h2>
+<ul>
+<li>PROにおいてSoTA更新</li>
+<li>image levelのAUROCについて言及がない？</li>
+</ul>
+<h2 id="6-次に読むべき論文はある">6. 次に読むべき論文はある？</h2>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/portfolio/tags/cvpr2021/">CVPR2021</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/portfolio/author/admin/avatar_hued5d70cfe56e48dc137dc1e3bdf77641_127119_250x250_fill_lanczos_center_2.png" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/portfolio/authors/admin">中塚 俊介</a></h5>
+    <h6 class="card-subtitle">R&amp;D Engineer</h6>
+    <p class="card-text" itemprop="description">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/portfolio/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/_Shu_Nak" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/salty-vanilla" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.slideshare.net/ShunsukeNAKATSUKA1" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/portfolio/post/cutpaste/">CutPaste: Self-Supervised Learning for Anomaly Detection and Localization</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "saltyvanilla" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", dispaly: false},
+          ]
+        });
+        var tex = document.getElementsByClassName("tex");
+        console.log(tex);
+        Array.prototype.forEach.call(tex, function(el) {
+          try {
+            katex.render(el.getAttribute("data-expr"), el);
+          } catch (e) {
+            console.log(e);
+          }
+        });
+      });
+    </script>
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//saltyvanilla.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/portfolio/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/portfolio/js/academic.min.ee93f50e7bcdd181a29c10939fba4467.js"></script>
+
+  </body>
+</html>
+
